@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STASH — Your Saved Internet, Made Useful | stashreel.app</title>
+  <meta name="description" content="Save videos from Instagram, TikTok, and YouTube. STASH turns chaotic reels into clean recipes, workout drills, and actionable notes you can actually use." />
+  <link rel="canonical" href="https://stashreel.app/" />
+  <link rel="icon" type="image/png" href="assets/icon-512.png" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          },
+          colors: {
+            stash: {
+              red: '#FF2D55',
+              copper: '#8C4A2A',
+              dark: '#08080B',
+              card: '#101015',
+              border: '#1F1F28'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #08080B;
+      color: #E2E8F0;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 50% 0%, rgba(255, 45, 85, 0.12) 0%, rgba(140, 74, 42, 0.04) 30%, transparent 65%);
+    }
+
+    /* Tactile analog grain */
+    .bg-grain {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    /* Milled Titanium hardware bevel */
+    .chassis-bevel {
+      box-shadow: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.16),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.8),
+        0 25px 60px -15px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .phone-glass-glare {
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 40%, transparent 70%);
+    }
+
+    .glow-red {
+      box-shadow: 0 0 50px -10px rgba(255, 45, 85, 0.35);
+    }
+    .glow-card {
+      box-shadow: 0 15px 45px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 45, 85, 0.25);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-stash-red selection:text-white bg-grain">
+
+  <!-- ── Top Status Banner ── -->
+  <div class="bg-black/90 border-b border-stash-border text-[11px] font-mono py-2.5 px-4 text-center text-neutral-400 flex items-center justify-center gap-2 sm:gap-3">
+    <span class="inline-flex items-center gap-1.5 text-white font-bold">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>STASH for Android is Ready</span>
+    </span>
+    <span class="text-neutral-600 hidden sm:inline">•</span>
+    <span class="hidden sm:inline">Version 1.1.0 (Target API 36 Compliant)</span>
+    <span class="text-neutral-600">•</span>
+    <a href="#playground" class="text-stash-red font-bold hover:underline">Try Live Interactive Demo ↓</a>
+  </div>
+
+  <!-- ── Navigation ── -->
+  <header class="sticky top-0 z-50 backdrop-blur-2xl bg-stash-dark/80 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <!-- Official Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
+        <img src="assets/icon-512.png" alt="STASH" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl shadow-lg border border-white/10 group-hover:scale-105 transition-transform" />
+        <div class="flex flex-col">
+          <span class="font-display text-lg sm:text-xl font-extrabold tracking-tight text-white leading-none">STASH</span>
+          <span class="text-[9px] sm:text-[10px] font-mono text-neutral-400 tracking-tight mt-0.5 sm:mt-1 flex items-center gap-1">
+            <span class="hidden sm:inline">Save it. Stash it.</span>
+            <span class="text-stash-red font-bold">Actually use it.</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- Clean Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-mono font-bold tracking-wider uppercase text-neutral-400">
+        <a href="#aha-moment" class="hover:text-white transition-colors">The Transformation</a>
+        <a href="#playground" class="hover:text-white transition-colors">Live Demo</a>
+        <a href="#modes" class="hover:text-white transition-colors">Modes</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+        <a href="privacy.html" class="hover:text-white transition-colors">Privacy</a>
+      </nav>
+
+      <!-- Clean CTA Button -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="#download" class="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black font-extrabold text-[11px] sm:text-xs font-mono tracking-wide uppercase transition-all shadow-md active:scale-95 flex items-center gap-1.5 shrink-0">
+          <span class="hidden sm:inline">Get STASH</span>
+          <span class="sm:hidden">Get App</span>
+          <span>↓</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero Section (The Core Proposition) ── -->
+  <section class="relative pt-20 sm:pt-24 pb-16 sm:pb-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-stash-card border border-stash-border text-neutral-300 text-[11px] sm:text-xs font-mono mb-6 sm:mb-8 shadow-inner">
+        <span class="w-2 h-2 rounded-full bg-stash-red animate-pulse"></span>
+        <span>YOUR INTERNET. YOUR STASH.</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-display text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-[1.1] text-white">
+        Save it. <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent">Actually use it.</span>
+      </h1>
+
+      <!-- Supporting Line -->
+      <p class="mt-5 sm:mt-6 text-sm sm:text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed font-light">
+        Save recipes, workouts, and guides from Instagram, TikTok, and YouTube. STASH turns chaotic short-form videos into clean, interactive tools you can actually use.
+      </p>
+
+      <!-- Hero Actions (Refined Hardware Buttons) -->
+      <div id="download" class="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <a href="#playground" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-white hover:bg-neutral-100 text-black font-extrabold text-sm flex items-center justify-center gap-3 shadow-xl active:scale-95 transition-all">
+          <svg class="w-4 h-4 fill-current text-stash-red" viewBox="0 0 24 24">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Try Interactive Live Demo</span>
+          <span class="font-mono text-xs opacity-60">→</span>
+        </a>
+
+        <a href="https://play.google.com/store/apps/details?id=com.stash.mediavault" target="_blank" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-[#121218] hover:bg-neutral-900 border border-white/10 text-white font-extrabold text-sm flex items-center justify-center gap-3 active:scale-95 transition-all shadow-md">
+          <svg class="w-5 h-5 fill-current text-emerald-400" viewBox="0 0 24 24">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.41 2.41 0 0 1-.22-.323V2.137c.068-.114.143-.223.22-.323zm11.23 11.23l2.535-2.535-12.72-7.24 10.185 9.775zm0 1.912L4.654 24.73l12.72-7.24-2.535-2.535zm1.536-1.536l3.585 2.042c1.23.701 1.23 1.847 0 2.548l-3.585 2.042-2.316-2.316 2.316-2.316z"/>
+          </svg>
+          <span>Download for Android</span>
+        </a>
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] font-mono text-neutral-400">
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>Zero mandatory accounts</span>
+        </span>
+        <span class="text-neutral-700 hidden sm:inline">•</span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>On-device private vault</span>
+        </span>
+        <span class="text-neutral-700 hidden sm:inline">•</span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>Uncropped 9:16 player</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The "AHA!" Moment: BEFORE & AFTER TRANSFORMATION (Human & Relatable) ── -->
+  <section id="aha-moment" class="py-16 sm:py-20 border-y border-stash-border bg-[#0A0A0E] relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
+        <span class="text-stash-red font-mono text-xs font-bold uppercase tracking-widest">The Transformation</span>
+        <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white">The moment it clicks.</h2>
+        <p class="text-neutral-400 text-xs sm:text-sm font-light">
+          You don't need another video player. You need the useful information trapped inside the video.
+        </p>
+      </div>
+
+      <!-- Before / After Visual Card -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+        
+        <!-- BEFORE: Human Kitchen Frustration -->
+        <div class="p-5 sm:p-8 rounded-3xl bg-[#0E0E12] border border-red-500/20 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-900">
+              <span class="px-2.5 py-1 rounded-full bg-red-500/15 text-red-400 text-[10px] font-mono font-bold uppercase tracking-wider">
+                Before STASH
+              </span>
+              <span class="text-xs font-mono text-neutral-500">Fast 30s Video</span>
+            </div>
+            <h3 class="font-display font-bold text-lg sm:text-xl text-neutral-200">Trapped inside a scrolling video</h3>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              You're standing in the kitchen or gym trying to follow along. The video loops too fast. Your phone screen keeps locking. You have to pause with messy fingers and rewind five times just to catch the instructions.
+            </p>
+          </div>
+
+          <!-- Realistic Phone Player Clutter -->
+          <div class="p-4 rounded-2xl bg-neutral-900/70 border border-neutral-800 space-y-3 text-xs text-neutral-400 font-mono">
+            <div class="flex items-center justify-between text-neutral-500 text-[11px]">
+              <span class="inline-flex items-center gap-1.5">
+                <svg class="w-3 h-3 text-neutral-400" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>0:18 / 0:30</span>
+              </span>
+              <span class="text-red-400/90">Screen locked • Touch sensor dirty</span>
+            </div>
+            <div class="p-3 rounded-xl bg-black/60 border border-white/5 text-[11px] text-neutral-300 flex items-start gap-2">
+              <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>"Wait, was it 2 tablespoons or 2 teaspoons of garlic? Let me rewind again..."</span>
+            </div>
+            <div class="text-[10px] text-neutral-500">Saved to social bookmarks • Forgotten • Hard to use</div>
+          </div>
+        </div>
+
+        <!-- AFTER: Actionable STASH Card -->
+        <div class="p-5 sm:p-8 rounded-3xl bg-stash-card border border-stash-red/40 flex flex-col justify-between space-y-6 glow-card">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+              <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Inside STASH</span>
+              </span>
+              <span class="text-xs font-mono text-neutral-400">Clean & Touchable</span>
+            </div>
+            <h3 class="font-display font-bold text-lg sm:text-xl text-white">Instant, Actionable Intelligence</h3>
+            <p class="text-xs text-neutral-300 leading-relaxed">
+              Save the link. STASH extracts everything into an interactive grocery checklist, step-by-step directions, and keeps your screen awake while cooking.
+            </p>
+          </div>
+
+          <!-- The Extracted Recipe Preview Box -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-black/80 border border-white/10 space-y-4 shadow-xl">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v8a4 4 0 0 1-8 0V2"/><path d="M14 2v20"/><path d="M6 2v20"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white text-xs sm:text-sm">Garlic Butter Crispy Potatoes</h4>
+                  <p class="text-[10px] font-mono text-neutral-400">Prep 15m • Cook 25m • 4 Servings</p>
+                </div>
+              </div>
+              <span class="px-2 py-1 rounded bg-amber-500/20 text-amber-300 text-[9px] font-mono font-bold uppercase shrink-0">
+                COOK MODE
+              </span>
+            </div>
+
+            <!-- Ingredients Checklist -->
+            <div class="space-y-1.5 text-xs font-mono">
+              <label class="flex items-center gap-2 text-neutral-200 cursor-pointer">
+                <input type="checkbox" checked class="rounded border-neutral-700 text-stash-red focus:ring-0">
+                <span>800g Baby Yukon Gold Potatoes</span>
+              </label>
+              <label class="flex items-center gap-2 text-neutral-200 cursor-pointer">
+                <input type="checkbox" checked class="rounded border-neutral-700 text-stash-red focus:ring-0">
+                <span>4 cloves Fresh Garlic (minced)</span>
+              </label>
+              <label class="flex items-center gap-2 text-neutral-200 cursor-pointer">
+                <input type="checkbox" checked class="rounded border-neutral-700 text-stash-red focus:ring-0">
+                <span>3 tbsp Salted Butter & Rosemary</span>
+              </label>
+            </div>
+
+            <!-- Step Preview -->
+            <div class="pt-2 border-t border-white/10 text-[11px] text-neutral-400 flex items-center justify-between">
+              <span>Step 1: Parboil potatoes for 10 min...</span>
+              <span class="text-stash-red text-xs font-bold inline-flex items-center gap-1">
+                <span>Video Attached</span>
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Interactive Live Demo: 3 UNIVERSAL REAL-WORLD EXAMPLES ── -->
+  <section id="playground" class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
+    <!-- Matte Titanium Device Chassis -->
+    <div class="p-4 sm:p-7 rounded-3xl sm:rounded-[40px] bg-[#0E0E14] chassis-bevel space-y-6 sm:space-y-8 relative overflow-hidden">
+      
+      <!-- Top Hardware Bezel Header -->
+      <div class="flex items-center justify-between px-2 pt-1 border-b border-white/5 pb-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-neutral-800 border border-white/10"></span>
+          <span class="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">CHASSIS 01 // TITANIUM BLACK</span>
+        </div>
+        <div class="w-16 h-1 rounded-full bg-neutral-800 mx-auto hidden sm:block"></div>
+        <span class="text-[10px] font-mono text-neutral-500">REF 9:16 SAFE</span>
+      </div>
+
+      <div class="text-center space-y-2">
+        <span class="px-3 py-1 rounded-full bg-stash-red/10 text-stash-red text-[11px] font-mono font-bold uppercase">Interactive Browser Demo</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white">Experience STASH in 1 Second</h2>
+        <p class="text-neutral-400 text-xs sm:text-sm font-light">
+          Click any sample social reel below to see how STASH extracts useful structure instantly:
+        </p>
+      </div>
+
+      <!-- Universal 3 Buttons: Food • Workout • Everyday Phone Hack -->
+      <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2.5">
+        <button onclick="demoExtract('recipe')" id="btn-recipe" class="demo-btn w-full sm:w-auto px-4 py-2.5 rounded-xl bg-neutral-800 border border-stash-red text-xs font-mono text-white transition-all active:scale-95 flex items-center justify-center gap-2 font-semibold shadow-md">
+          <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v8a4 4 0 0 1-8 0V2"/><path d="M14 2v20"/><path d="M6 2v20"/></svg>
+          <span>10-Min Garlic Chili Noodles (Reel)</span>
+        </button>
+        <button onclick="demoExtract('workout')" id="btn-workout" class="demo-btn w-full sm:w-auto px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-white/10 text-xs font-mono text-neutral-400 transition-all active:scale-95 flex items-center justify-center gap-2">
+          <svg class="w-3.5 h-3.5 text-stash-red shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1a3 3 0 0 0-4.24 0l-.88.88a3 3 0 0 1-4.24 0l-4.52-4.52a3 3 0 0 1 0-4.24l.88-.88a3 3 0 0 0 0-4.24L7 3"/><path d="m3 7 4 4"/><path d="m13 17 4 4"/></svg>
+          <span>15-Min Living Room Cardio & Core (Shorts)</span>
+        </button>
+        <button onclick="demoExtract('notes')" id="btn-notes" class="demo-btn w-full sm:w-auto px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-white/10 text-xs font-mono text-neutral-400 transition-all active:scale-95 flex items-center justify-center gap-2">
+          <svg class="w-3.5 h-3.5 text-blue-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+          <span>Clear 15GB Phone Clutter (TikTok)</span>
+        </button>
+      </div>
+
+      <!-- Transformation Stage inside Phone Display -->
+      <div id="demo-stage" class="p-4 sm:p-6 rounded-2xl bg-black border border-white/10 min-h-[220px] flex flex-col justify-center transition-all phone-glass-glare relative">
+        <!-- Content injected by JavaScript below -->
+      </div>
+
+      <div class="text-center">
+        <p class="text-[11px] font-mono text-neutral-500">
+          STASH works with links from Instagram, TikTok, YouTube Shorts, and X.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── The Social Graveyard Hook ── -->
+  <section class="py-16 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4 sm:space-y-5">
+    <span class="text-stash-copper font-mono text-xs font-bold uppercase tracking-widest">The Problem We Solve</span>
+    <h2 class="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+      You saved it. You forgot why. <br />
+      <span class="text-stash-red">STASH remembers for you.</span>
+    </h2>
+    <p class="text-neutral-400 text-sm sm:text-lg font-light max-w-2xl mx-auto leading-relaxed">
+      The bookmark era is dead. Nobody saves text articles anymore — you discover recipes, workout drills, and life hacks on Instagram, TikTok, and YouTube. But a 30-second looping video is impossible to reference with messy kitchen fingers or while lifting weights. STASH bridges that gap.
+    </p>
+  </section>
+
+  <!-- ── Asymmetric Bento Showcase: The 3 Core Modes ── -->
+  <section id="modes" class="py-16 sm:py-20 border-t border-stash-border bg-stash-dark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6 sm:space-y-8">
+      
+      <!-- Equal Split Bento (Cook Mode 50% / Train Mode 50%) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+        
+        <!-- 1. Cook Mode -->
+        <div id="cook-mode" class="p-5 sm:p-8 md:p-10 rounded-3xl bg-stash-card border border-stash-border flex flex-col justify-between space-y-6 sm:space-y-8 chassis-bevel relative overflow-hidden h-full">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-white/5 gap-2">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v8a4 4 0 0 1-8 0V2"/><path d="M14 2v20"/><path d="M6 2v20"/></svg>
+                </div>
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-white">Cook Mode</h3>
+              </div>
+              <span class="px-2.5 sm:px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shrink-0">
+                SCREEN LOCK: OFF
+              </span>
+            </div>
+            
+            <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed font-light">
+              Interactive grocery checklists with Metric (grams/ml) and Imperial (cups/oz) toggles. Screen stays awake while you cook. Step-by-step directions without pausing 60 times.
+            </p>
+          </div>
+
+          <!-- Realistic Kitchen Card Widget -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-black/60 border border-white/5 space-y-3 font-mono text-xs">
+            <div class="flex items-center justify-between text-neutral-400 text-[11px]">
+              <span>KITCHEN RUNNER 01</span>
+              <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>ACTIVE SESSION</span>
+              </span>
+            </div>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-neutral-200">
+                <svg class="w-4 h-4 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><rect width="18" height="18" x="3" y="3" rx="2"/></svg>
+                <span>Parchment paper lined on baking sheet</span>
+              </div>
+              <div class="flex items-center gap-2.5 text-neutral-400">
+                <svg class="w-4 h-4 text-neutral-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>
+                <span>Preheat oven to 200°C (395°F)</span>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-white/5 text-[10px] text-neutral-500 flex items-center justify-between">
+              <span>Display locked awake</span>
+              <span class="text-amber-400">Metric / Imperial Active</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-black/40 border border-white/5 font-mono text-[11px] text-amber-400 font-semibold flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Tested with greasy kitchen fingers</span>
+          </div>
+        </div>
+
+        <!-- 2. Train Mode -->
+        <div id="train-mode" class="p-5 sm:p-8 md:p-10 rounded-3xl bg-stash-card border border-stash-border flex flex-col justify-between space-y-6 sm:space-y-8 chassis-bevel relative overflow-hidden h-full">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-white/5 gap-2">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 text-stash-red flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1a3 3 0 0 0-4.24 0l-.88.88a3 3 0 0 1-4.24 0l-4.52-4.52a3 3 0 0 1 0-4.24l.88-.88a3 3 0 0 0 0-4.24L7 3"/><path d="m3 7 4 4"/><path d="m13 17 4 4"/></svg>
+                </div>
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-white">Train Mode</h3>
+              </div>
+              <span class="px-2.5 sm:px-3 py-1 rounded-full bg-red-500/15 text-stash-red font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shrink-0">
+                AUTO-TIMER
+              </span>
+            </div>
+
+            <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed font-light">
+              Save workout drills from TikTok and Shorts. Auto-detects exercises, rep counts, and target muscle groups. Features auto-looping form reference while you rest.
+            </p>
+          </div>
+
+          <!-- Realistic Gym Workout Widget (Balanced to match Cook Mode) -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-black/60 border border-white/5 space-y-3 font-mono text-xs">
+            <div class="flex items-center justify-between text-neutral-400 text-[11px]">
+              <span>TRAIN RUNNER 01</span>
+              <span class="text-stash-red font-bold flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-stash-red animate-pulse"></span>
+                <span>ACTIVE SESSION</span>
+              </span>
+            </div>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-2.5 text-neutral-200">
+                <svg class="w-4 h-4 text-stash-red shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><rect width="18" height="18" x="3" y="3" rx="2"/></svg>
+                <span>Set 2 of 4: 20 Bodyweight Air Squats</span>
+              </div>
+              <div class="flex items-center justify-between pl-6 text-neutral-400 text-[11px]">
+                <span>Rest: <strong class="text-white text-xs">00:45</strong></span>
+                <span class="text-stash-red font-bold">Next: Mountain Climbers</span>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-white/5 text-[10px] text-neutral-500 flex items-center justify-between">
+              <span>Auto-vibrate cue on finish</span>
+              <span class="text-stash-red">Looping Drill Active</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-black/40 border border-white/5 font-mono text-[11px] text-stash-red font-semibold flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Hands-free auto-rest interval</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Full Width Bento: Private Stash (Ghost Partition) -->
+      <div class="p-5 sm:p-8 md:p-10 rounded-3xl bg-stash-card border border-stash-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8 chassis-bevel relative overflow-hidden">
+        <div class="space-y-4 max-w-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-white">Private Stash (Ghost Partition)</h3>
+          </div>
+          <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed font-light">
+            Create custom collections, rename them, or lock sensitive folders with your biometric fingerprint. Locked items are completely unmounted from your public feed.
+          </p>
+          <div class="p-3 rounded-2xl bg-black/40 border border-white/5 font-mono text-[11px] text-purple-400 font-semibold inline-flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>True on-device privacy</span>
+          </div>
+        </div>
+
+        <!-- Biometric Graphic -->
+        <div class="w-full md:w-auto p-4 sm:p-6 rounded-2xl bg-black/80 border border-purple-500/20 flex items-center gap-4 text-xs font-mono text-neutral-300 shrink-0">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center animate-pulse shrink-0">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          </div>
+          <div>
+            <div class="font-bold text-white">Biometric Demount</div>
+            <div class="text-[10px] text-neutral-500">ROOT FEED ZERO-EXPOSURE</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Transparent Pricing Section ── -->
+  <section id="pricing" class="py-16 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
+      <span class="text-stash-red font-mono text-xs font-bold uppercase tracking-widest">Pricing</span>
+      <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white">Simple, Honest Pricing.</h2>
+      <p class="text-neutral-400 text-xs sm:text-sm font-light">
+        Start free. Upgrade when STASH becomes indispensable to your daily life.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+      
+      <!-- Free Plan -->
+      <div class="p-5 sm:p-8 md:p-10 rounded-3xl bg-neutral-950 border border-neutral-800 flex flex-col justify-between space-y-6 sm:space-y-8 chassis-bevel">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-neutral-400 uppercase">Starter</span>
+            <span class="px-2.5 py-1 rounded-full bg-neutral-800 text-neutral-300 text-[10px] font-mono">Free Forever</span>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-3xl sm:text-4xl font-extrabold text-white">$0</span>
+          </div>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Essential bookmarking and on-device media vault for casual savers.
+          </p>
+
+          <ul class="pt-4 border-t border-neutral-900 space-y-2.5 text-xs text-neutral-300 font-mono">
+            <li class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Unlimited link saves & collections</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Uncropped 9:16 Cinema Player</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>0.75x–2.0x playback speed controls</span>
+            </li>
+            <li class="flex items-center gap-2 text-stash-red">
+              <svg class="w-3.5 h-3.5 text-stash-red shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>5 Free AI Extractions / day</span>
+            </li>
+          </ul>
+        </div>
+
+        <a href="#download" class="w-full py-3.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-white/10 text-white font-mono text-xs font-bold text-center block transition-all active:scale-95">
+          Get Started Free
+        </a>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="p-5 sm:p-8 md:p-10 rounded-3xl bg-stash-card border-2 border-stash-red flex flex-col justify-between space-y-6 sm:space-y-8 relative glow-card">
+        <div class="absolute -top-3 right-4 sm:right-8 px-3 py-1 rounded-full bg-stash-red text-white text-[10px] font-mono font-bold uppercase tracking-wider">
+          Best Value (Save 48%)
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-stash-red uppercase">STASH PRO</span>
+            <span class="text-[10px] font-mono text-neutral-400">$2.08 / month</span>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-3xl sm:text-4xl font-extrabold text-white">$24.99</span>
+            <span class="text-xs font-mono text-neutral-400">/ year</span>
+            <span class="ml-2 text-[10px] sm:text-[11px] font-mono text-neutral-500">(or $3.99/mo)</span>
+          </div>
+          <p class="text-xs text-neutral-300 leading-relaxed">
+            For cooks, athletes, and learners who want their saved internet instantly actionable.
+          </p>
+
+          <ul class="pt-4 border-t border-white/10 space-y-2.5 text-xs text-neutral-200 font-mono">
+            <li class="flex items-center gap-2 text-white font-bold">
+              <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Unlimited AI Extractions (Recipes & Workouts)</span>
+            </li>
+            <li class="flex items-center gap-2 text-white font-bold">
+              <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Cook Mode (Screen stays awake in kitchen)</span>
+            </li>
+            <li class="flex items-center gap-2 text-white font-bold">
+              <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Train Mode with custom rest timers</span>
+            </li>
+            <li class="flex items-center gap-2 text-white font-bold">
+              <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Private Stash (Biometric Ghost Partition)</span>
+            </li>
+            <li class="flex items-center gap-2 text-neutral-400">
+              <svg class="w-3.5 h-3.5 text-neutral-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Google Play In-App Billing Protection</span>
+            </li>
+          </ul>
+        </div>
+
+        <a href="#download" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-stash-red to-orange-500 hover:from-stash-red hover:to-orange-600 text-white font-mono text-xs font-bold text-center block transition-all shadow-lg active:scale-95">
+          Get STASH Pro ($24.99/yr)
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── The Manifesto: "Your Stash Belongs to You" ── -->
+  <section id="manifesto" class="py-20 sm:py-28 border-t border-stash-border bg-black relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
+      
+      <!-- 1. The Core Hook -->
+      <div class="text-center max-w-3xl mx-auto space-y-5 sm:space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 font-mono text-[10px] sm:text-[11px] uppercase tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-stash-red"></span>
+          <span>Philosophy // The Architecture</span>
+        </div>
+
+        <h2 class="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+          Your Stash belongs to you.
+        </h2>
+
+        <p class="font-display text-lg sm:text-2xl font-bold text-neutral-200">
+          STASH is an evidence-based compiler for the internet.
+        </p>
+
+        <p class="text-neutral-400 text-xs sm:text-base leading-relaxed font-light">
+          The modern internet makes discovering useful information effortless, but saving it does not make it useful later. Inspired by Vannevar Bush's <em>Memex</em> and Douglas Engelbart's work on augmenting human intellect, STASH treats software as a personal instrument for extending memory and turning information into action.
+        </p>
+
+        <div class="p-3 sm:p-3.5 rounded-xl bg-neutral-950 border border-neutral-900 font-mono text-xs text-neutral-300 inline-block">
+          Social media optimizes discovery. <span class="text-stash-red font-bold">STASH optimizes retrieval and action.</span>
+        </div>
+      </div>
+
+      <!-- 2. The 4 Transformations -->
+      <div class="space-y-6">
+        <div class="text-center">
+          <span class="text-[11px] font-mono text-neutral-500 uppercase tracking-widest">How STASH Compiles Messy Media into Structured Objects</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <!-- Transformation 1: Recipes -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#0E0E14] border border-white/5 flex items-start gap-3.5 sm:gap-4 chassis-bevel">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v8a4 4 0 0 1-8 0V2"/><path d="M14 2v20"/><path d="M6 2v20"/></svg>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 font-mono text-xs">
+                <span class="text-neutral-400">Recipes</span>
+                <span class="text-stash-red font-bold">→</span>
+                <span class="text-white font-bold">Cook Mode</span>
+              </div>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed">
+                Interactive ingredient checklists, imperial/metric conversions, and awake-screen kitchen directions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Transformation 2: Workouts -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#0E0E14] border border-white/5 flex items-start gap-3.5 sm:gap-4 chassis-bevel">
+            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 text-stash-red flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1a3 3 0 0 0-4.24 0l-.88.88a3 3 0 0 1-4.24 0l-4.52-4.52a3 3 0 0 1 0-4.24l.88-.88a3 3 0 0 0 0-4.24L7 3"/><path d="m3 7 4 4"/><path d="m13 17 4 4"/></svg>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 font-mono text-xs">
+                <span class="text-neutral-400">Workouts</span>
+                <span class="text-stash-red font-bold">→</span>
+                <span class="text-white font-bold">Train Mode</span>
+              </div>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed">
+                Guided exercise cards with target muscle groups, set/rep counters, and hands-free rest timers.
+              </p>
+            </div>
+          </div>
+
+          <!-- Transformation 3: Tutorials & Guides -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#0E0E14] border border-white/5 flex items-start gap-3.5 sm:gap-4 chassis-bevel">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 font-mono text-xs">
+                <span class="text-neutral-400">Tutorials & Hacks</span>
+                <span class="text-stash-red font-bold">→</span>
+                <span class="text-white font-bold">Actionable Guides</span>
+              </div>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed">
+                Step-by-step phone, tech, and travel outlines formatted for rapid reference without rewatching videos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Transformation 4: Ordinary Clips -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#0E0E14] border border-white/5 flex items-start gap-3.5 sm:gap-4 chassis-bevel">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.82 2H4.18C2.97 2 2 2.97 2 4.18v15.64C2 21.03 2.97 22 4.18 22h15.64c1.21 0 2.18-.97 2.18-2.18V4.18C22 2.97 21.03 2 19.82 2Z"/><path d="M7 2v20"/><path d="M17 2v20"/><path d="M2 12h20"/><path d="M2 7h5"/><path d="M2 17h5"/><path d="M17 17h5"/><path d="M17 7h5"/></svg>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 font-mono text-xs">
+                <span class="text-neutral-400">Ordinary Clips</span>
+                <span class="text-stash-red font-bold">→</span>
+                <span class="text-white font-bold">Private Vault</span>
+              </div>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed">
+                Casual moments remain clean media, organized in custom biometric partitions without forced extractions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center pt-2">
+          <p class="font-display font-bold text-sm sm:text-lg text-white">
+            The video is evidence. <span class="text-stash-red">The knowledge is yours.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. The 6 Principles Grid -->
+      <div class="space-y-6 pt-6 border-t border-white/5">
+        <div class="text-center space-y-1">
+          <span class="text-stash-copper font-mono text-xs font-bold uppercase tracking-widest">Engineering Constitution</span>
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">The STASH Principles</h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <!-- Principle 1: Local-First -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-neutral-950 border border-neutral-900 space-y-2 chassis-bevel">
+            <span class="text-[10px] font-mono text-stash-red font-bold uppercase tracking-wider">01 // Architecture</span>
+            <h4 class="font-bold text-white text-sm">Local-First</h4>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed">
+              Process as much as possible on-device to minimize latency and eliminate recurring cloud inference costs.
+            </p>
+          </div>
+
+          <!-- Principle 2: Evidence-Based -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-neutral-950 border border-neutral-900 space-y-2 chassis-bevel">
+            <span class="text-[10px] font-mono text-stash-red font-bold uppercase tracking-wider">02 // Verification</span>
+            <h4 class="font-bold text-white text-sm">Evidence-Based</h4>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed">
+              Extracted facts anchor directly to video captions and timestamps rather than unexplained, hallucinated AI output.
+            </p>
+          </div>
+
+          <!-- Principle 3: Private by Design -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-neutral-950 border border-neutral-900 space-y-2 chassis-bevel">
+            <span class="text-[10px] font-mono text-stash-red font-bold uppercase tracking-wider">03 // Security</span>
+            <h4 class="font-bold text-white text-sm">Private by Design</h4>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed">
+              Personal collections do not require a public social feed, advertising profile, or mandatory user account.
+            </p>
+          </div>
+
+          <!-- Principle 4: Offline-Capable -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-neutral-950 border border-neutral-900 space-y-2 chassis-bevel">
+            <span class="text-[10px] font-mono text-stash-red font-bold uppercase tracking-wider">04 // Reliability</span>
+            <h4 class="font-bold text-white text-sm">Offline-Capable</h4>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed">
+              Core tools, stored recipes, and vault organization remain fully functional without an active network connection.
+            </p>
+          </div>
+
+          <!-- Principle 5: Deterministic First -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-neutral-950 border border-neutral-900 space-y-2 chassis-bevel">
+            <span class="text-[10px] font-mono text-stash-red font-bold uppercase tracking-wider">05 // Intelligence</span>
+            <h4 class="font-bold text-white text-sm">Deterministic First</h4>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed">
+              Use structured domain rules and lexicons before escalating difficult content to more expensive cloud models.
+            </p>
+          </div>
+
+          <!-- Principle 6: User Ownership -->
+          <div class="p-4 sm:p-6 rounded-2xl bg-neutral-950 border border-neutral-900 space-y-2 chassis-bevel">
+            <span class="text-[10px] font-mono text-stash-red font-bold uppercase tracking-wider">06 // Sovereignty</span>
+            <h4 class="font-bold text-white text-sm">User Ownership</h4>
+            <p class="text-xs text-neutral-400 font-light leading-relaxed">
+              Your saved knowledge remains structured and portable, independent of any single external social platform.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Closing Statement & 5. Primary CTA -->
+      <div class="text-center pt-8 border-t border-white/5 space-y-6 sm:space-y-8 max-w-2xl mx-auto">
+        <div class="space-y-2 sm:space-y-3">
+          <p class="font-display text-xl sm:text-3xl font-extrabold text-white leading-tight">
+            STASH does not exist to keep you scrolling.
+          </p>
+          <p class="font-display text-xl sm:text-3xl font-extrabold text-stash-red leading-tight">
+            It exists to help you do something with what you saved.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
+          <a href="https://play.google.com/store/apps/details?id=com.stash.mediavault" target="_blank" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-white hover:bg-neutral-100 text-black font-extrabold text-sm flex items-center justify-center gap-2.5 shadow-xl active:scale-95 transition-all">
+            <span>Download STASH for Android</span>
+            <span>↓</span>
+          </a>
+          <a href="#playground" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-neutral-900 hover:bg-neutral-800 border border-white/10 text-white font-extrabold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <span>Try Live Interactive Demo</span>
+            <span class="font-mono text-xs opacity-60">↑</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="border-t border-white/5 py-12 sm:py-14 bg-stash-dark text-xs text-neutral-500 font-mono">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+        <div class="flex items-center gap-2">
+          <img src="assets/icon-512.png" alt="STASH" class="w-6 h-6 rounded-lg border border-white/10" />
+          <span class="font-display font-extrabold text-white text-base">STASH</span>
+        </div>
+        <span>© 2026 STASH. All rights reserved.</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center md:justify-end gap-5 sm:gap-6 text-neutral-400 font-bold">
+        <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="mailto:support@stashreel.app" class="hover:text-white transition-colors">Contact Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Live Demo Script (3 UNIVERSAL EXAMPLES) ── -->
+  <script>
+    const DEMO_DATA = {
+      recipe: {
+        title: "10-Minute Garlic Chili Noodles",
+        meta: "10m Prep & Cook • 2 Servings • Viral Reel",
+        tag: "COOK MODE READY",
+        tagColor: "bg-amber-500/20 text-amber-300",
+        iconSvg: `<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v8a4 4 0 0 1-8 0V2"/><path d="M14 2v20"/><path d="M6 2v20"/></svg>`,
+        items: [
+          { check: true, text: "2 packs instant ramen or wheat noodles" },
+          { check: true, text: "4 cloves fresh garlic (finely minced)" },
+          { check: true, text: "1 tbsp chili flakes & green scallions" },
+          { check: false, text: "2 tbsp hot vegetable oil (to sizzle)" },
+          { check: false, text: "1.5 tbsp dark soy sauce & vinegar" }
+        ],
+        step: "Step 1: Pour sizzling hot oil directly over minced garlic and chili flakes. Mix vigorously with boiled noodles.",
+        cta: "Launch Kitchen Cook Mode →"
+      },
+      workout: {
+        title: "15-Min Living Room Cardio & Core",
+        meta: "3 Rounds • 45s Rest • No Equipment Needed • Instagram",
+        tag: "TRAIN MODE READY",
+        tagColor: "bg-red-500/20 text-red-300",
+        iconSvg: `<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1a3 3 0 0 0-4.24 0l-.88.88a3 3 0 0 1-4.24 0l-4.52-4.52a3 3 0 0 1 0-4.24l.88-.88a3 3 0 0 0 0-4.24L7 3"/><path d="m3 7 4 4"/><path d="m13 17 4 4"/></svg>`,
+        items: [
+          { check: true, text: "30 Jumping Jacks (Fast Warmup)" },
+          { check: true, text: "15 Bodyweight Air Squats (Deep)" },
+          { check: false, text: "20 Mountain Climbers (Fast pace)" },
+          { check: false, text: "45-Second Elbow Floor Plank" }
+        ],
+        step: "Round 1 of 3 • Screen stays awake with 45s rest countdown between sets.",
+        cta: "Start Workout Timer →"
+      },
+      notes: {
+        title: "Clear 15GB WhatsApp & Cache Clutter",
+        meta: "3 Quick Steps • Reclaim Phone Storage • TikTok",
+        tag: "OFFLINE GUIDE READY",
+        tagColor: "bg-blue-500/20 text-blue-300",
+        iconSvg: `<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>`,
+        items: [
+          { check: true, text: "Settings → Apps → WhatsApp → Storage → Clear Cache" },
+          { check: true, text: "Delete 'Sent' media folder (keeps your received photos 100% safe)" },
+          { check: false, text: "Telegram / Browser → Settings → Set cache limit to 5GB" }
+        ],
+        step: "Reclaims 10–20 GB of internal phone memory instantly without deleting personal photos.",
+        cta: "Save 3-Step Guide →"
+      }
+    };
+
+    function renderDemo(key) {
+      const data = DEMO_DATA[key];
+      const stage = document.getElementById('demo-stage');
+      
+      let itemsHtml = data.items.map(item => `
+        <label class="flex items-center gap-2.5 text-neutral-200 text-xs font-mono cursor-pointer hover:text-white transition-colors">
+          <input type="checkbox" ${item.check ? 'checked' : ''} class="rounded border-neutral-700 text-stash-red focus:ring-0">
+          <span>${item.text}</span>
+        </label>
+      `).join('');
+
+      stage.innerHTML = `
+        <div class="space-y-4 animate-fade-in">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10">
+            <div>
+              <h3 class="font-bold text-white text-sm sm:text-base">${data.title}</h3>
+              <p class="text-[10px] sm:text-[11px] font-mono text-neutral-400 mt-0.5">${data.meta}</p>
+            </div>
+            <span class="px-2.5 py-1 rounded ${data.tagColor} text-[9px] font-mono font-bold uppercase tracking-wider inline-flex items-center gap-1.5 self-start sm:self-auto shrink-0">
+              ${data.iconSvg}
+              <span>${data.tag}</span>
+            </span>
+          </div>
+
+          <div class="space-y-2.5">
+            ${itemsHtml}
+          </div>
+
+          <div class="pt-3.5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
+            <span class="text-neutral-400 text-[10px] sm:text-[11px] leading-relaxed">${data.step}</span>
+            <button class="w-full sm:w-auto px-4 py-2 rounded-xl bg-stash-red text-white font-bold text-[11px] hover:bg-red-600 transition-colors shadow-md active:scale-95 shrink-0 text-center">
+              ${data.cta}
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function demoExtract(type) {
+      document.querySelectorAll('.demo-btn').forEach(b => {
+        b.classList.remove('bg-neutral-800', 'text-white', 'border-stash-red');
+        b.classList.add('text-neutral-400', 'bg-neutral-900');
+      });
+      const activeBtn = document.getElementById('btn-' + type);
+      activeBtn.classList.remove('text-neutral-400', 'bg-neutral-900');
+      activeBtn.classList.add('bg-neutral-800', 'text-white', 'border-stash-red');
+
+      const stage = document.getElementById('demo-stage');
+      stage.innerHTML = `
+        <div class="py-10 text-center space-y-3 font-mono text-xs text-neutral-400">
+          <div class="w-8 h-8 rounded-full border-2 border-stash-red border-t-transparent animate-spin mx-auto"></div>
+          <div class="text-white font-bold">STASH Intelligence Processing...</div>
+          <div class="text-[11px] text-neutral-500">Detecting video category • Extracting checklist • Generating actionable tool</div>
+        </div>
+      `;
+
+      setTimeout(() => {
+        renderDemo(type);
+      }, 700);
+    }
+
+    renderDemo('recipe');
+  </script>
+
+</body>
+</html>
