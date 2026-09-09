@@ -3,73 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STASH — The Saved Video Library (YouTube, Instagram, TikTok & X)</title>
-  <meta name="description" content="Turn videos from YouTube, Instagram, TikTok, and X into your own organized playlists, offline video downloads, and recipes that keep your screen awake. 100% private." />
-  <link rel="canonical" href="https://stashreel.app/" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/icon-512.png" />
+  <title>STASH · Save it. Stash it. Actually use it.</title>
+  <meta name="description" content="Your personal media internet. Turn saved reels into recipes, workouts & playlists you actually use. Save from Instagram, TikTok, and YouTube with 4K clarity." />
+  <link rel="icon" type="image/png" href="./assets/icon-512.png" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Caveat for playful editorial script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans, Space Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-            mono: ['"Space Mono"', 'monospace'],
-          },
           colors: {
-            canvas: '#FBF9F5',
-            cream: {
-              50: '#FDFBF7',
-              100: '#F5F1E8',
-              200: '#ECE5D8',
-            },
-            ink: {
-              950: '#0A0B10',
-              900: '#12131A',
-              800: '#1E202B',
-              700: '#2E3142',
-              500: '#5F637A',
-              400: '#8C90A8',
-              200: '#D5D8E6',
-              100: '#EDEFF7',
-            },
-            coral: {
-              50: '#FFF2F0',
-              500: '#F04D3C',
-              600: '#D93828',
-            },
-            amber: {
-              50: '#FFF8EB',
-              500: '#F59E0B',
-              600: '#D97706',
-            },
-            emerald: {
-              50: '#ECFDF5',
-              500: '#10B981',
-              600: '#059669',
-            },
-            indigo: {
-              50: '#EEF2FF',
-              500: '#6366F1',
-              600: '#4F46E5',
+            brand: {
+              blue: '#3A78E8',
+              sky: '#4A85EE',
+              softblue: '#EDF3FE',
+              orange: '#FF5C2B',
+              coral: '#FF4757',
+              yellow: '#FFD036',
+              dark: '#111827',
+              charcoal: '#1F2937',
+              cream: '#FAF8F5',
+              surface: '#FFFFFF',
+              mint: '#10B981',
+              lavender: '#8B5CF6'
             }
           },
-          boxShadow: {
-            'apple': '0 20px 40px -15px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.04)',
-            'apple-hover': '0 30px 60px -20px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.08)',
-            'phone': '0 30px 70px -20px rgba(10, 11, 16, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-            'glow-coral': '0 12px 30px -8px rgba(240, 77, 60, 0.3)',
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            script: ['"Caveat"', 'cursive'],
+            display: ['"Space Grotesk"', 'sans-serif']
           }
         }
       }
@@ -77,649 +45,513 @@
   </script>
 
   <style>
-    /* Natural Apple-grade background */
-    .bg-apple-canvas {
-      background-color: #FBF9F5;
-      background-image: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.06) 0%, rgba(240, 77, 60, 0.03) 30%, transparent 65%);
+    /* Hand-drawn organic wave & curve styling */
+    .hero-sky-bg {
+      background: linear-gradient(175deg, #3572E2 0%, #4681EB 55%, #568FF4 100%);
     }
-
-    /* Apple spring micro-interaction */
-    .btn-apple {
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    .phone-shadow {
+      box-shadow: 0 25px 60px -15px rgba(17, 24, 39, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
     }
-    .btn-apple:active {
-      transform: scale(0.97);
+    .floating-card-shadow {
+      box-shadow: 0 16px 35px -10px rgba(58, 120, 232, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.04);
     }
-
-    /* Dynamic mouse spotlight effect */
-    .spotlight-box {
-      position: relative;
-      overflow: hidden;
+    .btn-orange-shadow {
+      box-shadow: 0 12px 28px -8px rgba(255, 92, 43, 0.45);
     }
-    .spotlight-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(240, 77, 60, 0.08), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-      z-index: 10;
+    .text-shadow-hero {
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
     }
-    .spotlight-box:hover::before {
-      opacity: 1;
+    /* Clean glass button in reel */
+    .reel-glass-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      background: rgba(17, 24, 39, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease;
     }
-
-    .spotlight-box-dark::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245, 158, 11, 0.12), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-      z-index: 10;
+    .reel-glass-btn:hover {
+      transform: scale(1.1);
+      background: rgba(255, 92, 43, 0.85);
     }
-    .spotlight-box-dark:hover::before {
-      opacity: 1;
+    .badge-pop {
+      animation: gentle-bob 4s ease-in-out infinite;
     }
-
-    /* Floating card subtle animations */
-    @keyframes subtle-float-1 {
-      0%, 100% { transform: translateY(0px); }
+    @keyframes gentle-bob {
+      0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
-    @keyframes subtle-float-2 {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(6px); }
-    }
-    .animate-float-left { animation: subtle-float-1 8s ease-in-out infinite; }
-    .animate-float-right { animation: subtle-float-2 9s ease-in-out infinite; }
   </style>
 </head>
-<body class="bg-apple-canvas text-ink-950 font-sans antialiased selection:bg-coral-500 selection:text-white">
+<body class="bg-brand-cream text-brand-dark font-sans antialiased selection:bg-brand-orange selection:text-white">
 
-  <!-- ── Top Notification Bar ── -->
-  <aside aria-label="Announcement" class="bg-ink-950 text-white text-xs font-medium py-2.5 px-4 text-center flex items-center justify-center gap-2 sm:gap-3 sticky top-0 z-50 border-b border-white/10">
-    <span class="inline-flex items-center gap-2 font-semibold text-neutral-200">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span>STASH 1.1 for Android is Ready</span>
-    </span>
-    <span class="text-neutral-600 hidden sm:inline">•</span>
-    <span class="hidden sm:inline text-neutral-400">Save from YouTube, Instagram, TikTok & X</span>
-    <span class="text-neutral-600">•</span>
-    <a href="#test-drive" class="text-amber-500 hover:text-amber-400 font-bold underline underline-offset-4">
-      Explore Live Demo ↓
-    </a>
-  </aside>
-
-  <!-- ── Apple Clean Navigation ── -->
-  <header class="sticky top-9 z-40 bg-cream-50/90 backdrop-blur-2xl border-b border-cream-200 transition-all">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 sm:h-20 flex items-center justify-between">
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       1. VIBRANT CELEBRATORY NAVIGATION
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-coral-500 to-amber-500 flex items-center justify-center shadow-md overflow-hidden relative group-hover:scale-105 transition-transform">
-          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
-            <path d="M9 10h6"/>
-            <path d="M12 7v6"/>
-          </svg>
-          <img src="assets/icon-512.png" alt="" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
-        </div>
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="./assets/icon-512.png" alt="STASH Logo" class="w-11 h-11 rounded-2xl shadow-lg shadow-brand-orange/30 group-hover:scale-105 transition-transform object-cover" />
         <div class="flex flex-col">
-          <span class="font-extrabold text-xl tracking-tight text-ink-950 leading-none">STASH</span>
-          <span class="text-[11px] font-medium text-ink-500 tracking-tight mt-0.5">
-            Save it. Stash it. <span class="text-coral-500 font-semibold">Actually use it.</span>
+          <span class="font-extrabold tracking-tight text-brand-dark text-xl leading-tight flex items-center gap-1.5">
+            STASH
+            <span class="text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full bg-brand-softblue text-brand-blue uppercase border border-brand-blue/20">
+              Personal Media
+            </span>
           </span>
+          <span class="text-xs text-slate-500 font-medium">Your internet. Your favorite things.</span>
         </div>
       </a>
 
-      <!-- Refined Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-ink-700">
-        <a href="#playlists" class="hover:text-coral-500 transition-colors">Playlists</a>
-        <a href="#offline-downloads" class="hover:text-amber-500 transition-colors">Offline Vault</a>
-        <a href="#private-vault" class="hover:text-indigo-500 transition-colors">Private Lock</a>
-        <a href="#test-drive" class="hover:text-emerald-500 transition-colors">Live Demo</a>
-        <a href="#pricing" class="hover:text-ink-950 transition-colors">Pricing</a>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="#how-it-works" class="hover:text-brand-blue transition">How It Works</a>
+        <a href="#reel-showcase" class="hover:text-brand-blue transition">Your 9:16 Reel</a>
+        <a href="#cook-and-train" class="hover:text-brand-blue transition">Cook & Train Modes</a>
+        <a href="#playlists" class="hover:text-brand-blue transition">Smart Playlists</a>
+        <a href="#private-vault" class="hover:text-brand-blue transition">Private Vault</a>
       </nav>
 
-      <!-- Primary Action -->
+      <!-- Store CTA Button -->
       <div class="flex items-center gap-3">
-        <a href="#download" class="btn-apple inline-flex items-center gap-2 bg-ink-950 hover:bg-coral-500 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full shadow-sm hover:shadow-glow-coral transition-all">
-          <span>Download Free</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <a href="#early-access" class="px-5 py-2.5 rounded-full bg-brand-orange hover:bg-orange-600 text-white font-bold text-sm btn-orange-shadow transition-all hover:scale-105 active:scale-95 flex items-center gap-2">
+          <!-- Google Play Tri-color Bag SVG -->
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186c-.347-.297-.61-.75-.61-1.386V3.2c0-.636.263-1.089.61-1.386zm11.303 11.304l2.457 2.457-11.455 6.643 8.998-9.1zm0-2.236l-8.998-9.1 11.455 6.643-2.457 2.457zm1.31 1.118l3.65-2.118c1.074-.623 1.074-1.637 0-2.26l-3.65-2.118-2.607 2.608 2.607 2.608z"/>
+          </svg>
+          <span>Get Early Access</span>
         </a>
       </div>
+
     </div>
   </header>
 
-  <!-- ── HERO SECTION: Apple Human Storytelling ── -->
-  <section class="relative pt-14 sm:pt-20 pb-16 sm:pb-24 overflow-hidden">
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       2. HERO: JOYFUL SKY BLUE CANVAS WITH WARM CELEBRATION
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="relative pt-32 pb-24 lg:pt-36 lg:pb-32 overflow-hidden hero-sky-bg text-white">
     
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      
-      <!-- Top Pill Tag -->
-      <div class="flex justify-center mb-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-apple border border-cream-200 text-xs font-semibold text-ink-700">
-          <span class="w-2 h-2 rounded-full bg-coral-500"></span>
-          <span>YouTube • Instagram • TikTok • X</span>
-        </div>
-      </div>
+    <!-- Playful Hand-Drawn Organic Cutout Motifs (Inspired by ReciMe / Apple) -->
+    <!-- Sunny Cheese / Sunburst Cutout (Top Left) -->
+    <div class="absolute -top-16 -left-12 w-64 h-64 text-brand-yellow/30 pointer-events-none badge-pop">
+      <svg viewBox="0 0 200 200" fill="currentColor">
+        <path d="M42.7,-64.8C54.4,-57.4,62.3,-44.6,68.2,-31C74,-17.4,77.8,-3,75.4,10.6C73,24.2,64.4,37,53.4,46.8C42.4,56.6,29,63.4,14.4,68.2C-0.2,73,-16,75.8,-30.4,71.7C-44.8,67.6,-57.8,56.6,-66.4,42.8C-75,29,-79.2,12.4,-77.8,-3.8C-76.4,-20,-69.4,-35.8,-58,-47.4C-46.6,-59,-30.8,-66.4,-15.6,-68.8C-0.4,-71.2,14.8,-68.6,31,-72.2C42.7,-64.8,42.7,-64.8,42.7,-64.8Z" transform="translate(100 100)" />
+      </svg>
+    </div>
 
-      <!-- Headline -->
-      <div class="text-center max-w-4xl mx-auto mb-8">
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-ink-950 leading-[1.08] mb-6">
-          The saved video graveyard <br class="hidden sm:inline" />
-          <span class="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-coral-500 via-amber-500 to-coral-600">
-            ends today.
-          </span>
-        </h1>
-        <p class="text-lg sm:text-2xl text-ink-500 font-normal leading-relaxed max-w-2xl mx-auto">
-          You save great videos every week. When you try to cook or workout, your screen keeps turning black. STASH organizes your clips into clean playlists and step-by-step cards that stay awake on your counter.
-        </p>
-      </div>
+    <!-- Warm Peach Organic Leaf Motif (Right background) -->
+    <div class="absolute top-1/3 -right-20 w-80 h-80 text-brand-yellow/20 pointer-events-none">
+      <svg viewBox="0 0 200 200" fill="currentColor">
+        <path d="M39.9,-58.5C52.4,-51.5,63.7,-41,69.5,-27.9C75.3,-14.8,75.6,0.9,71.2,15.1C66.8,29.3,57.7,42,45.8,51.8C33.9,61.6,19.2,68.5,3.7,67.2C-11.8,65.9,-28.1,56.4,-41.8,45.2C-55.5,34,-66.6,21.1,-70.7,5.8C-74.8,-9.5,-71.9,-27.2,-61.7,-38.7C-51.5,-50.2,-34,-55.5,-18.8,-61.3C-3.6,-67.1,12.4,-73.4,27.4,-65.5C42.4,-57.6,39.9,-58.5,39.9,-58.5Z" transform="translate(100 100)" />
+      </svg>
+    </div>
 
-      <!-- Action CTAs -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-        <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" class="btn-apple w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-coral-500 hover:bg-coral-600 text-white font-bold text-base px-8 py-4 rounded-2xl shadow-glow-coral transition-all">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.373 2.373 0 0 1-.61-.926V2.74c.14-.366.357-.686.61-.926zm11.242 11.244l2.583 2.583-11.77 6.643 9.187-9.226zm0-2.116L5.663 1.714l11.77 6.643-2.582 2.585zm1.488 1.487l3.208 1.81c1.077.608 1.077 1.6 0 2.208l-3.208 1.81-2.122-2.122 2.122-2.122z"/>
-          </svg>
-          <div class="text-left leading-tight">
-            <div class="text-[10px] font-medium uppercase tracking-wider opacity-90">Google Play Store</div>
-            <div class="text-base font-extrabold">Google Play Store Ready</div>
-          </div>
-        </a>
+    <!-- Hand-Drawn Sunburst Sparkles -->
+    <div class="absolute top-28 left-1/4 text-brand-yellow pointer-events-none hidden sm:block">
+      <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9L12 0Z"/>
+      </svg>
+    </div>
+    <div class="absolute bottom-20 left-12 text-white/40 pointer-events-none hidden sm:block">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9L12 0Z"/>
+      </svg>
+    </div>
 
-        <a href="#test-drive" class="btn-apple w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white hover:bg-cream-100 text-ink-950 font-bold text-base px-8 py-4 rounded-2xl shadow-apple border border-cream-200 transition-all">
-          <span>Try Interactive Demo</span>
-          <svg class="w-4 h-4 text-ink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </a>
-      </div>
-
-      <!-- Trust Badges -->
-      <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm font-semibold text-ink-500 pb-12 border-b border-cream-200">
-        <div class="flex items-center gap-2">
-          <span class="text-amber-500 font-bold">★★★★★</span>
-          <span class="text-ink-800">4.9 Star Rating</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-          <span>Screen Stays Awake</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-          <span>100% Private On Device</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-12.728 0m0 0l2.829-2.829m-2.829 2.829L3 21"></path></svg>
-          <span>Works Fully Offline</span>
-        </div>
-      </div>
-
-      <!-- ── HERO VISUAL TRIO: Symmetrical Uniform Grid ── -->
-      <div class="mt-14 max-w-5xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+    <div class="max-w-7xl mx-auto px-5 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
           
-          <!-- LEFT CARD: Recipe Intelligence (Exact matching height) -->
-          <div class="animate-float-left h-full">
-            <div class="spotlight-box bg-white rounded-[32px] p-6 shadow-apple border border-cream-200 h-full flex flex-col justify-between">
-              <div>
-                <div class="relative h-44 rounded-2xl overflow-hidden mb-5 shadow-inner">
-                  <img 
-                    src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" 
-                    alt="Authentic Dum Biryani" 
-                    class="w-full h-full object-cover"
-                  />
-                  <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-extrabold text-coral-600 shadow-sm">
-                    COOK MODE
-                  </div>
-                  <div class="absolute bottom-3 right-3 bg-ink-950/80 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono">
-                    YouTube
-                  </div>
-                </div>
+          <!-- Official 4K Store Edition Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold tracking-wide shadow-sm">
+            <img src="./assets/icon-512.png" alt="STASH Logo" class="w-5 h-5 rounded-md object-cover shadow-sm" />
+            <span class="font-extrabold tracking-wider">STASH</span>
+            <span class="w-1 h-1 rounded-full bg-white/50"></span>
+            <span class="text-brand-yellow font-bold uppercase tracking-wider text-[11px]">YOUR PERSONAL MEDIA INTERNET</span>
+          </div>
 
-                <div class="mb-4">
-                  <h3 class="font-extrabold text-xl text-ink-950 leading-snug mb-1">
-                    Authentic Dum Biryani
-                  </h3>
-                  <p class="text-xs text-ink-500">Folder: <strong>Sunday Family Feasts</strong></p>
-                </div>
+          <!-- Hero Headline (The Hook) -->
+          <div class="space-y-1">
+            <span class="font-black text-xs sm:text-sm tracking-widest uppercase text-brand-yellow/90 block">THE FIRST SOCIAL MEDIA PLAYLIST LIBRARY</span>
+            <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] text-shadow-hero">
+              Save it. Stash it.<br />
+              <span class="bg-gradient-to-r from-purple-200 via-pink-200 to-brand-yellow bg-clip-text text-transparent font-black drop-shadow-sm">Actually use it.</span>
+            </h1>
+          </div>
 
-                <div class="space-y-2 text-xs text-ink-700 bg-cream-50 p-3.5 rounded-2xl border border-cream-200">
-                  <div class="flex items-center justify-between text-[11px] font-bold text-coral-600 pb-1 border-b border-cream-200">
-                    <span>STEP 1: SPICED MARINADE</span>
-                    <span class="font-mono text-ink-500">800g CHICKEN</span>
-                  </div>
-                  <label class="flex items-center gap-2.5 cursor-pointer pt-1">
-                    <input type="checkbox" checked class="rounded text-coral-500 focus:ring-0 w-3.5 h-3.5" />
-                    <span class="line-through text-ink-400">Yogurt, ginger-garlic & spices</span>
-                  </label>
-                  <label class="flex items-center gap-2.5 cursor-pointer">
-                    <input type="checkbox" checked class="rounded text-coral-500 focus:ring-0 w-3.5 h-3.5" />
-                    <span class="line-through text-ink-400">Golden crispy fried onions</span>
-                  </label>
-                  <div class="flex items-center justify-between text-[11px] font-bold text-amber-600 pt-1 border-t border-cream-200">
-                    <span>STEP 2: RICE PARBOIL</span>
-                    <span class="font-mono text-ink-500">5 MIN</span>
-                  </div>
-                </div>
+          <!-- The Identity & The Proof -->
+          <p class="text-lg sm:text-xl text-blue-50 max-w-2xl font-medium leading-relaxed mx-auto lg:mx-0">
+            <strong class="text-white font-bold">Your personal media internet.</strong> Turn saved reels from Instagram, TikTok, and YouTube into structured recipes, gym workouts &amp; sacred playlists you actually use.
+          </p>
+
+          <!-- The 3 Pillars (Hook · Identity · Proof) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-left">
+            <!-- Pillar 1: The Hook -->
+            <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 space-y-1 hover:bg-white/15 transition-colors">
+              <div class="flex items-center gap-1.5 text-brand-yellow text-[11px] font-bold uppercase tracking-wider">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>The Hook</span>
               </div>
+              <p class="text-xs font-bold text-white">Save it. Stash it. Actually use it.</p>
+              <p class="text-[11px] text-blue-100/80 leading-tight">Solves the endless graveyard of saved reels you forget.</p>
+            </div>
 
-              <div class="mt-5 pt-3 border-t border-cream-200 flex items-center justify-between text-xs font-semibold">
-                <span class="text-emerald-600 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Screen Locked Awake
-                </span>
-                <span class="font-mono text-ink-400 text-[11px]">1-TAP UNITS</span>
+            <!-- Pillar 2: The Identity -->
+            <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 space-y-1 hover:bg-white/15 transition-colors">
+              <div class="flex items-center gap-1.5 text-pink-200 text-[11px] font-bold uppercase tracking-wider">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <span>The Identity</span>
               </div>
+              <p class="text-xs font-bold text-white">Your personal media internet</p>
+              <p class="text-[11px] text-blue-100/80 leading-tight">Your library, your rules. Zero ads, zero algorithmic feed clutter.</p>
+            </div>
+
+            <!-- Pillar 3: The Proof -->
+            <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 space-y-1 hover:bg-white/15 transition-colors">
+              <div class="flex items-center gap-1.5 text-emerald-200 text-[11px] font-bold uppercase tracking-wider">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>The Proof</span>
+              </div>
+              <p class="text-xs font-bold text-white">Recipes, workouts &amp; tools</p>
+              <p class="text-[11px] text-blue-100/80 leading-tight">Hands-free cooking, gym rest timers, and custom playlists.</p>
             </div>
           </div>
 
-          <!-- CENTER CARD: The Native Phone Frame (Matching exact height, zero dead space) -->
-          <div class="h-full">
-            <div class="h-full bg-ink-950 p-4 rounded-[40px] shadow-phone border-[5px] border-ink-800 flex flex-col justify-between">
-              
-              <!-- Screen Top Bar -->
-              <div>
-                <div class="w-20 h-4 bg-black rounded-full mx-auto mb-3"></div>
+          <!-- Core Call to Action -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#early-access" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-base btn-orange-shadow transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186c-.347-.297-.61-.75-.61-1.386V3.2c0-.636.263-1.089.61-1.386zm11.303 11.304l2.457 2.457-11.455 6.643 8.998-9.1zm0-2.236l-8.998-9.1 11.455 6.643-2.457 2.457zm1.31 1.118l3.65-2.118c1.074-.623 1.074-1.637 0-2.26l-3.65-2.118-2.607 2.608 2.607 2.608z"/>
+              </svg>
+              <span>Pre-Register on Google Play</span>
+            </a>
 
-                <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-white/10 text-white">
-                  <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-lg bg-coral-500 flex items-center justify-center text-xs font-black">S</span>
-                    <span class="font-extrabold text-sm tracking-tight">STASH</span>
+            <a href="#reel-showcase" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white/15 hover:bg-white/25 border border-white/30 text-white font-bold text-base backdrop-blur-md transition flex items-center justify-center gap-2">
+              <svg class="w-5 h-5 text-brand-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Try Interactive Reel</span>
+            </a>
+          </div>
+
+          <!-- Social Media Logos Row (High-End Clean SVGs) -->
+          <div class="pt-6 border-t border-white/20 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-white/90 font-semibold">
+            <span class="text-blue-100 font-bold uppercase tracking-wider text-[11px]">SAVE FROM ANY APP:</span>
+            
+            <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/15">
+              <svg class="w-4 h-4 text-pink-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </span>
+
+            <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/15">
+              <svg class="w-4 h-4 text-cyan-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+              TikTok
+            </span>
+
+            <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/15">
+              <svg class="w-4 h-4 text-red-300" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/></svg>
+              YouTube
+            </span>
+
+            <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/15">
+              <svg class="w-4 h-4 text-blue-200" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              X / Twitter
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Right Hero: Gorgeous iPhone 16 Pro Showcase with Zero Text Collision -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          
+          <!-- Category Quick-Switcher Tabs Above Phone -->
+          <div class="flex items-center gap-2 mb-4 bg-white/20 backdrop-blur-md p-1.5 rounded-full border border-white/30 text-xs font-bold shadow-lg">
+            <button onclick="switchReel(0)" id="tabBtn0" class="px-3.5 py-1.5 rounded-full bg-white text-brand-dark shadow-sm transition-all flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-brand-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+              <span>Recipe</span>
+            </button>
+            <button onclick="switchReel(1)" id="tabBtn1" class="px-3.5 py-1.5 rounded-full text-white/90 hover:text-white transition-all flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-brand-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+              <span>Workout</span>
+            </button>
+            <button onclick="switchReel(2)" id="tabBtn2" class="px-3.5 py-1.5 rounded-full text-white/90 hover:text-white transition-all flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+              <span>Travel</span>
+            </button>
+            <button onclick="switchReel(3)" id="tabBtn3" class="px-3.5 py-1.5 rounded-full text-white/90 hover:text-white transition-all flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+              <span>UFC</span>
+            </button>
+          </div>
+
+          <!-- Real iPhone 16 Pro Chassis with Titanium Rim -->
+          <div class="relative w-[310px] sm:w-[335px] h-[645px] bg-slate-900 rounded-[52px] p-[9px] border-[5px] border-slate-700/80 phone-shadow transition-transform duration-300 hover:scale-[1.01]">
+            
+            <!-- Titanium Edge Volume & Power Buttons -->
+            <div class="absolute -left-[8px] top-28 w-[3px] h-9 bg-slate-600 rounded-l-sm"></div>
+            <div class="absolute -left-[8px] top-40 w-[3px] h-9 bg-slate-600 rounded-l-sm"></div>
+            <div class="absolute -right-[8px] top-32 w-[3px] h-14 bg-slate-600 rounded-r-sm"></div>
+
+            <!-- Inner Phone Screen -->
+            <div id="heroPhoneScreen" class="relative w-full h-full bg-black rounded-[42px] overflow-hidden flex flex-col justify-between select-none border border-white/10">
+              
+              <!-- High-Resolution Photography Freeze-Frame -->
+              <img 
+                id="heroReelImage" 
+                src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1080&auto=format&fit=crop" 
+                alt="STASH Reel Media" 
+                class="absolute inset-0 w-full h-full object-cover object-center z-0 transition-all duration-500 ease-out"
+              />
+
+              <!-- Top & Bottom Soft Atmospheric Gradients (Zero text collision, crystal clear legibility) -->
+              <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-black/90 pointer-events-none z-10"></div>
+
+              <!-- iPhone Dynamic Island -->
+              <div class="relative z-30 pt-3 flex flex-col items-center">
+                <div class="w-24 h-5 bg-black rounded-full border border-neutral-800 flex items-center justify-between px-2.5 shadow-md">
+                  <div class="w-2.5 h-2.5 rounded-full bg-neutral-900 flex items-center justify-center">
+                    <div class="w-1.5 h-1.5 rounded-full bg-blue-900/60"></div>
                   </div>
-                  <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> SCREEN AWAKE
+                  <div class="w-2 h-2 rounded-full bg-neutral-900"></div>
+                </div>
+              </div>
+
+              <!-- Top Status Bar (Time, Wifi, Battery) -->
+              <div class="relative z-20 px-5 pt-1 flex items-center justify-between text-[11px] font-mono text-white">
+                <span class="font-bold">9:41</span>
+                <div class="flex items-center gap-1.5">
+                  <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M2 20h2v-4H2v4zm4 0h2v-8H6v8zm4 0h2v-12h-2v12zm4 0h2V4h-2v16z"/></svg>
+                  <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20" stroke-width="3"/></svg>
+                  <div class="w-5 h-2.5 rounded-[3px] border border-white/80 p-[1px] flex items-center">
+                    <div class="w-full h-full bg-emerald-400 rounded-[1px]"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Top Live Reel Header Badge -->
+              <div class="relative z-20 px-4 pt-2.5 flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[10px] font-bold tracking-wider text-white uppercase flex items-center gap-1.5 shadow">
+                  <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                  <span>STASH REEL</span>
+                </span>
+                <span id="heroSlideCounter" class="bg-black/40 backdrop-blur-md px-2 py-0.5 rounded-full text-white/90 border border-white/15 text-[10px] font-bold">
+                  1 / 4
+                </span>
+              </div>
+
+              <!-- Right-Side Floating Glass Action Column (Clean, Native, No Text Collision) -->
+              <div class="absolute right-3.5 bottom-20 z-20 flex flex-col items-center gap-3">
+                
+                <!-- Like Button -->
+                <div class="flex flex-col items-center gap-1">
+                  <div class="reel-glass-btn shadow-lg">
+                    <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                  </div>
+                  <span id="heroLikeCount" class="text-[11px] font-bold text-white drop-shadow">412K</span>
+                </div>
+
+                <!-- Actionable Smart Notes Button -->
+                <div class="flex flex-col items-center gap-1">
+                  <div class="reel-glass-btn bg-brand-yellow/30 border-brand-yellow/60 shadow-lg">
+                    <svg class="w-5 h-5 text-brand-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <span class="text-[10px] font-extrabold text-brand-yellow drop-shadow">STEPS</span>
+                </div>
+
+                <!-- Stash Save Button -->
+                <div class="flex flex-col items-center gap-1">
+                  <div class="reel-glass-btn shadow-lg">
+                    <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+                      <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                    </svg>
+                  </div>
+                  <span id="heroSaveCount" class="text-[11px] font-bold text-white drop-shadow">124K</span>
+                </div>
+
+                <!-- Native Share Button -->
+                <div class="flex flex-col items-center gap-1">
+                  <div class="reel-glass-btn shadow-lg">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </div>
+                  <span id="heroShareCount" class="text-[11px] font-bold text-white drop-shadow">48K</span>
+                </div>
+
+              </div>
+
+              <!-- Bottom Content Overlay (Clean, Spacious, Uncrowded) -->
+              <div class="relative z-20 px-4 pb-4 space-y-2 max-w-[78%]">
+                
+                <!-- Line 1: Creator Handle & Verified Badge -->
+                <div class="flex items-center gap-1.5">
+                  <span id="heroCreatorHandle" class="text-xs font-extrabold text-white drop-shadow flex items-center gap-1">
+                    @recime_kitchen
+                  </span>
+                  <svg class="w-3.5 h-3.5 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  <span id="heroCategoryBadge" class="px-2 py-0.5 rounded-full bg-brand-orange text-white text-[9px] font-bold uppercase tracking-wide">
+                    RECIPE
                   </span>
                 </div>
 
-                <!-- Video Clip Player Preview -->
-                <div class="relative h-28 rounded-2xl overflow-hidden mb-3 border border-white/10">
-                  <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Video Clip" class="w-full h-full object-cover opacity-80" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40"></div>
-                  <div class="absolute top-2 left-2 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md text-[9px] font-mono text-white">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> @getyourgameron
-                  </div>
-                  <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] text-white font-mono">
-                    <span>0:42 / 1:15</span>
-                    <span class="text-amber-400 font-bold">1080p Offline</span>
-                  </div>
-                  <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
-                    <div class="h-full bg-coral-500 w-3/5"></div>
+                <!-- Line 2: Punchy Title with High Contrast -->
+                <h3 id="heroTitle" class="font-bold text-sm text-white leading-snug drop-shadow-md">
+                  Crispy Garlic Butter Chicken Breast
+                </h3>
+
+                <!-- Line 3: Transformation Action Pill Button -->
+                <div class="pt-0.5">
+                  <div id="heroActionPill" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold shadow-lg">
+                    <svg class="w-3.5 h-3.5 text-brand-yellow" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 14.5v-9l6 4.5z"/></svg>
+                    <span>Cook Mode: 15m Prep · 25m Cook</span>
                   </div>
                 </div>
 
-                <!-- Active Exercise HUD -->
-                <div class="bg-gradient-to-br from-neutral-800/90 to-neutral-900 border border-white/10 rounded-2xl p-3 mb-3 text-white">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[10px] font-mono font-bold text-coral-400 uppercase">ACTIVE ROUTINE</span>
-                    <span class="text-[9px] bg-coral-500 text-white font-black px-2 py-0.5 rounded-full">TRAIN</span>
+                <!-- Line 4: Clean, Sleek Video Timeline Scrubber Bar -->
+                <div class="pt-1.5 space-y-1">
+                  <div class="w-full h-1 bg-white/25 rounded-full overflow-hidden">
+                    <div id="heroProgressBar" class="w-[38%] h-full bg-brand-orange rounded-full"></div>
                   </div>
-                  <div class="text-xs font-bold mb-2">Cable Curls (FST-7 Finisher)</div>
-                  
-                  <div class="grid grid-cols-2 gap-2 text-xs font-mono mb-2">
-                    <div class="bg-black/50 p-1.5 rounded-lg text-center">
-                      <div class="text-[9px] text-neutral-400 uppercase">Current Set</div>
-                      <div class="font-bold text-white text-[11px]">Set 4 of 7</div>
-                    </div>
-                    <div class="bg-black/50 p-1.5 rounded-lg text-center">
-                      <div class="text-[9px] text-neutral-400 uppercase">Rest Timer</div>
-                      <div class="font-bold text-amber-400 text-[11px]">00:42 Active</div>
-                    </div>
-                  </div>
-
-                  <div class="w-full h-1.5 bg-black/60 rounded-full overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-coral-500 to-amber-500 w-2/3 rounded-full"></div>
+                  <div class="flex justify-between text-[9px] font-bold text-white/80">
+                    <span id="heroTimeCurrent">0:15</span>
+                    <span id="heroTimeTotal">0:45</span>
                   </div>
                 </div>
 
-                <!-- Exercise Progression Queue (Zero Empty Space) -->
-                <div class="bg-white/5 rounded-2xl p-3 border border-white/10 text-xs text-neutral-300 mb-3 space-y-1.5">
-                  <div class="text-[9px] font-mono text-neutral-400 uppercase font-bold flex items-center justify-between mb-1">
-                    <span>EXERCISE QUEUE</span>
-                    <span class="text-emerald-400">3 of 7 Done</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[10px] text-neutral-400">
-                    <span class="line-through">1. Reverse Grip Pulldown</span>
-                    <span class="text-emerald-400">✓ 4 Sets</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[10px] text-neutral-400">
-                    <span class="line-through">2. Bent Over Barbell Rows</span>
-                    <span class="text-emerald-400">✓ 4 Sets</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[10px] text-white font-semibold bg-white/5 px-1.5 py-0.5 rounded">
-                    <span class="text-amber-400">▶ 3. Cable Curls (Active)</span>
-                    <span class="font-mono text-amber-400">Set 4/7</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[10px] text-neutral-400">
-                    <span>4. Up Next: Concentration Curls</span>
-                    <span>3 Sets</span>
-                  </div>
-                </div>
-
-                <!-- Audio Track Pill -->
-                <div class="bg-black/60 rounded-xl p-2.5 border border-white/10 flex items-center justify-between text-xs text-neutral-300">
-                  <div class="flex items-center gap-2">
-                    <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
-                    <span class="truncate max-w-[120px] text-[10px] font-medium">Kris Gethin Audio</span>
-                  </div>
-                  <span class="text-emerald-400 font-mono text-[9px] font-bold">SAVED OFFLINE</span>
-                </div>
               </div>
 
-              <!-- Phone Bottom Nav -->
-              <div class="pt-3 border-t border-white/10 flex items-center justify-around text-[10px] text-neutral-400 font-semibold">
-                <span class="flex flex-col items-center gap-1">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                  <span>Playlists</span>
-                </span>
-                <span class="text-coral-400 flex flex-col items-center gap-1 font-bold">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                  <span>Active</span>
-                </span>
-                <span class="flex flex-col items-center gap-1">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                  <span>Vault</span>
-                </span>
+              <!-- iPhone Bottom Home Bar Indicator -->
+              <div class="relative z-30 pb-2 flex justify-center">
+                <div class="w-32 h-1 bg-white/70 rounded-full"></div>
               </div>
 
             </div>
+
           </div>
 
-          <!-- RIGHT CARD: Workout Intelligence (Exact matching height) -->
-          <div class="animate-float-right h-full">
-            <div class="spotlight-box bg-white rounded-[32px] p-6 shadow-apple border border-cream-200 h-full flex flex-col justify-between">
-              <div>
-                <div class="relative h-44 rounded-2xl overflow-hidden mb-5 shadow-inner">
-                  <img 
-                    src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" 
-                    alt="Strength Training" 
-                    class="w-full h-full object-cover"
-                  />
-                  <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-extrabold text-amber-600 shadow-sm">
-                    TRAIN MODE
-                  </div>
-                  <div class="absolute bottom-3 right-3 bg-emerald-600 text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold">
-                    Back & Biceps
-                  </div>
-                </div>
-
-                <div class="mb-4">
-                  <h3 class="font-extrabold text-xl text-ink-950 leading-snug mb-1">
-                    Kris Gethin FST-7 Routine
-                  </h3>
-                  <p class="text-xs text-ink-500">Folder: <strong>Hypertrophy Split</strong></p>
-                </div>
-
-                <div class="space-y-2 text-xs text-ink-700 bg-cream-50 p-3.5 rounded-2xl border border-cream-200">
-                  <div class="flex items-center justify-between text-[11px] font-bold text-ink-900 pb-1 border-b border-cream-200">
-                    <span>EXERCISES (7)</span>
-                    <span class="font-mono text-amber-600">SETS & REPS</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[11px]">
-                    <span>1. Reverse Grip Pulldown</span>
-                    <span class="font-mono text-ink-500 font-bold">3-4 Sets • 10-12 Reps</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[11px]">
-                    <span>2. Bent Over Barbell Rows</span>
-                    <span class="font-mono text-ink-500 font-bold">3-4 Sets • 8-10 Reps</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[11px] text-coral-600 font-bold">
-                    <span>7. Cable Curls (Finisher)</span>
-                    <span class="font-mono">7 Sets • 10-12 Reps</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-5 pt-3 border-t border-cream-200 flex items-center justify-between text-xs font-semibold">
-                <span class="font-mono text-coral-500 font-bold">00:45 REST TIMER</span>
-                <span class="text-emerald-600 font-bold">Audio Saved</span>
-              </div>
-            </div>
-          </div>
+          <!-- Bottom Micro-Subtext -->
+          <p class="mt-3 text-xs text-blue-100 font-semibold flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-brand-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Tap tabs above to preview how STASH transforms each category</span>
+          </p>
 
         </div>
+
       </div>
-
-    </div>
-  </section>
-
-
-  <!-- ── FEATURE 1: YOUR OWN PLAYLISTS (Apple Album Style, Same Sizes) ── -->
-  <section class="py-24 max-w-6xl mx-auto px-4 sm:px-6" id="playlists">
-    
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <span class="px-3.5 py-1 rounded-full bg-cream-100 text-ink-700 text-xs font-bold uppercase tracking-wider">
-        Your Personal Collections
-      </span>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight mt-4 mb-4">
-        All your favorite videos. <br class="hidden sm:inline" />
-        <span class="font-serif italic font-normal text-coral-500">Finally organized.</span>
-      </h2>
-      <p class="text-base sm:text-lg text-ink-500 leading-relaxed">
-        Save clips from YouTube, Instagram, TikTok, and X into custom visual folders. Cooking. Workouts. Travel dreams. Your personal library with zero ads.
-      </p>
     </div>
 
-    <!-- 4 Equal-Height Visual Album Cards (Zero cheap emojis) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-      
-      <!-- Card 1: Family Dinners -->
-      <div class="spotlight-box bg-white rounded-[32px] p-5 shadow-apple border border-cream-200 h-full flex flex-col justify-between group">
-        <div>
-          <div class="relative h-40 rounded-2xl overflow-hidden mb-4 shadow-inner">
-            <img 
-              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" 
-              alt="Family Dinners" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div class="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-ink-900">
-              PINNED
-            </div>
-          </div>
-          <h3 class="text-lg font-extrabold text-ink-950 mb-1">Family Dinners</h3>
-          <p class="text-xs text-ink-500 mb-4">Biryani, pasta nights, and slow roasts</p>
-          
-          <div class="space-y-2 text-xs text-ink-700">
-            <div class="flex items-center justify-between py-1 border-b border-cream-100">
-              <span class="truncate max-w-[130px]">Dum Biryani</span>
-              <span class="text-[10px] font-mono text-ink-400">YouTube</span>
-            </div>
-            <div class="flex items-center justify-between py-1 border-b border-cream-100">
-              <span class="truncate max-w-[130px]">Garlic Noodles</span>
-              <span class="text-[10px] font-mono text-ink-400">TikTok</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-3 border-t border-cream-200 flex items-center justify-between text-[11px] text-ink-500 font-semibold">
-          <span>14 Videos</span>
-          <span class="text-emerald-600">Offline Ready</span>
-        </div>
-      </div>
-
-      <!-- Card 2: Morning Workouts -->
-      <div class="spotlight-box bg-white rounded-[32px] p-5 shadow-apple border border-cream-200 h-full flex flex-col justify-between group">
-        <div>
-          <div class="relative h-40 rounded-2xl overflow-hidden mb-4 shadow-inner">
-            <img 
-              src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" 
-              alt="Morning Workouts" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div class="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-amber-600">
-              ACTIVE
-            </div>
-          </div>
-          <h3 class="text-lg font-extrabold text-ink-950 mb-1">Morning Workouts</h3>
-          <p class="text-xs text-ink-500 mb-4">Strength splits, dumbbell drills & stretches</p>
-          
-          <div class="space-y-2 text-xs text-ink-700">
-            <div class="flex items-center justify-between py-1 border-b border-cream-100">
-              <span class="truncate max-w-[130px]">FST-7 Protocol</span>
-              <span class="text-[10px] font-mono text-ink-400">Instagram</span>
-            </div>
-            <div class="flex items-center justify-between py-1 border-b border-cream-100">
-              <span class="truncate max-w-[130px]">Split Squat Depth</span>
-              <span class="text-[10px] font-mono text-ink-400">TikTok</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-3 border-t border-cream-200 flex items-center justify-between text-[11px] text-ink-500 font-semibold">
-          <span>9 Routines</span>
-          <span class="text-amber-600">Timers On</span>
-        </div>
-      </div>
-
-      <!-- Card 3: Places to Visit -->
-      <div class="spotlight-box bg-white rounded-[32px] p-5 shadow-apple border border-cream-200 h-full flex flex-col justify-between group">
-        <div>
-          <div class="relative h-40 rounded-2xl overflow-hidden mb-4 shadow-inner">
-            <img 
-              src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" 
-              alt="Places to Visit" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div class="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-emerald-600">
-              TRIP 2026
-            </div>
-          </div>
-          <h3 class="text-lg font-extrabold text-ink-950 mb-1">Places to Visit</h3>
-          <p class="text-xs text-ink-500 mb-4">Secret coffee bars, ramen shops & vistas</p>
-          
-          <div class="space-y-2 text-xs text-ink-700">
-            <div class="flex items-center justify-between py-1 border-b border-cream-100">
-              <span class="truncate max-w-[130px]">Fuglen Tokyo</span>
-              <span class="text-[10px] font-mono text-ink-400">YouTube</span>
-            </div>
-            <div class="flex items-center justify-between py-1 border-b border-cream-100">
-              <span class="truncate max-w-[130px]">Yanaka 1938 Cafe</span>
-              <span class="text-[10px] font-mono text-ink-400">Instagram</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-3 border-t border-cream-200 flex items-center justify-between text-[11px] text-ink-500 font-semibold">
-          <span>18 Guides</span>
-          <span class="text-emerald-600">Saved Offline</span>
-        </div>
-      </div>
-
-      <!-- Card 4: Private Folder -->
-      <div class="spotlight-box bg-white rounded-[32px] p-5 shadow-apple border border-cream-200 h-full flex flex-col justify-between group">
-        <div>
-          <div class="relative h-40 rounded-2xl bg-ink-950 flex items-center justify-center mb-4 overflow-hidden shadow-inner">
-            <div class="w-14 h-14 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-            </div>
-            <div class="absolute top-2.5 left-2.5 bg-indigo-500/30 text-indigo-200 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
-              SECURED
-            </div>
-          </div>
-          <h3 class="text-lg font-extrabold text-ink-950 mb-1">Private Vault</h3>
-          <p class="text-xs text-ink-500 mb-4">Locked with Face ID or PIN</p>
-          
-          <div class="p-3 rounded-xl bg-cream-50 border border-cream-200 text-center">
-            <div class="text-xs font-semibold text-ink-800">Biometric Protected</div>
-            <div class="text-[10px] text-ink-400 mt-0.5">Hidden from main feed</div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-3 border-t border-cream-200 flex items-center justify-between text-[11px] text-ink-500 font-semibold">
-          <span>Ghost Mode</span>
-          <span class="text-indigo-600">1-Tap Hide</span>
-        </div>
-      </div>
-
+    <!-- Soft Cloud White Wave Transition into Next Section -->
+    <div class="absolute bottom-0 inset-x-0 leading-none pointer-events-none">
+      <svg class="w-full h-10 sm:h-16 text-brand-cream fill-current" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,32L80,42.7C160,53,320,75,480,74.7C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"></path>
+      </svg>
     </div>
 
   </section>
 
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       2.5. FLAGSHIP 4K ULTRA-HD STORE SHOWCASE & BRAND GRAPHIC
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <section class="py-12 bg-brand-cream relative z-20 -mt-6 sm:-mt-10">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-950 group">
+        <img src="./assets/feature-graphic-4K.png" alt="STASH 4K Ultra-HD Experience" class="w-full h-auto object-cover transform group-hover:scale-[1.01] transition-transform duration-700" />
+        <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-8 sm:right-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-900/85 backdrop-blur-xl p-4 sm:p-5 rounded-2xl border border-white/15 shadow-xl">
+          <div class="flex items-center gap-3.5">
+            <img src="./assets/icon-512.png" alt="STASH Logo" class="w-12 h-12 rounded-2xl shadow-lg border border-white/20 object-cover shrink-0" />
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-white text-base font-extrabold tracking-tight">STASH · 4K Ultra-HD Personal Media Engine</span>
+                <span class="px-2 py-0.5 rounded-full bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider">Official 4K</span>
+              </div>
+              <p class="text-xs text-slate-300">Lossless 60fps vertical reel playback · 320kbps audio compiling · Instant offline private vault</p>
+            </div>
+          </div>
+          <a href="#early-access" class="px-6 py-2.5 rounded-full bg-white hover:bg-brand-softblue text-brand-dark font-extrabold text-xs transition shadow-md whitespace-nowrap flex items-center gap-2">
+            <span>Pre-Register Now</span>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ── FEATURE 2: OFFLINE DOWNLOADS & AUDIO RIPPING (Equal Sizes) ── -->
-  <section class="py-24 bg-cream-100/70 border-y border-cream-200" id="offline-downloads">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       3. THE CHAOS COLLAPSER: "I SAVED IT SOMEWHERE" SOLVED
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <section id="how-it-works" class="py-24 bg-brand-cream relative">
+    <div class="max-w-7xl mx-auto px-5">
       
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="px-3.5 py-1 rounded-full bg-white text-ink-800 text-xs font-bold uppercase tracking-wider shadow-sm">
-          Offline Capability
+      <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+        <span class="px-4 py-1 rounded-full bg-brand-softblue text-brand-blue font-bold text-xs uppercase tracking-wider border border-brand-blue/20">
+          The Problem Every Internet User Faces
         </span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight mt-4 mb-4">
-          No Wi-Fi? No problem. <br class="hidden sm:inline" />
-          <span class="font-serif italic font-normal text-amber-500">Listen with your screen off.</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark tracking-tight">
+          "I know I saved that video... <br />
+          <span class="font-script text-4xl sm:text-6xl text-brand-orange font-bold">but where is it?</span>"
         </h2>
-        <p class="text-base sm:text-lg text-ink-500 leading-relaxed">
-          Download videos directly to your device. Watch at 35,000 feet, in the gym basement, or on the train with zero mobile data.
+        <p class="text-slate-600 text-base sm:text-lg">
+          Your saved videos are scattered across 4 different apps, buried under algorithms, or lost forever. STASH brings them all under one roof.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+      <!-- 3 Step Joyful Process Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- Video Box (Identical size) -->
-        <div class="spotlight-box bg-white rounded-[32px] p-8 shadow-apple border border-cream-200 h-full flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-6">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            </div>
-            <h3 class="text-2xl font-extrabold text-ink-950 mb-3">Download Videos to Phone</h3>
-            <p class="text-sm text-ink-500 leading-relaxed mb-6">
-              Save high-resolution 9:16 clips straight to local storage. Smooth playback with zero buffering, even with airplane mode on.
-            </p>
-
-            <ul class="space-y-3 text-xs sm:text-sm text-ink-700 font-medium mb-8">
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>Works with zero cellular reception</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>Full-screen vertical video player</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>Zero mobile data used once saved</span>
-              </li>
-            </ul>
+        <!-- Step 1: Copy Link -->
+        <div class="bg-white rounded-3xl p-8 floating-card-shadow border border-slate-100 relative group hover:-translate-y-1 transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-brand-softblue text-brand-blue flex items-center justify-center font-extrabold text-2xl mb-6 shadow-sm">
+            1
           </div>
-
-          <div class="p-3.5 bg-cream-50 rounded-2xl border border-cream-200 text-xs font-mono text-ink-600 flex items-center justify-between">
-            <span>STORAGE: LOCAL DEVICE</span>
-            <span class="text-emerald-600 font-bold">OFFLINE READY</span>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Copy any social link</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Find something awesome on Instagram, TikTok, YouTube, or X? Just tap Share → Copy Link.
+          </p>
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-3 text-xs font-semibold text-slate-500">
+            <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+            <span>No account or sign-up needed to save</span>
           </div>
         </div>
 
-        <!-- Audio Box (Identical size) -->
-        <div class="spotlight-box bg-white rounded-[32px] p-8 shadow-apple border border-cream-200 h-full flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-coral-50 text-coral-600 flex items-center justify-center mb-6">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
-            </div>
-            <h3 class="text-2xl font-extrabold text-ink-950 mb-3">Extract Audio to Pocket</h3>
-            <p class="text-sm text-ink-500 leading-relaxed mb-6">
-              Turn workout cues, motivational speeches, or cooking tips into pure audio. Lock your screen, put your phone in your pocket, and keep moving.
-            </p>
-
-            <ul class="space-y-3 text-xs sm:text-sm text-ink-700 font-medium mb-8">
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-500 font-bold">✓</span>
-                <span>Plays smoothly while phone screen is off</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-500 font-bold">✓</span>
-                <span>Extracts speech and background music</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-500 font-bold">✓</span>
-                <span>Saves massive battery life</span>
-              </li>
-            </ul>
+        <!-- Step 2: STASH Magic Drop -->
+        <div class="bg-white rounded-3xl p-8 floating-card-shadow border-2 border-brand-blue/20 relative group hover:-translate-y-1 transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-brand-blue text-white flex items-center justify-center font-extrabold text-2xl mb-6 shadow-md shadow-brand-blue/30">
+            2
           </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Drop into STASH</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            STASH immediately extracts the full HD media, transcribes the voice, and turns it into interactive steps.
+          </p>
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-3 text-xs font-semibold text-brand-blue">
+            <span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+            <span>Zero CORS · Works completely offline</span>
+          </div>
+        </div>
 
-          <div class="p-3.5 bg-cream-50 rounded-2xl border border-cream-200 text-xs font-mono text-ink-600 flex items-center justify-between">
-            <span>FORMAT: AUDIO STREAM</span>
-            <span class="text-coral-600 font-bold">POCKET PLAY</span>
+        <!-- Step 3: Actionable Hands-Free Tool -->
+        <div class="bg-white rounded-3xl p-8 floating-card-shadow border border-slate-100 relative group hover:-translate-y-1 transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-orange-50 text-brand-orange flex items-center justify-center font-extrabold text-2xl mb-6 shadow-sm">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Use it in the real world</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Tap Cook Mode when your hands are full of flour. Tap Train Mode when you're at the gym with chalk on your hands.
+          </p>
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-3 text-xs font-semibold text-brand-orange">
+            <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+            <span>Full-screen 9:16 vertical player</span>
           </div>
         </div>
 
@@ -728,294 +560,148 @@
     </div>
   </section>
 
-
-  <!-- ── FEATURE 3: PRIVATE FOLDER (Ghost Vault) ── -->
-  <section class="py-24 max-w-6xl mx-auto px-4 sm:px-6" id="private-vault">
-    <div class="max-w-4xl mx-auto">
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       4. COOK & TRAIN MODES: THE DUAL UTILITY ENGINE
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <section id="cook-and-train" class="py-24 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-5">
       
-      <div class="spotlight-box-dark bg-ink-950 text-white rounded-[36px] p-8 sm:p-14 shadow-2xl relative border border-white/10">
-        <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          
-          <div class="md:col-span-7">
-            <span class="px-3 py-1 rounded-full bg-white/10 text-indigo-300 text-xs font-semibold">
-              Privacy First
+      <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+        <span class="px-4 py-1 rounded-full bg-orange-100 text-brand-orange font-bold text-xs uppercase tracking-wider">
+          Beyond Bookmarks
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark tracking-tight">
+          Turn passive watching into <br />
+          <span class="font-script text-4xl sm:text-6xl text-brand-blue font-bold">active doing.</span>
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg">
+          Other apps let you save videos. Only STASH compiles videos into actionable checklists, timers, and hands-free tools.
+        </p>
+      </div>
+
+      <!-- Side-by-Side Dual Utility Showcase -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        
+        <!-- Feature A: COOK MODE -->
+        <div class="rounded-3xl bg-gradient-to-br from-amber-500/5 via-orange-500/10 to-transparent p-8 sm:p-10 border border-orange-200/60 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-orange text-white flex items-center justify-center shadow-lg shadow-brand-orange/30">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-dark">Hands-Free Cook Mode</h3>
+            <p class="text-slate-600 text-base leading-relaxed">
+              Never touch your phone screen with greasy, flour-covered fingers again. STASH extracts the exact ingredients list and steps, displaying large high-contrast cards with voice guidance.
+            </p>
+            <ul class="space-y-3 pt-2 text-sm font-semibold text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>Automated ingredient checklist (grams & cups converted)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>Built-in prep and cooking timers that ring when done</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>Hands-free audio prompts for each stage</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-orange-200/50 flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-orange">Better than ReciMe</span>
+            <span class="text-xs font-semibold text-slate-500">Works for any food reel</span>
+          </div>
+        </div>
+
+        <!-- Feature B: TRAIN MODE -->
+        <div class="rounded-3xl bg-gradient-to-br from-blue-500/5 via-indigo-500/10 to-transparent p-8 sm:p-10 border border-blue-200/60 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center shadow-lg shadow-brand-blue/30">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-dark">Gym-Ready Train Mode</h3>
+            <p class="text-slate-600 text-base leading-relaxed">
+              Turn workout videos into step-by-step gym routines. Tracks target muscle groups, sets, rep ranges, and plays automatic mechanical rest beeps between exercises.
+            </p>
+            <ul class="space-y-3 pt-2 text-sm font-semibold text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-brand-blue flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>Automated rep counter & failure tracking</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-brand-blue flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>45-second or 60-second mechanical rest timer with haptic beep</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-brand-blue flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>Form correction clips on repeat loop</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-blue-200/50 flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">No Fitness App Required</span>
+            <span class="text-xs font-semibold text-slate-500">Works for any TikTok or Reel</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       5. YOUR OWN SOCIAL MEDIA: THE 9:16 VERTICAL REEL
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <section id="reel-showcase" class="py-24 bg-brand-dark text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 relative z-10">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <span class="px-4 py-1.5 rounded-full bg-brand-orange/20 border border-brand-orange/40 text-brand-orange text-xs font-bold uppercase tracking-wider">
+            Your Personal 9:16 Reel
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            The platforms decide what's in their feeds.<br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-brand-yellow to-brand-sky">
+              You decide what's in yours.
             </span>
-            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-4 mb-4 text-white">
-              Keep it private. <br />
-              <span class="font-serif italic font-normal text-indigo-300">Locked with Face ID & PIN.</span>
-            </h2>
-            <p class="text-sm sm:text-base text-neutral-400 leading-relaxed mb-6">
-              Have videos you want to keep strictly to yourself? Lock them inside a private folder. One tap completely hides it from view.
-            </p>
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Every link you save joins your private, full-screen vertical feed. Swipe up to explore recipes, workouts, travel guides, and combat edits back-to-back with zero ads, zero suggested junk, and zero algorithmic manipulation.
+          </p>
 
-            <ul class="space-y-3 text-xs sm:text-sm text-neutral-300 font-medium">
-              <li class="flex items-center gap-2.5">
-                <span class="text-indigo-400 font-bold">✓</span>
-                <span>Protected by your device fingerprint or PIN</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-indigo-400 font-bold">✓</span>
-                <span>One-tap button to hide the folder from sight</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-indigo-400 font-bold">✓</span>
-                <span>Zero cloud uploads. Kept 100% on your device</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="md:col-span-5 flex justify-center">
-            <div class="w-full max-w-[260px] bg-neutral-900 border border-white/10 rounded-3xl p-6 text-center shadow-xl">
-              <div class="w-16 h-16 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mx-auto mb-4 text-indigo-400">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-              </div>
-              <div class="font-bold text-sm text-white mb-1">Private Vault</div>
-              <div class="text-[11px] text-neutral-400 mb-6">Enter PIN or Fingerprint</div>
-
-              <div class="flex justify-center gap-2.5 mb-6">
-                <span class="w-3 h-3 rounded-full bg-white"></span>
-                <span class="w-3 h-3 rounded-full bg-white"></span>
-                <span class="w-3 h-3 rounded-full bg-white"></span>
-                <span class="w-3 h-3 rounded-full bg-white/20"></span>
-                <span class="w-3 h-3 rounded-full bg-white/20"></span>
-                <span class="w-3 h-3 rounded-full bg-white/20"></span>
-              </div>
-
-              <div class="text-[10px] font-mono text-indigo-300 bg-indigo-500/10 py-1.5 px-3 rounded-lg">
-                PROTECTED ON DEVICE
-              </div>
+          <div class="grid grid-cols-2 gap-4 pt-4 text-sm font-semibold">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <span class="text-brand-orange font-bold block mb-1">0% Algorithms</span>
+              <span class="text-slate-400 text-xs">Only content you hand-picked and saved</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <span class="text-brand-sky font-bold block mb-1">100% Offline Capable</span>
+              <span class="text-slate-400 text-xs">Watch on planes, subways, and off-grid</span>
             </div>
           </div>
-
         </div>
-      </div>
 
-    </div>
-  </section>
-
-
-  <!-- ── SECTION 4: THE LIVE INTERACTIVE PLAYGROUND (Biryani & FST-7) ── -->
-  <section class="py-20 bg-ink-950 text-white relative overflow-hidden" id="test-drive">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-      
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="px-3.5 py-1 rounded-full bg-white/10 text-amber-400 text-xs font-semibold">
-          Interactive Experience
-        </span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-4 mb-3">
-          See What STASH Extracts <br />
-          <span class="font-serif italic font-normal text-coral-400">from real, complex videos.</span>
-        </h2>
-        <p class="text-sm sm:text-base text-neutral-400 mb-6">
-          Test drive an authentic <strong>Dum Biryani</strong> masterclass and <strong>Kris Gethin’s FST-7 Gym Routine</strong>.
-        </p>
-
-        <!-- Audio Chime Toggle Button -->
-        <div class="inline-flex items-center gap-2 bg-black/60 px-4 py-1.5 rounded-full border border-white/10 text-xs font-mono text-neutral-300">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>AUDIO CHIME:</span>
-          <button id="audio-toggle-btn" onclick="toggleAudio()" class="text-amber-400 font-bold hover:underline">
-            ENABLED (CLICK TO TEST)
-          </button>
-        </div>
-      </div>
-
-      <!-- Tab Switcher -->
-      <div class="flex items-center justify-center gap-3 mb-8">
-        <button id="tab-recipe" onclick="switchDemo('recipe')" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-coral-500 text-white shadow-glow-coral">
-          Dum Biryani Masterclass (Cook Mode)
-        </button>
-        <button id="tab-workout" onclick="switchDemo('workout')" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white/10 hover:bg-white/20 text-neutral-300">
-          Kris Gethin FST-7 Routine (Train Mode)
-        </button>
-      </div>
-
-      <!-- Live Terminal Card -->
-      <div class="spotlight-box-dark bg-neutral-900 border border-white/10 rounded-[32px] p-6 sm:p-8 shadow-2xl relative">
-        
-        <!-- RECIPE DEMO: HYDERABADI DUM BIRYANI -->
-        <div id="demo-recipe" class="space-y-6 relative z-10">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="px-2 py-0.5 rounded bg-coral-500/20 text-coral-400 font-mono text-[10px] font-bold uppercase">YouTube 18-Min Masterclass</span>
-                <span class="text-xs text-neutral-400">• Multi-Phase Dum Cooking</span>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white">Authentic Chicken Dum Biryani</h3>
-            </div>
+        <div class="lg:col-span-6 flex justify-center">
+          <div class="relative w-72 sm:w-80 h-[520px] rounded-3xl bg-neutral-900 border-2 border-white/20 p-2 shadow-2xl overflow-hidden flex flex-col justify-between">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop" alt="Kyoto Alleys" class="absolute inset-0 w-full h-full object-cover object-center z-0" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10"></div>
             
-            <!-- Unit Toggle Button -->
-            <div class="flex items-center bg-black/60 p-1 rounded-xl border border-white/10 self-start sm:self-auto">
-              <button id="unit-metric" onclick="setUnit('metric')" class="px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-coral-500 text-white">METRIC (g)</button>
-              <button id="unit-us" onclick="setUnit('us')" class="px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all text-neutral-400 hover:text-white">US (cups/spoons)</button>
-            </div>
-          </div>
-
-          <!-- Phase 1: Marinade -->
-          <div>
-            <div class="flex items-center justify-between text-xs font-semibold text-neutral-400 mb-3">
-              <span class="text-amber-400 font-mono font-bold uppercase">STEP 1: 2-HOUR MARINADE (CHECK OFF AS YOU COOK)</span>
-              <span id="checked-count" class="text-coral-400 font-mono font-bold">2 of 5 prepped</span>
+            <div class="relative z-20 p-3 flex justify-between items-center text-xs font-bold text-white">
+              <span class="flex items-center gap-1.5 bg-black/40 px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>TRAVEL GUIDE</span>
+              </span>
+              <span class="bg-black/40 px-2 py-0.5 rounded-full border border-white/20">3 / 4</span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 cursor-pointer">
-                <input type="checkbox" onchange="updateChecked()" checked class="w-4 h-4 rounded text-coral-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-xs font-medium text-neutral-300" id="ing-1">800g Bone-in Chicken Thighs</span>
-              </label>
-
-              <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 cursor-pointer">
-                <input type="checkbox" onchange="updateChecked()" checked class="w-4 h-4 rounded text-coral-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-xs font-medium text-neutral-300" id="ing-2">200g Fresh Thick Greek Yogurt</span>
-              </label>
-
-              <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 cursor-pointer">
-                <input type="checkbox" onchange="updateChecked()" class="w-4 h-4 rounded text-coral-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-xs font-medium text-neutral-300" id="ing-3">150g Crispy Fried Onions (Birista)</span>
-              </label>
-
-              <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 cursor-pointer">
-                <input type="checkbox" onchange="updateChecked()" class="w-4 h-4 rounded text-coral-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-xs font-medium text-neutral-300" id="ing-4">30g Ginger-Garlic Paste & green chilies</span>
-              </label>
-
-              <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 cursor-pointer sm:col-span-2">
-                <input type="checkbox" onchange="updateChecked()" class="w-4 h-4 rounded text-coral-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-xs font-medium text-neutral-300" id="ing-5">15g Whole Garam Masala (Cardamom, star anise, cloves)</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Phase 2 & 3: Rice & Dum Timeline -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-            <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
-              <div class="text-[10px] font-mono text-amber-400 font-bold uppercase mb-1">STEP 2: RICE PARBOIL</div>
-              <div class="text-xs font-bold text-white mb-1">Boil Aged Basmati to exactly 70%</div>
-              <div class="text-[11px] text-neutral-400">Drain when the rice grain breaks into 3 pieces under thumb pressure.</div>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
-              <div class="text-[10px] font-mono text-coral-400 font-bold uppercase mb-1">STEP 3: SLOW DUM STEAM</div>
-              <div class="text-xs font-bold text-white mb-1">10m High Heat → 25m Low Simmer</div>
-              <div class="text-[11px] text-neutral-400">Layer saffron milk on top. Keep pot tightly sealed with lid.</div>
-            </div>
-          </div>
-
-          <!-- Screen Awake Status -->
-          <div class="p-4 rounded-2xl bg-black/60 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <div class="text-xs text-neutral-300">
-                <span class="font-bold text-white">Screen Awake Status:</span> Holding screen bright throughout your entire cook
+            <div class="relative z-20 p-4 space-y-2">
+              <span class="text-xs text-white/90 font-bold block">@travel_kyoto</span>
+              <h4 class="text-sm font-extrabold text-white">Kyoto Hidden Lantern Alleys: 4 Uncharted Tea Houses</h4>
+              <div class="w-full h-1 bg-white/30 rounded-full overflow-hidden">
+                <div class="w-1/2 h-full bg-brand-orange"></div>
               </div>
-            </div>
-            <div class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md font-bold">
-              0 Touches Needed
-            </div>
-          </div>
-        </div>
-
-        <!-- WORKOUT DEMO: KRIS GETHIN FST-7 PROTOCOL -->
-        <div id="demo-workout" class="hidden space-y-6 relative z-10">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
-            <div>
-              <div class="flex items-center gap-2 mb-1">
-                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono text-[10px] font-bold uppercase">Instagram Reel @getyourgameron</span>
-                <span class="text-xs text-neutral-400">• Kris Gethin 12-Week Routine</span>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold text-white">FST-7 Back & Biceps Workout</h3>
-            </div>
-            
-            <div class="px-3 py-1 rounded-xl bg-black/60 border border-white/10 text-xs font-mono text-amber-400 font-bold self-start sm:self-auto">
-              7 EXERCISES • FINISHER
-            </div>
-          </div>
-
-          <!-- Rest Timer Widget -->
-          <div class="p-5 rounded-2xl bg-black/50 border border-white/10">
-            <div class="flex items-center justify-between mb-3">
-              <div>
-                <div class="text-xs text-neutral-400 uppercase font-mono">Rest Interval Timer (45s Rest)</div>
-                <div id="timer-display" class="text-3xl font-mono font-bold text-amber-400">00:45</div>
-              </div>
-              <button id="timer-btn" onclick="toggleTimer()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-black font-extrabold text-xs transition-all">
-                START REST
-              </button>
-            </div>
-            <div class="w-full h-2 bg-neutral-800 rounded-full overflow-hidden">
-              <div id="timer-bar" class="h-full bg-gradient-to-r from-amber-500 to-coral-500 w-full transition-all duration-1000"></div>
-            </div>
-          </div>
-
-          <!-- 7 Exercises List -->
-          <div class="space-y-2 text-xs">
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <input type="checkbox" checked class="w-3.5 h-3.5 rounded text-amber-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-neutral-200 font-medium">1. Reverse Grip Pulldown</span>
-              </div>
-              <span class="font-mono text-neutral-300 font-bold">3-4 Sets • 10-12 Reps</span>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <input type="checkbox" checked class="w-3.5 h-3.5 rounded text-amber-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-neutral-200 font-medium">2. Bent Over Barbell Rows</span>
-              </div>
-              <span class="font-mono text-neutral-300 font-bold">3-4 Sets • 8-10 Reps</span>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <input type="checkbox" class="w-3.5 h-3.5 rounded text-amber-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-neutral-200 font-medium">3. Hyper Extension</span>
-              </div>
-              <span class="font-mono text-neutral-300 font-bold">3 Sets • 12-15 Reps</span>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <input type="checkbox" class="w-3.5 h-3.5 rounded text-amber-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-neutral-200 font-medium">4. Straight Arm Pulldown</span>
-              </div>
-              <span class="font-mono text-neutral-300 font-bold">3 Sets • 10-12 Reps</span>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <input type="checkbox" class="w-3.5 h-3.5 rounded text-amber-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-neutral-200 font-medium">5. Concentration Curls</span>
-              </div>
-              <span class="font-mono text-neutral-300 font-bold">3 Sets • 10-12 Reps</span>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <input type="checkbox" class="w-3.5 h-3.5 rounded text-amber-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-neutral-200 font-medium">6. Alternating Dumbbell Curls</span>
-              </div>
-              <span class="font-mono text-neutral-300 font-bold">3 Sets • 10-12 Reps</span>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-coral-500/15 border border-coral-500/30 flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <input type="checkbox" class="w-3.5 h-3.5 rounded text-coral-500 focus:ring-0 bg-neutral-800 border-neutral-700" />
-                <span class="text-coral-300 font-bold">7. Cable Curls (Finisher)</span>
-              </div>
-              <span class="font-mono text-coral-400 font-black text-sm">7 Sets • 10-12 Reps</span>
-            </div>
-          </div>
-
-          <!-- Extracted Script -->
-          <div class="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2">
-            <div class="text-[10px] font-mono text-neutral-400 uppercase font-bold tracking-wider">
-              CREATOR SCRIPT & COACHING NOTES
-            </div>
-            <p class="text-xs text-neutral-300 leading-relaxed">
-              "Bodybuilding.com Kris Gethin 12-Week Daily Trainer Week 1 - Day 4. Time to hit the gym for a high-intensity FST-7 back and biceps workout. Stretch the muscle fascia on the peak contraction of every rep."
-            </p>
-            <div class="flex items-center gap-2 text-[11px] text-amber-400 pt-1 font-mono">
-              <span>Instrumental audio track saved to phone</span>
             </div>
           </div>
         </div>
@@ -1025,401 +711,217 @@
     </div>
   </section>
 
-
-  <!-- ── PULL QUOTE ── -->
-  <section class="py-24 sm:py-32 bg-canvas relative overflow-hidden">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-      <div class="w-12 h-1 bg-gradient-to-r from-coral-500 to-amber-500 mx-auto rounded-full mb-8"></div>
-      
-      <blockquote class="text-3xl sm:text-5xl md:text-6xl font-serif italic text-ink-950 leading-[1.15] mb-6">
-        “The video is evidence. <br class="hidden sm:inline" />
-        <span class="font-sans font-black not-italic text-transparent bg-clip-text bg-gradient-to-r from-coral-500 via-amber-500 to-coral-600">
-          The knowledge is yours.
-        </span>”
-      </blockquote>
-
-      <p class="text-base sm:text-lg text-ink-500 max-w-xl mx-auto leading-relaxed">
-        Stop losing great ideas to endless scrolling feeds. Keep the knowledge on your phone, permanently.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ── SECTION 6: HONEST CONSUMER PRICING ── -->
-  <section class="py-20 bg-cream-100/70 border-t border-cream-200" id="pricing">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="px-3.5 py-1 rounded-full bg-white text-ink-800 text-xs font-bold uppercase tracking-wider shadow-sm">
-          Simple Pricing
-        </span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight mt-4 mb-3">
-          Honest pricing. <br class="hidden sm:inline" />
-          <span class="font-serif italic font-normal text-emerald-600">No surprises.</span>
-        </h2>
-        <p class="text-sm sm:text-base text-ink-500">
-          Download STASH free today. Upgrade only if you want unlimited extractions and biometric vault protection.
-        </p>
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       6. PRIVATE VAULT & SECURITY (LOCK WHAT MATTERS)
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <section id="private-vault" class="py-24 bg-brand-cream">
+    <div class="max-w-5xl mx-auto px-5 text-center space-y-6">
+      <div class="w-16 h-16 rounded-3xl bg-brand-charcoal text-white flex items-center justify-center mx-auto shadow-xl">
+        <svg class="w-8 h-8 text-brand-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto items-stretch">
-        
-        <!-- FREE TIER -->
-        <div class="spotlight-box bg-white rounded-[32px] p-8 shadow-apple border border-cream-200 flex flex-col justify-between">
-          <div>
-            <div class="inline-flex items-center px-3 py-1 rounded-full bg-cream-100 text-ink-800 text-xs font-bold mb-4">
-              Free Forever
-            </div>
-            <div class="flex items-baseline gap-1 mb-2">
-              <span class="text-4xl font-extrabold text-ink-950">$0</span>
-              <span class="text-xs font-semibold text-ink-400">/ forever</span>
-            </div>
-            <p class="text-xs text-ink-500 mb-6">
-              Everything you need to organize your videos and keep your cooking screen awake.
-            </p>
-
-            <ul class="space-y-3 text-xs text-ink-700 mb-8">
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>Unlimited custom playlists and folders</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>Cook Mode with screen stay-awake</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>5 smart recipe and workout extractions daily</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>Offline video caching</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-500 font-bold">✓</span>
-                <span>Zero ads, zero data tracking</span>
-              </li>
-            </ul>
-          </div>
-
-          <a href="#download" class="btn-apple block text-center bg-cream-100 hover:bg-cream-200 text-ink-950 text-xs font-bold py-3.5 rounded-2xl transition-all">
-            Download Free
-          </a>
-        </div>
-
-        <!-- STASH PRO TIER -->
-        <div class="spotlight-box-dark bg-ink-950 text-white rounded-[32px] p-8 shadow-2xl relative overflow-hidden flex flex-col justify-between border-2 border-coral-500/30">
-          <div class="absolute top-4 right-4 bg-gradient-to-r from-coral-500 to-amber-500 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-            Most Popular
-          </div>
-
-          <div>
-            <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-amber-400 text-xs font-bold mb-4">
-              STASH Pro
-            </div>
-            <div class="flex items-baseline gap-1 mb-2">
-              <span class="text-4xl font-extrabold text-white">$24.99</span>
-              <span class="text-xs font-semibold text-neutral-400">/ year ($2.08/mo)</span>
-            </div>
-            <p class="text-xs text-neutral-400 mb-6">
-              Or $3.99 billed monthly. Cancel anytime with 1 tap in Google Play.
-            </p>
-
-            <ul class="space-y-3 text-xs text-neutral-300 mb-8">
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-400 font-bold">✓</span>
-                <span><strong>Unlimited</strong> smart video extractions</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-400 font-bold">✓</span>
-                <span><strong>Private Folder:</strong> Biometric Face ID & PIN lock</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-400 font-bold">✓</span>
-                <span><strong>Local Video & Audio Downloads</strong> for offline use</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-400 font-bold">✓</span>
-                <span><strong>Automatic Rest Timers</strong> with sound alerts</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <span class="text-coral-400 font-bold">✓</span>
-                <span>1-Tap Metric ⇄ US unit conversion</span>
-              </li>
-            </ul>
-          </div>
-
-          <a href="#download" class="btn-apple block text-center bg-gradient-to-r from-coral-500 to-amber-500 hover:opacity-95 text-white text-xs font-extrabold py-3.5 rounded-2xl shadow-glow-coral transition-all">
-            Get STASH Pro (7-Day Free Trial)
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ── DOWNLOAD CTA ── -->
-  <section class="py-24 bg-canvas text-center" id="download">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      
-      <div class="w-14 h-14 rounded-3xl bg-gradient-to-br from-coral-500 to-amber-500 flex items-center justify-center text-white text-2xl font-black mx-auto mb-6 shadow-glow-coral">
-        S
-      </div>
-
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-ink-950 tracking-tight mb-4">
-        Ready to make your saved videos <br class="hidden sm:inline" />
-        <span class="font-serif italic font-normal text-coral-500">actually useful?</span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark tracking-tight">
+        Private Stash. <br />
+        <span class="font-script text-4xl sm:text-6xl text-brand-orange font-bold">Locked behind your face.</span>
       </h2>
-      <p class="text-base text-ink-500 max-w-xl mx-auto mb-8 leading-relaxed">
-        Available now on the Google Play Store. Works seamlessly with videos from YouTube, Instagram, TikTok, and X.
+
+      <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto">
+        Have saved folders you don't want anyone else to stumble on? Lock them. Locked folders vanish completely from your public reel until unlocked via Face ID or your 6-digit PIN.
       </p>
 
-      <div class="flex items-center justify-center mb-10">
-        <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" class="btn-apple inline-flex items-center justify-center gap-3.5 bg-ink-950 hover:bg-coral-500 text-white font-bold text-base px-8 py-4 rounded-2xl shadow-apple transition-all">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.373 2.373 0 0 1-.61-.926V2.74c.14-.366.357-.686.61-.926zm11.242 11.244l2.583 2.583-11.77 6.643 9.187-9.226zm0-2.116L5.663 1.714l11.77 6.643-2.582 2.585zm1.488 1.487l3.208 1.81c1.077.608 1.077 1.6 0 2.208l-3.208 1.81-2.122-2.122 2.122-2.122z"/>
+      <div class="pt-4 flex items-center justify-center gap-6 text-sm font-bold text-slate-700">
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          <span>On-Device Storage Only</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          <span>Zero Server Uploads</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       7. STORE PRE-REGISTRATION CALL TO ACTION
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <section id="early-access" class="py-24 hero-sky-bg text-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-5 text-center space-y-8 relative z-10">
+      
+      <span class="px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold tracking-wide uppercase">
+        Google Play Store Approval Track
+      </span>
+
+      <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-shadow-hero">
+        Ready to take back your internet?
+      </h2>
+
+      <p class="text-lg sm:text-xl text-blue-50 max-w-xl mx-auto">
+        Join the early access queue on Google Play. Be the first to experience your personal social media playlist library.
+      </p>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#early-access" class="w-full sm:w-auto px-9 py-4 rounded-full bg-brand-orange hover:bg-orange-600 text-white font-extrabold text-base btn-orange-shadow transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186c-.347-.297-.61-.75-.61-1.386V3.2c0-.636.263-1.089.61-1.386zm11.303 11.304l2.457 2.457-11.455 6.643 8.998-9.1zm0-2.236l-8.998-9.1 11.455 6.643-2.457 2.457zm1.31 1.118l3.65-2.118c1.074-.623 1.074-1.637 0-2.26l-3.65-2.118-2.607 2.608 2.607 2.608z"/>
           </svg>
-          <div class="text-left leading-tight">
-            <div class="text-[10px] uppercase font-bold tracking-wider opacity-75">Get it on</div>
-            <div class="text-base font-extrabold">Google Play Store Ready</div>
-          </div>
+          <span>Pre-Register on Google Play</span>
         </a>
       </div>
 
-      <div class="text-xs text-ink-400 font-medium">
-        Version 1.1.0 • Verified for Google Play Store compliance • Zero tracking
+      <div class="pt-8 text-xs text-blue-100/80 font-medium">
+        <span>STASH Store Edition · Compliant with Google Play & YouTube Policies · Zero Piracy</span>
       </div>
 
     </div>
   </section>
 
-
-  <!-- ── FOOTER ── -->
-  <footer class="bg-ink-950 text-neutral-400 text-xs py-14 border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/10">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-xl bg-coral-500 flex items-center justify-center text-white font-black text-sm">
-            S
-          </div>
-          <div>
-            <div class="text-white font-extrabold text-base tracking-tight">STASH</div>
-            <div class="text-[11px] text-neutral-400">Save it. Stash it. Actually use it.</div>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-6 sm:gap-8 font-medium">
-          <a href="#playlists" class="hover:text-white transition-colors">Playlists</a>
-          <a href="#offline-downloads" class="hover:text-white transition-colors">Offline Vault</a>
-          <a href="#private-vault" class="hover:text-white transition-colors">Private Lock</a>
-          <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
-          <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
-        </div>
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       8. CRISP APPLE-GRADE FOOTER
+       ════════════════════════════════════════════════════════════════════════════ -->
+  <footer class="bg-white py-12 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500 font-medium">
+      <div class="flex items-center gap-3">
+        <img src="./assets/icon-512.png" alt="STASH Logo" class="w-8 h-8 rounded-xl shadow-md object-cover" />
+        <span class="font-bold text-slate-800 text-sm">STASH · Personal Media Internet</span>
       </div>
-
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500">
-        <div>
-          © 2026 STASH Technologies Inc. All rights reserved. Registered domain: <span class="text-neutral-300 font-mono">stashreel.app</span>
-        </div>
-        <div class="flex items-center gap-4">
-          <span>Local-First Design</span>
-          <span>•</span>
-          <span>Target API 36</span>
-          <span>•</span>
-          <span>Android 10+</span>
-        </div>
+      <div>
+        <span>Built with love for people who actually do things. © 2026 STASH Inc.</span>
       </div>
-
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-brand-blue transition">Privacy Policy</a>
+        <a href="#" class="hover:text-brand-blue transition">Terms of Service</a>
+        <a href="#" class="hover:text-brand-blue transition">Support</a>
+      </div>
     </div>
   </footer>
 
-  <!-- ── Interactive JavaScript Logic ── -->
+  <!-- ════════════════════════════════════════════════════════════════════════════
+       9. LIVE INTERACTIVE PHONE SCRIPT (FLUID CATEGORY SWITCHER)
+       ════════════════════════════════════════════════════════════════════════════ -->
   <script>
-    // 1. Mouse Spotlight Cursor Tracking
-    function initSpotlights() {
-      const cards = document.querySelectorAll('.spotlight-box, .spotlight-box-dark');
-      cards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty('--mouse-x', `${x}px`);
-          card.style.setProperty('--mouse-y', `${y}px`);
-        });
-      });
-    }
-    document.addEventListener('DOMContentLoaded', initSpotlights);
-    initSpotlights();
-
-    // 2. Synthesized Web Audio Chime
-    let audioContext = null;
-    let soundEnabled = true;
-
-    function playChime(type = 'bell') {
-      if (!soundEnabled) return;
-      try {
-        if (!audioContext) {
-          audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioContext.state === 'suspended') {
-          audioContext.resume();
-        }
-
-        const now = audioContext.currentTime;
-        const osc1 = audioContext.createOscillator();
-        const osc2 = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-
-        if (type === 'bell') {
-          osc1.type = 'sine';
-          osc1.frequency.setValueAtTime(880, now);
-          osc1.frequency.exponentialRampToValueAtTime(440, now + 0.8);
-
-          osc2.type = 'triangle';
-          osc2.frequency.setValueAtTime(1760, now);
-          osc2.frequency.exponentialRampToValueAtTime(880, now + 0.8);
-
-          gain.gain.setValueAtTime(0.3, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
-        } else {
-          osc1.type = 'sine';
-          osc1.frequency.setValueAtTime(600, now);
-          osc1.frequency.exponentialRampToValueAtTime(200, now + 0.1);
-          gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-        }
-
-        osc1.connect(gain);
-        osc2.connect(gain);
-        gain.connect(audioContext.destination);
-
-        osc1.start(now);
-        osc2.start(now);
-        osc1.stop(now + 0.85);
-        osc2.stop(now + 0.85);
-      } catch (e) {
-        console.warn('Audio feedback not supported', e);
+    const REEL_DATA = [
+      {
+        image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1080&auto=format&fit=crop',
+        handle: '@recime_kitchen',
+        category: 'RECIPE',
+        categoryColor: 'bg-brand-orange',
+        title: 'Crispy Garlic Butter Chicken Breast',
+        actionPill: 'Cook Mode: 15m Prep · 25m Cook',
+        pillIconColor: 'text-brand-yellow',
+        likes: '412K',
+        saves: '124K',
+        shares: '48K',
+        progress: '38%',
+        timeCurrent: '0:15',
+        timeTotal: '0:45'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1080&auto=format&fit=crop',
+        handle: '@krisgethin',
+        category: 'WORKOUT',
+        categoryColor: 'bg-brand-yellow text-slate-900',
+        title: 'Kris Gethin DTP Extreme Incline Dumbbell Press',
+        actionPill: 'Train Mode: 50 Reps · 45s Rest',
+        pillIconColor: 'text-brand-orange',
+        likes: '289K',
+        saves: '76K',
+        shares: '19K',
+        progress: '55%',
+        timeCurrent: '0:25',
+        timeTotal: '0:45'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1080&auto=format&fit=crop',
+        handle: '@travel_kyoto',
+        category: 'TRAVEL',
+        categoryColor: 'bg-emerald-500',
+        title: 'Kyoto Hidden Lantern Alleys: 4 Uncharted Tea Houses',
+        actionPill: 'Explore Mode: 4 Spots · Offline Map',
+        pillIconColor: 'text-emerald-300',
+        likes: '198K',
+        saves: '63K',
+        shares: '15K',
+        progress: '20%',
+        timeCurrent: '0:09',
+        timeTotal: '0:45'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1080&auto=format&fit=crop',
+        handle: '@ufc_highlights',
+        category: 'UFC',
+        categoryColor: 'bg-red-500',
+        title: 'Islam Makhachev Head Kick KO · Precision Breakdown',
+        actionPill: 'Slow-Mo Mode: 0.5x Breakdown',
+        pillIconColor: 'text-red-400',
+        likes: '582K',
+        saves: '145K',
+        shares: '92K',
+        progress: '72%',
+        timeCurrent: '0:32',
+        timeTotal: '0:45'
       }
-    }
+    ];
 
-    function toggleAudio() {
-      soundEnabled = !soundEnabled;
-      const btn = document.getElementById('audio-toggle-btn');
-      if (soundEnabled) {
-        btn.textContent = 'ENABLED (CLICK TO TEST)';
-        btn.className = 'text-amber-400 font-bold hover:underline';
-        playChime('bell');
-      } else {
-        btn.textContent = 'MUTED (CLICK TO ENABLE)';
-        btn.className = 'text-neutral-500 font-bold hover:underline';
-      }
-    }
+    let currentReelIndex = 0;
 
-    // 3. Tab switcher logic
-    function switchDemo(type) {
-      playChime('click');
-      const tabs = ['recipe', 'workout'];
-      tabs.forEach(t => {
-        const tabBtn = document.getElementById('tab-' + t);
-        const demoContent = document.getElementById('demo-' + t);
-        if (t === type) {
-          tabBtn.className = 'px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-coral-500 text-white shadow-glow-coral';
-          demoContent.classList.remove('hidden');
-        } else {
-          tabBtn.className = 'px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-white/10 hover:bg-white/20 text-neutral-300';
-          demoContent.classList.add('hidden');
-        }
-      });
-    }
-
-    // 4. Unit toggle (Metric vs US)
-    let currentUnit = 'metric';
-    function setUnit(unit) {
-      playChime('click');
-      currentUnit = unit;
-      const metricBtn = document.getElementById('unit-metric');
-      const usBtn = document.getElementById('unit-us');
+    function switchReel(index) {
+      currentReelIndex = index;
+      const data = REEL_DATA[index];
       
-      const ing1 = document.getElementById('ing-1');
-      const ing2 = document.getElementById('ing-2');
-      const ing3 = document.getElementById('ing-3');
-      const ing4 = document.getElementById('ing-4');
-      const ing5 = document.getElementById('ing-5');
-
-      if (unit === 'metric') {
-        metricBtn.className = 'px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-coral-500 text-white';
-        usBtn.className = 'px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all text-neutral-400 hover:text-white';
-        ing1.textContent = '800g Bone-in Chicken Thighs';
-        ing2.textContent = '200g Fresh Thick Greek Yogurt';
-        ing3.textContent = '150g Crispy Fried Onions (Birista)';
-        ing4.textContent = '30g Ginger-Garlic Paste & green chilies';
-        ing5.textContent = '15g Whole Garam Masala (Cardamom, star anise, cloves)';
-      } else {
-        usBtn.className = 'px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-coral-500 text-white';
-        metricBtn.className = 'px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all text-neutral-400 hover:text-white';
-        ing1.textContent = '1.75 lbs Bone-in Chicken Thighs';
-        ing2.textContent = '3/4 cup Fresh Thick Greek Yogurt';
-        ing3.textContent = '1 cup Crispy Fried Onions (Birista)';
-        ing4.textContent = '2 tbsp Ginger-Garlic Paste & green chilies';
-        ing5.textContent = '1 tbsp Whole Garam Masala (Cardamom, star anise, cloves)';
-      }
-    }
-
-    // 5. Interactive Checkbox Counter
-    function updateChecked() {
-      playChime('click');
-      const checkboxes = document.querySelectorAll('#demo-recipe input[type="checkbox"]');
-      let checkedCount = 0;
-      checkboxes.forEach(cb => { if (cb.checked) checkedCount++; });
-      document.getElementById('checked-count').textContent = checkedCount + ' of ' + checkboxes.length + ' prepped';
-    }
-
-    // 6. Interactive Timer Logic
-    let timerInterval = null;
-    let timerSeconds = 45;
-    let timerRunning = false;
-
-    function toggleTimer() {
-      const btn = document.getElementById('timer-btn');
-      const display = document.getElementById('timer-display');
-      const bar = document.getElementById('timer-bar');
-
-      if (timerRunning) {
-        clearInterval(timerInterval);
-        timerRunning = false;
-        btn.textContent = 'RESUME';
-        btn.className = 'px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-black font-extrabold text-xs transition-all';
-        playChime('click');
-      } else {
-        timerRunning = true;
-        btn.textContent = 'PAUSE';
-        btn.className = 'px-5 py-2.5 rounded-xl bg-coral-500 hover:bg-coral-600 text-white font-extrabold text-xs shadow-glow-coral transition-all';
-        playChime('click');
+      const img = document.getElementById('heroReelImage');
+      img.style.opacity = '0.3';
+      img.style.transform = 'scale(0.98)';
+      
+      setTimeout(() => {
+        img.src = data.image;
+        document.getElementById('heroCreatorHandle').textContent = data.handle;
         
-        timerInterval = setInterval(() => {
-          if (timerSeconds > 0) {
-            timerSeconds--;
-            const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
-            const secs = String(timerSeconds % 60).padStart(2, '0');
-            display.textContent = mins + ':' + secs;
-            const pct = (timerSeconds / 45) * 100;
-            bar.style.width = pct + '%';
+        const catBadge = document.getElementById('heroCategoryBadge');
+        catBadge.textContent = data.category;
+        catBadge.className = 'px-2 py-0.5 rounded-full text-white text-[9px] font-bold uppercase tracking-wide ' + data.categoryColor;
+        
+        document.getElementById('heroTitle').textContent = data.title;
+        
+        const actionPill = document.getElementById('heroActionPill');
+        actionPill.innerHTML = '<svg class="w-3.5 h-3.5 ' + data.pillIconColor + '" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-2 14.5v-9l6 4.5z"/></svg><span>' + data.actionPill + '</span>';
+        
+        document.getElementById('heroLikeCount').textContent = data.likes;
+        document.getElementById('heroSaveCount').textContent = data.saves;
+        document.getElementById('heroShareCount').textContent = data.shares;
+        
+        document.getElementById('heroProgressBar').style.width = data.progress;
+        document.getElementById('heroTimeCurrent').textContent = data.timeCurrent;
+        document.getElementById('heroTimeTotal').textContent = data.timeTotal;
+        document.getElementById('heroSlideCounter').textContent = (index + 1) + ' / ' + REEL_DATA.length;
+        
+        // Update tab styling
+        for (let i = 0; i < REEL_DATA.length; i++) {
+          const tab = document.getElementById('tabBtn' + i);
+          if (i === index) {
+            tab.className = 'px-3.5 py-1.5 rounded-full bg-white text-brand-dark shadow-sm transition-all flex items-center gap-1.5';
           } else {
-            clearInterval(timerInterval);
-            timerRunning = false;
-            display.textContent = '00:00 (DONE!)';
-            btn.textContent = 'RESET';
-            btn.className = 'px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs transition-all';
-            playChime('bell');
-            timerSeconds = 45;
+            tab.className = 'px-3.5 py-1.5 rounded-full text-white/90 hover:text-white transition-all flex items-center gap-1.5';
           }
-        }, 1000);
-      }
+        }
+
+        img.style.opacity = '1';
+        img.style.transform = 'scale(1)';
+      }, 180);
     }
+
+    // Auto-cycle every 6 seconds if user has not interacted
+    let autoCycleInterval = setInterval(() => {
+      const next = (currentReelIndex + 1) % REEL_DATA.length;
+      switchReel(next);
+    }, 6000);
+
+    // Stop auto-cycle when user manually clicks tabs
+    document.querySelectorAll('[id^="tabBtn"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        clearInterval(autoCycleInterval);
+      });
+    });
   </script>
 
 </body>
