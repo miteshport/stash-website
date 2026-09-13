@@ -138,6 +138,16 @@
       z-index: 7;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .animate-fadeIn {
+      animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
     .center-monogram-disc.red-bloom {
       border-color: rgba(255, 45, 85, 0.5);
       box-shadow: 0 0 40px rgba(255, 45, 85, 0.55), inset 0 0 20px rgba(255, 45, 85, 0.3);
@@ -255,89 +265,69 @@
       </div>
 
       <!-- ════════════════════════════════════════════════════════════════════════════
-           REAL STASH PHONE DEMONSTRATION (FIDELITY MATCH TO PRODUCTION BUILD)
+           REAL STASH PHONE DEMONSTRATION (CONTINUOUS LIVING ACTOR)
            ════════════════════════════════════════════════════════════════════════════ -->
       <div class="max-w-lg mx-auto flex flex-col items-center">
         
-        <!-- Chapter Switcher Tabs -->
-        <div class="flex items-center gap-1.5 p-1 bg-surface hairline rounded-full mb-6 overflow-x-auto max-w-full text-xs font-medium text-text-secondary">
-          <button onclick="switchAppStage(0)" id="stageBtn0" class="px-3.5 py-1.5 rounded-full bg-elevated text-white transition-all">
-            Feed (Home)
+        <!-- Stage Switcher Tabs -->
+        <div class="flex items-center gap-2 p-1.5 bg-surface hairline rounded-full mb-6 overflow-x-auto max-w-full text-xs font-medium text-text-secondary no-scrollbar">
+          <button onclick="switchAppStage(0)" id="stageBtn0" class="px-4 py-1.5 rounded-full bg-elevated text-white transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 shadow-sm">
+            <span>🍳</span><span>Reel Feed</span>
           </button>
-          <button onclick="switchAppStage(1)" id="stageBtn1" class="px-3.5 py-1.5 rounded-full hover:text-white transition-all">
-            The Ring
+          <button onclick="switchAppStage(1)" id="stageBtn1" class="px-4 py-1.5 rounded-full hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <span>⚡</span><span>The Ring</span>
           </button>
-          <button onclick="switchAppStage(2)" id="stageBtn2" class="px-3.5 py-1.5 rounded-full hover:text-white transition-all">
-            Library (Folders)
-          </button>
-          <button onclick="switchAppStage(3)" id="stageBtn3" class="px-3.5 py-1.5 rounded-full hover:text-white transition-all">
-            Recipe (Cook)
-          </button>
-          <button onclick="switchAppStage(4)" id="stageBtn4" class="px-3.5 py-1.5 rounded-full hover:text-white transition-all">
-            Workout (Train)
-          </button>
-          <button onclick="switchAppStage(5)" id="stageBtn5" class="px-3.5 py-1.5 rounded-full hover:text-white transition-all">
-            MMA
+          <button onclick="switchAppStage(2)" id="stageBtn2" class="px-4 py-1.5 rounded-full hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <span>⊞</span><span>Library Vault</span>
           </button>
         </div>
 
-        <!-- Real Phone Frame (Matches Production Aspect & Componentry) -->
-        <div class="relative w-[320px] sm:w-[350px] h-[640px] bg-canvas rounded-[50px] p-2.5 border-[4px] border-[#22252C] phone-shadow select-none">
+        <!-- Phone Frame: 9:16 Proportions, Zero Dead Void -->
+        <div class="relative w-full max-w-[320px] sm:max-w-[350px] h-[620px] sm:h-[650px] bg-canvas rounded-[50px] p-2.5 border-[4px] border-[#22252C] phone-shadow select-none">
           
-          <!-- Physical edge details -->
           <div class="absolute -left-[6px] top-24 w-[2px] h-8 bg-[#2A2E38] rounded-l"></div>
           <div class="absolute -left-[6px] top-36 w-[2px] h-8 bg-[#2A2E38] rounded-l"></div>
           <div class="absolute -right-[6px] top-28 w-[2px] h-12 bg-[#2A2E38] rounded-r"></div>
 
-          <!-- Phone Screen Container -->
+          <!-- Screen Container (Full-Bleed Viewport) -->
           <div class="relative w-full h-full bg-[#090A0C] rounded-[42px] overflow-hidden flex flex-col justify-between hairline">
             
-            <!-- Dynamic Island -->
-            <div class="relative z-30 pt-2.5 flex justify-center">
-              <div class="w-24 h-5 bg-black rounded-full border border-white/10 flex items-center justify-between px-2.5 shadow-sm">
-                <div class="w-2 h-2 rounded-full bg-surface"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-blue-900/40"></div>
-              </div>
-            </div>
-
-            <!-- Top Status Bar -->
-            <div class="relative z-20 px-6 pt-1 flex items-center justify-between text-[10px] font-mono text-text-tertiary">
-              <span class="font-medium text-white">9:41</span>
-              <div class="flex items-center gap-1.5">
-                <span class="text-[9px]">5G</span>
-                <div class="w-4 h-2 rounded-sm border border-white/60 p-[1px] flex items-center">
-                  <div class="w-full h-full bg-white rounded-xs"></div>
+            <!-- Authentic Top Status Bar Overlay -->
+            <div class="absolute top-1.5 left-0 right-0 z-30 px-6 pt-1 flex items-center justify-between text-[10px] font-mono text-white/90 pointer-events-none">
+              <span class="font-semibold">11:24</span>
+              <div class="flex items-center gap-2">
+                <svg class="w-3 h-3 text-white/80" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 2.22c3.96 0 7.57 1.5 10.35 3.99L12 18.73 1.65 10.21C4.43 7.72 8.04 6.22 12 6.22z"/></svg>
+                <div class="flex items-center gap-1">
+                  <span class="text-[9px] font-bold">88%</span>
+                  <div class="w-3.5 h-2 rounded-[2px] border border-white/80 p-[1px] flex items-center">
+                    <div class="w-[85%] h-full bg-white rounded-[1px]"></div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Real Phone Dynamic Screen Body (No empty black void!) -->
-            <div id="phoneScreenBody" class="flex-1 flex flex-col justify-start relative overflow-hidden">
-              <!-- Dynamically populated with real app state -->
+            <!-- Living Phone Screen Body (Zero Dead Void!) -->
+            <div id="phoneScreenBody" class="w-full h-full relative overflow-hidden flex flex-col">
+              <!-- Dynamically populated with authentic STASH interface -->
             </div>
 
-            <!-- Real STASH Bottom Navigation Bar (Matches Production App Exactly) -->
-            <div class="relative z-20 h-14 bg-surface/95 border-t border-white/[0.08] px-8 flex items-center justify-around text-xs">
-              <div id="navFeedBtn" onclick="switchAppStage(0)" class="flex flex-col items-center gap-0.5 text-white font-medium cursor-pointer transition-colors">
-                <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <!-- Authentic STASH Bottom Nav Bar Overlay -->
+            <div class="absolute bottom-0 left-0 right-0 z-40 h-14 bg-black/90 backdrop-blur-xl border-t border-white/[0.08] px-8 flex items-center justify-around select-none">
+              <div id="navFeedBtn" onclick="switchAppStage(0)" class="flex flex-col items-center gap-1 text-white font-medium cursor-pointer transition-colors">
+                <svg class="w-4 h-4 text-accent-bolt" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                 </svg>
                 <span class="text-[10px] font-semibold tracking-tight">Feed</span>
               </div>
-              <div id="navLibraryBtn" onclick="switchAppStage(2)" class="flex flex-col items-center gap-0.5 text-text-tertiary font-medium cursor-pointer hover:text-white transition-colors">
+              <div id="navLibraryBtn" onclick="switchAppStage(2)" class="flex flex-col items-center gap-1 text-text-tertiary font-medium cursor-pointer hover:text-white transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
                   <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
                   <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
                   <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
                 </svg>
-                <span class="text-[10px] tracking-tight">Library</span>
+                <span class="text-[10px] font-medium tracking-tight">Library</span>
               </div>
-            </div>
-
-            <!-- Home Bar -->
-            <div class="relative z-30 pb-1.5 flex justify-center bg-surface/95">
-              <div class="w-28 h-1 bg-white/30 rounded-full"></div>
             </div>
 
           </div>
@@ -345,7 +335,7 @@
         </div>
 
         <p class="text-xs text-text-tertiary mt-4 text-center">
-          Real STASH interface. Tap the tabs above to inspect every stage.
+          Real STASH application. Tap tabs to inspect each live state.
         </p>
 
       </div>
@@ -1136,379 +1126,498 @@
        14. REAL STASH APP PHONE STAGES (MATCHES PRODUCTION REALITY)
        ════════════════════════════════════════════════════════════════════════════ -->
   <script>
-    const STAGES = [
-      // 0: REAL STASH HOME (Matches uploaded screenshot media_1789156701037.png)
-      {
-        render: () => `
-          <div class="space-y-5 text-center my-auto px-2 animate-fadeIn">
-            <div class="w-16 h-16 rounded-2xl bg-[#1F0E14] border border-accent-bolt/30 flex items-center justify-center mx-auto bolt-glow">
-              <svg class="w-8 h-8 text-accent-bolt" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-              </svg>
+    const REAL_INGREDIENTS = [
+      { name: 'soya', amount: '250 G' },
+      { name: 'onions', amount: '2' },
+      { name: 'tomatoes', amount: '2' },
+      { name: 'ginger-garlic paste', amount: '1 TBSP' },
+      { name: 'green chillies', amount: '2' },
+      { name: 'yogurt', amount: '2 TBSP' },
+      { name: 'cashew paste', amount: '2 TBSP' },
+      { name: 'Kashmiri chilli', amount: '1 TSP' },
+      { name: 'chilli powder', amount: '1 TSP' },
+      { name: 'coriander powder', amount: '1½ TSP' },
+      { name: 'cumin', amount: '½ TSP' },
+      { name: 'turmeric', amount: '½ TSP' },
+      { name: 'pepper', amount: '½ TSP' },
+      { name: 'garam masala', amount: '1 TSP' },
+      { name: 'kasuri methi', amount: '1 TSP' },
+      { name: 'oil', amount: '3 TBSP' },
+      { name: 'butter/ghee', amount: '1 TBSP' },
+      { name: 'salt', amount: '' },
+      { name: 'coriander', amount: '' }
+    ];
+
+    window.toggleIngredientCheck = function(idx) {
+      const box = document.getElementById('check-' + idx);
+      const icon = document.getElementById('check-icon-' + idx);
+      const card = document.getElementById('ing-' + idx);
+      if (box && icon && card) {
+        const isChecked = box.classList.contains('bg-[#FFB547]');
+        if (isChecked) {
+          box.classList.remove('bg-[#FFB547]', 'border-[#FFB547]');
+          box.classList.add('border-white/30');
+          icon.classList.add('hidden');
+          card.classList.remove('opacity-60');
+        } else {
+          box.classList.add('bg-[#FFB547]', 'border-[#FFB547]');
+          box.classList.remove('border-white/30');
+          icon.classList.remove('hidden');
+          card.classList.add('opacity-60');
+        }
+      }
+    };
+
+    const REAL_WORKOUT_EXERCISES = [
+      { num: 1, name: 'thrusters', reps: 'x8' },
+      { num: 2, name: 'pushup with back leg lift', reps: 'x10/side' },
+      { num: 3, name: 'kneeling row', reps: 'x12/side' },
+      { num: 4, name: 'single-leg RDL', reps: 'x8/side' },
+      { num: 5, name: 'side bend', reps: 'x8/side' }
+    ];
+
+    window.toggleWorkoutCheck = function(idx) {
+      const box = document.getElementById('w-check-' + idx);
+      const icon = document.getElementById('w-check-icon-' + idx);
+      const card = document.getElementById('w-ex-' + idx);
+      if (box && icon && card) {
+        const isChecked = box.classList.contains('bg-[#FF4D6D]');
+        if (isChecked) {
+          box.classList.remove('bg-[#FF4D6D]', 'border-[#FF4D6D]');
+          box.classList.add('border-white/30');
+          icon.classList.add('hidden');
+          card.classList.remove('opacity-60');
+        } else {
+          box.classList.add('bg-[#FF4D6D]', 'border-[#FF4D6D]');
+          box.classList.remove('border-white/30');
+          icon.classList.remove('hidden');
+          card.classList.add('opacity-60');
+        }
+      }
+    };
+
+    let currentFeedMode = 'recipe'; // 'recipe' | 'workout'
+    let activeNotesSheet = null; // null | 'recipe' | 'workout'
+
+    window.toggleFeedMode = function() {
+      currentFeedMode = (currentFeedMode === 'recipe' ? 'workout' : 'recipe');
+      activeNotesSheet = null;
+      if (currentStage === 0) {
+        const container = document.getElementById('phoneScreenBody');
+        if (container) container.innerHTML = STAGES[0].render();
+      }
+    };
+
+    function renderRecipeSheetContent() {
+      return `
+        <!-- Blurred background media -->
+        <img src="assets/real-app-recipe.png" onerror="this.onerror=null;this.src='./assets/real-app-recipe.png'" alt="Blurred Reel" class="absolute inset-0 w-full h-full object-cover filter blur-md opacity-35 scale-105" />
+
+        <!-- Slide-up Bottom Sheet (Pixel-matched to Real App) -->
+        <div class="relative z-30 w-full h-[88%] bg-[#0B0C0E]/95 backdrop-blur-2xl border-t border-white/15 rounded-t-[32px] p-3.5 flex flex-col shadow-2xl overflow-hidden">
+          <!-- Sheet Drag Handle -->
+          <div class="w-10 h-1 bg-white/30 rounded-full mx-auto mb-2.5"></div>
+
+          <!-- Sheet Header -->
+          <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-base">
+                🍳
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white flex items-center gap-1.5">
+                  <span>Recipe Intelligence</span>
+                </div>
+                <div class="text-[9px] font-mono text-text-tertiary">@sekhiya.kitchen · INSTAGRAM</div>
+              </div>
             </div>
-            <div class="space-y-1.5">
-              <h4 class="text-sm font-extrabold text-white tracking-tight uppercase">YOUR FEED IS READY</h4>
-              <p class="text-[11px] text-text-secondary leading-relaxed px-2">
-                Paste any Instagram Reel, TikTok video, or YouTube Short. It becomes your ad-free private stream.
-              </p>
-            </div>
-            <div class="pt-1">
-              <button onclick="switchAppStage(1)" class="px-5 py-2.5 rounded-full bg-white text-black font-extrabold text-xs tracking-tight shadow-md hover:bg-neutral-200 transition-all flex items-center gap-1.5 mx-auto">
-                <span class="text-base leading-none font-bold">+</span>
-                <span>DROP FIRST LINK</span>
+            <div class="flex items-center gap-1.5">
+              <button class="px-3 py-1 rounded-full bg-[#FFB547] text-black font-bold text-[10px] tracking-tight flex items-center gap-1 hover:brightness-110 shadow-sm">
+                <span>🍳</span><span>COOK</span>
+              </button>
+              <button onclick="closeNotesSheet()" title="Close" class="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 text-xs transition-colors">
+                ✕
               </button>
             </div>
           </div>
-        `
-      },
-      // 1: THE REAL 4K MOTION ENGINE (Style B: Titanium 6-Deadbolt Centrifuge)
-      {
-        render: () => {
-          setTimeout(initMotionEngine, 10);
-          return `
-            <div class="relative w-full h-full flex flex-col justify-between p-2 overflow-hidden animate-fadeIn select-none" id="motionEngineStage">
-              
-              <!-- Top HUD Bar: Phase & Sound -->
-              <div class="flex items-center justify-between px-2 pt-1 z-30">
-                <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface hairline shadow-sm">
-                  <span class="w-2 h-2 rounded-full bg-[#FF2D55] animate-pulse" id="enginePhaseDot"></span>
-                  <span class="text-[9px] font-mono text-text-primary font-bold" id="enginePhaseTitle">Phase 1: Gravitational (0%)</span>
+
+          <!-- Scrollable Content -->
+          <div class="flex-1 overflow-y-auto py-2.5 space-y-3 pr-1 text-xs">
+            <div class="flex items-center justify-between px-0.5">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#FFB547] font-semibold">INGREDIENTS (19)</span>
+              <span class="text-[9px] font-mono text-text-tertiary">Cook 8m</span>
+            </div>
+
+            <!-- 2-Column Grid of 19 Real Ingredients with Clickable Checkboxes -->
+            <div class="grid grid-cols-2 gap-1.5">
+              ${REAL_INGREDIENTS.map((item, idx) => `
+                <div onclick="toggleIngredientCheck(${idx})" id="ing-${idx}" class="p-2 rounded-xl bg-[#14161A] border border-white/[0.07] flex items-center justify-between cursor-pointer transition-all hover:bg-white/[0.04]">
+                  <div class="flex items-center gap-2 overflow-hidden">
+                    <div id="check-${idx}" class="w-3.5 h-3.5 rounded-[4px] border border-white/30 flex items-center justify-center shrink-0 transition-colors">
+                      <svg class="w-2.5 h-2.5 text-black hidden" id="check-icon-${idx}" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span class="text-[10px] text-white/90 truncate">${item.name}</span>
+                  </div>
+                  ${item.amount ? `<span class="text-[9px] font-mono text-[#FFB547] font-semibold shrink-0 ml-1">${item.amount}</span>` : ''}
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <button id="engineAudioBtn" onclick="toggleEngineAudio()" class="px-2 py-0.5 rounded-md bg-surface hairline text-text-secondary hover:text-white transition-all text-[9px] font-mono flex items-center gap-1">
-                    <span id="engineAudioIcon">🔇</span> <span id="engineAudioLabel">Sound</span>
+              `).join('')}
+            </div>
+
+            <div class="pt-2 flex items-center justify-between border-t border-white/[0.08] px-0.5">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#FFB547] font-semibold">PREPARATION STEPS (5)</span>
+            </div>
+
+            <div class="space-y-1.5 text-[10px] text-text-secondary pb-4">
+              <div class="p-2 rounded-xl bg-[#14161A] border border-white/[0.06] flex items-start gap-2">
+                <span class="w-4 h-4 rounded-full bg-amber-500/20 text-[#FFB547] flex items-center justify-center font-mono font-bold text-[8px] shrink-0 mt-0.5">1</span>
+                <span>Boil soya chunks in salted water for 5 mins, drain and squeeze out excess moisture.</span>
+              </div>
+              <div class="p-2 rounded-xl bg-[#14161A] border border-white/[0.06] flex items-start gap-2">
+                <span class="w-4 h-4 rounded-full bg-amber-500/20 text-[#FFB547] flex items-center justify-center font-mono font-bold text-[8px] shrink-0 mt-0.5">2</span>
+                <span>Heat oil &amp; butter, sauté sliced onions and ginger-garlic paste until golden aromatic.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderWorkoutSheetContent() {
+      return `
+        <!-- Blurred background media -->
+        <img src="assets/real-app-workout.png" onerror="this.onerror=null;this.src='./assets/real-app-workout.png'" alt="Blurred Workout" class="absolute inset-0 w-full h-full object-cover filter blur-md opacity-35 scale-105" />
+
+        <!-- Slide-up Bottom Sheet (Pixel-matched to User Screenshot) -->
+        <div class="relative z-30 w-full h-[88%] bg-[#0B0C0E]/95 backdrop-blur-2xl border-t border-white/15 rounded-t-[32px] p-3.5 flex flex-col shadow-2xl overflow-hidden">
+          <!-- Sheet Drag Handle -->
+          <div class="w-10 h-1 bg-white/30 rounded-full mx-auto mb-2.5"></div>
+
+          <!-- Sheet Header -->
+          <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-red-500/20 border border-red-500/30 flex items-center justify-center text-base">
+                💪
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white flex items-center gap-1.5">
+                  <span>Workout Intelligence</span>
+                </div>
+                <div class="text-[9px] font-mono text-text-tertiary">@trainwithmurph · INSTAGRAM</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button class="px-3 py-1 rounded-full bg-[#FF4D6D] text-white font-bold text-[10px] tracking-tight flex items-center gap-1 hover:brightness-110 shadow-sm">
+                <span>💪</span><span>TRAIN</span>
+              </button>
+              <button onclick="closeNotesSheet()" title="Close" class="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 text-xs transition-colors">
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <!-- Scrollable Content -->
+          <div class="flex-1 overflow-y-auto py-2.5 space-y-3 pr-1 text-xs">
+            <div class="flex items-center justify-between px-0.5">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#FF4D6D] font-semibold">EXERCISES (5)</span>
+              <span class="text-[9px] font-mono text-text-tertiary">4 Rounds · Rest 60s</span>
+            </div>
+
+            <!-- 5 Real Exercises with Clickable Checkboxes -->
+            <div class="space-y-1.5">
+              ${REAL_WORKOUT_EXERCISES.map((ex, idx) => `
+                <div onclick="toggleWorkoutCheck(${idx})" id="w-ex-${idx}" class="p-2.5 rounded-xl bg-[#14161A] border border-white/[0.07] flex items-center justify-between cursor-pointer transition-all hover:bg-white/[0.04]">
+                  <div class="flex items-center gap-2.5 overflow-hidden">
+                    <div id="w-check-${idx}" class="w-4 h-4 rounded-[4px] border border-white/30 flex items-center justify-center shrink-0 transition-colors">
+                      <svg class="w-3 h-3 text-white hidden" id="w-check-icon-${idx}" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span class="w-4 h-4 rounded-full bg-red-500/20 text-[#FF4D6D] flex items-center justify-center font-mono font-bold text-[9px] shrink-0">${ex.num}</span>
+                    <span class="text-[11px] text-white/95 font-medium truncate">${ex.name}</span>
+                  </div>
+                  <span class="text-[10px] font-mono text-[#FF4D6D] font-bold shrink-0 ml-2 px-2 py-0.5 rounded bg-red-500/10 border border-red-500/20">${ex.reps}</span>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="pt-2 flex items-center justify-between border-t border-white/[0.08] px-0.5">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#FF4D6D] font-semibold">CIRCUIT PROGRESS</span>
+              <span class="text-[9px] font-mono text-[#FF4D6D] font-bold">Round 1 of 4</span>
+            </div>
+
+            <div class="grid grid-cols-4 gap-1 text-center font-mono text-[9px]">
+              <div class="py-1.5 rounded-lg bg-[#FF4D6D]/20 border border-[#FF4D6D]/50 text-[#FF4D6D] font-bold">R1 Active</div>
+              <div class="py-1.5 rounded-lg bg-[#14161A] border border-white/[0.07] text-white/50">Round 2</div>
+              <div class="py-1.5 rounded-lg bg-[#14161A] border border-white/[0.07] text-white/50">Round 3</div>
+              <div class="py-1.5 rounded-lg bg-[#14161A] border border-white/[0.07] text-white/50">Round 4</div>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-[#14161A] border border-white/[0.07] flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#FF4D6D] animate-ping"></span>
+                <span class="text-[10px] text-white/90 font-medium">Rest Interval Between Rounds</span>
+              </div>
+              <span class="text-[10px] font-mono font-bold text-white bg-white/10 px-2 py-0.5 rounded">60s</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.openNotesSheet = function(type) {
+      activeNotesSheet = type;
+      if (currentStage !== 0) {
+        currentStage = 0;
+        const container = document.getElementById('phoneScreenBody');
+        if (container) container.innerHTML = STAGES[0].render();
+        updateStageButtons(0);
+      }
+      const overlay = document.getElementById('sheetOverlay');
+      if (overlay) {
+        overlay.innerHTML = (type === 'recipe' ? renderRecipeSheetContent() : renderWorkoutSheetContent());
+        overlay.classList.remove('hidden');
+      }
+    };
+
+    window.closeNotesSheet = function() {
+      activeNotesSheet = null;
+      const overlay = document.getElementById('sheetOverlay');
+      if (overlay) {
+        overlay.classList.add('hidden');
+        overlay.innerHTML = '';
+      }
+    };
+
+    const STAGES = [
+      // 0: AUTHENTIC REEL FEED (Toggles between Recipe & Workout, with Notes Sheet)
+      {
+        render: () => `
+          <div class="w-full h-full relative overflow-hidden animate-fadeIn select-none flex flex-col justify-between">
+            ${currentFeedMode === 'recipe' ? `
+              <!-- Real Recipe Media -->
+              <img src="assets/real-app-recipe.png" onerror="this.onerror=null;this.src='./assets/real-app-recipe.png'" alt="Recipe Reel" class="absolute inset-0 w-full h-full object-cover object-center" />
+              <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/55 pointer-events-none"></div>
+
+              <!-- Top Bar: Feed 2/2, + Drop, Mute -->
+              <div class="relative z-20 pt-8 px-4 flex items-center justify-between">
+                <button onclick="toggleFeedMode()" title="Switch Reel" class="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-xs font-bold text-white tracking-tight flex items-center gap-1.5 hover:bg-white/20 transition-all">
+                  <span>Feed <span class="text-white/60 font-normal">2 / 2</span></span>
+                  <span class="text-[9px] text-[#FFB547] font-mono">↻</span>
+                </button>
+                <div class="flex items-center gap-2">
+                  <button class="px-3 py-1 rounded-full bg-white text-black font-bold text-[11px] flex items-center gap-1 shadow-md">
+                    <span class="text-xs leading-none">+</span><span>Drop</span>
                   </button>
-                  <button onclick="restartMotionEngine()" class="px-2 py-0.5 rounded-md bg-surface hairline text-text-secondary hover:text-white transition-all text-[9px] font-mono" title="Replay">
-                    ↻
+                  <button class="w-7 h-7 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white text-xs">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                   </button>
                 </div>
               </div>
 
-              <!-- Particle Vortex Canvas -->
-              <canvas id="motionParticleCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+              <!-- Floating Right Action Dock -->
+              <div class="absolute right-2.5 bottom-20 z-20 flex flex-col items-center gap-2.5">
+                <button onclick="openNotesSheet('recipe')" title="Open Recipe Intelligence" class="group relative w-10 h-10 rounded-full bg-black/75 backdrop-blur-md border border-amber-500/60 flex items-center justify-center text-white shadow-lg transition-transform hover:scale-110 active:scale-95">
+                  <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#FFB547] animate-ping"></span>
+                  <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#FFB547]"></span>
+                  <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <line x1="10" y1="9" x2="8" y2="9"></line>
+                  </svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white text-[11px] font-mono font-bold">1x</button>
+                <button class="w-10 h-10 rounded-full bg-[#E50914] text-white shadow-lg flex items-center justify-center">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/90">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/90">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </button>
+              </div>
 
-              <!-- Aperture Centrifuge Apparatus (Scaled to fit mobile viewport) -->
-              <div class="relative w-[320px] h-[320px] my-auto mx-auto flex items-center justify-center scale-[0.74] sm:scale-[0.80] z-20" id="engineApertureRig">
-                
-                <!-- 6 Titanium Deadbolts (Style B) -->
-                <div class="deadbolts-container" id="engineDeadboltsContainer">
-                  <div class="deadbolt-bracket" style="transform: rotate(0deg) translateY(-145px);" data-angle="0"><div class="deadbolt-pin"></div></div>
-                  <div class="deadbolt-bracket" style="transform: rotate(60deg) translateY(-145px);" data-angle="60"><div class="deadbolt-pin"></div></div>
-                  <div class="deadbolt-bracket" style="transform: rotate(120deg) translateY(-145px);" data-angle="120"><div class="deadbolt-pin"></div></div>
-                  <div class="deadbolt-bracket" style="transform: rotate(180deg) translateY(-145px);" data-angle="180"><div class="deadbolt-pin"></div></div>
-                  <div class="deadbolt-bracket" style="transform: rotate(240deg) translateY(-145px);" data-angle="240"><div class="deadbolt-pin"></div></div>
-                  <div class="deadbolt-bracket" style="transform: rotate(300deg) translateY(-145px);" data-angle="300"><div class="deadbolt-pin"></div></div>
+              <!-- Bottom Metadata -->
+              <div class="relative z-20 pb-16 px-4 space-y-2 pr-16">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-white tracking-tight">@sekhiya.kitchen</span>
+                  <span class="px-1.5 py-0.5 rounded bg-white/20 backdrop-blur-md text-[8px] font-mono text-white/90 uppercase tracking-wider">Instagram</span>
                 </div>
+                <p class="text-xs font-semibold text-white leading-snug drop-shadow-md line-clamp-2">
+                  Style Soya Masala 🔥 | Rich &amp; Delicious Soya Chunks Curry ❤️
+                </p>
+                <div onclick="openNotesSheet('recipe')" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[10px] font-mono cursor-pointer hover:bg-amber-500/30 transition-colors">
+                  <span>✨ 19 Ingredients Extracted</span><span class="text-[9px]">Tap to view →</span>
+                </div>
+              </div>
+            ` : `
+              <!-- Real Workout Media -->
+              <img src="assets/real-app-workout.png" onerror="this.onerror=null;this.src='./assets/real-app-workout.png'" alt="Workout Reel" class="absolute inset-0 w-full h-full object-cover object-center" />
+              <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/55 pointer-events-none"></div>
 
-                <!-- 60-Tick Bezel Ring SVG -->
-                <svg class="aperture-svg -rotate-90 overflow-visible" viewBox="0 0 320 320">
-                  <g class="bezel-ticks" id="engineBezelTicksGroup"></g>
-                  <circle class="aperture-track" cx="160" cy="160" r="130" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2.5" />
-                  <circle class="aperture-progress" id="engineApertureProgress" cx="160" cy="160" r="130" fill="none" stroke="#FF2D55" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="816.81" stroke-dashoffset="816.81" style="filter: drop-shadow(0 0 12px rgba(255, 45, 85, 0.7));" />
-                </svg>
+              <!-- Top Bar: Feed 1/2, + Drop, Mute -->
+              <div class="relative z-20 pt-8 px-4 flex items-center justify-between">
+                <button onclick="toggleFeedMode()" title="Switch Reel" class="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-xs font-bold text-white tracking-tight flex items-center gap-1.5 hover:bg-white/20 transition-all">
+                  <span>Feed <span class="text-white/60 font-normal">1 / 2</span></span>
+                  <span class="text-[9px] text-[#FF4D6D] font-mono">↻</span>
+                </button>
+                <div class="flex items-center gap-2">
+                  <button class="px-3 py-1 rounded-full bg-white text-black font-bold text-[11px] flex items-center gap-1 shadow-md">
+                    <span class="text-xs leading-none">+</span><span>Drop</span>
+                  </button>
+                  <button class="w-7 h-7 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white text-xs">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                  </button>
+                </div>
+              </div>
 
-                <!-- Central Monogram Disc -->
-                <div class="center-monogram-disc red-bloom" id="engineMonogramDisc">
-                  <div class="monogram-s font-mono text-[56px] font-black text-[#FF2D55] leading-none" id="engineMonogramS" style="text-shadow: 0 0 20px rgba(255, 45, 85, 0.7);">S</div>
-                  <div class="monogram-label font-mono text-[9px] font-bold tracking-[0.25em] text-text-secondary mt-1" id="engineMonogramLabel">STASH</div>
-                  <svg class="vault-lock-icon hidden w-12 h-12 text-[#10B981]" id="engineVaultLockIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 16px rgba(16, 185, 129, 0.9));">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              <!-- Rep Overlay -->
+              <div class="absolute top-[38%] left-0 right-0 z-20 text-center pointer-events-none">
+                <div class="text-lg font-bold text-white tracking-tight drop-shadow-md">3) kneeling row</div>
+                <div class="text-xs font-mono font-bold text-amber-300 drop-shadow-md">x12/side</div>
+              </div>
+
+              <!-- Floating Right Action Dock -->
+              <div class="absolute right-2.5 bottom-20 z-20 flex flex-col items-center gap-2.5">
+                <button onclick="openNotesSheet('workout')" title="Open Workout Intelligence" class="group relative w-10 h-10 rounded-full bg-black/75 backdrop-blur-md border border-red-500/60 flex items-center justify-center text-white shadow-lg transition-transform hover:scale-110 active:scale-95">
+                  <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#FF4D6D] animate-ping"></span>
+                  <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#FF4D6D]"></span>
+                  <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <line x1="10" y1="9" x2="8" y2="9"></line>
+                  </svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white text-[11px] font-mono font-bold">1x</button>
+                <button class="w-10 h-10 rounded-full bg-[#E50914] text-white shadow-lg flex items-center justify-center">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/90">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/90">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </button>
+              </div>
+
+              <!-- Bottom Metadata -->
+              <div class="relative z-20 pb-16 px-4 space-y-2 pr-16">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-white tracking-tight">@trainwithmurph</span>
+                  <span class="px-1.5 py-0.5 rounded bg-white/20 backdrop-blur-md text-[8px] font-mono text-white/90 uppercase tracking-wider">Instagram</span>
+                </div>
+                <p class="text-xs font-semibold text-white leading-snug drop-shadow-md line-clamp-2">
+                  Full Body Dumbbell Workout 👇 4 rounds · Rest 60s between rounds
+                </p>
+                <div onclick="openNotesSheet('workout')" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-300 text-[10px] font-mono cursor-pointer hover:bg-red-500/30 transition-colors">
+                  <span>💪 5 Exercises · 4 Rounds Extracted</span><span class="text-[9px]">Tap to view →</span>
+                </div>
+              </div>
+            `}
+
+            <!-- Slide-Up Notes Sheet Overlay -->
+            <div id="sheetOverlay" class="absolute inset-0 z-30 flex flex-col justify-end pointer-events-auto ${activeNotesSheet ? '' : 'hidden'}">
+              ${activeNotesSheet === 'recipe' ? renderRecipeSheetContent() : activeNotesSheet === 'workout' ? renderWorkoutSheetContent() : ''}
+            </div>
+          </div>
+        `
+      },
+
+      // 1: THE RING APERTURE (Click to Activate · Stops when off tab)
+      {
+        render: () => `
+          <div class="w-full h-full relative overflow-hidden animate-fadeIn select-none bg-black">
+            <!-- Direct Master stash.html Embed -->
+            <iframe id="phoneRingIframe" src="stash.html?embed=1" class="w-full h-full border-0 pointer-events-auto" allow="autoplay"></iframe>
+            
+            <!-- On-Screen Status Pill -->
+            <div class="absolute top-8 left-3 z-30 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[9px] font-mono text-white/90 shadow-md">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#FF2D55] animate-pulse"></span>
+              <span>60-Tick Chronometer · Tactile Glass</span>
+            </div>
+          </div>
+        `
+      },
+
+      // 2: REAL LIBRARY VAULT (Pixel-Matched 1:1 to On-Device Screenshot)
+      {
+        render: () => `
+          <div class="w-full h-full flex flex-col justify-between pt-8 pb-14 px-3.5 animate-fadeIn bg-[#0B0C0E] select-none text-left">
+            <!-- Status row and Header -->
+            <div class="space-y-2.5 pb-2.5 border-b border-white/[0.08]">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-white text-sm tracking-tight">VAULT</span>
+                  <span class="text-[11px] font-mono text-text-tertiary">· 639 items</span>
+                </div>
+                <div class="flex items-center gap-2 text-text-secondary">
+                  <svg class="w-4 h-4 text-white/80" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                   </svg>
                 </div>
+              </div>
 
-                <!-- Status Caption & Telemetry -->
-                <div class="absolute -bottom-16 w-80 text-center flex flex-col items-center gap-1.5">
-                  <div class="text-xs font-bold text-white tracking-tight" id="engineStatusTitle">INIT: GRAVITATIONAL FIELD</div>
-                  <div class="text-[9px] font-mono font-bold text-[#FF2D55] bg-[#FF2D55]/10 border border-[#FF2D55]/25 px-2.5 py-0.5 rounded" id="engineStatusSubtitle">SCANNING INCOMING PACKET...</div>
+              <!-- Category Filter Pills (Exact Match to User Screenshot) -->
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 text-[10px] font-mono no-scrollbar">
+                <!-- ALL 639 (White Active Pill) -->
+                <div class="px-3.5 py-1.5 rounded-2xl bg-white text-black font-bold flex flex-col items-center leading-tight shrink-0 shadow-sm">
+                  <span class="text-[9px] tracking-wider">ALL</span>
+                  <span class="text-[11px] leading-none">639</span>
                 </div>
-
-              </div>
-
-              <!-- Bottom Concept Switcher inside Phone Viewport -->
-              <div class="flex items-center justify-center gap-1.5 pb-1 z-30">
-                <button onclick="setEngineConcept('B')" id="btnConceptB" class="px-2.5 py-1 rounded-full bg-[#FF2D55]/20 border border-[#FF2D55]/40 text-[#FF2D55] font-mono text-[9px] font-bold shadow-sm transition-all">
-                  ⚙️ Style B: 6-Deadbolt
-                </button>
-                <button onclick="setEngineConcept('A')" id="btnConceptA" class="px-2.5 py-1 rounded-full bg-surface hairline text-text-tertiary hover:text-white font-mono text-[9px] font-bold transition-all">
-                  🍏 Style A: Apple Ring
-                </button>
-              </div>
-
-            </div>
-          `;
-        }
-      },
-      // 2: REAL LIBRARY (Populated with authentic power-user data — no zeros!)
-      {
-        render: () => `
-          <div class="w-full h-full flex flex-col justify-between py-2 px-2 animate-fadeIn">
-            <!-- Header -->
-            <div class="flex items-center justify-between border-b border-white/[0.08] pb-2 px-1">
-              <span class="font-bold text-white text-xs">Library (639)</span>
-              <div class="flex items-center gap-2 text-text-secondary">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+                <!-- RECIPES 142 -->
+                <div class="px-3 py-1.5 rounded-2xl bg-[#181A20] text-white/80 border border-white/10 flex flex-col items-center leading-tight shrink-0">
+                  <span class="text-[9px] tracking-wider">RECIPES</span>
+                  <span class="text-[11px] leading-none text-white/90">142</span>
+                </div>
+                <!-- WORKOUTS 89 -->
+                <div class="px-3 py-1.5 rounded-2xl bg-[#181A20] text-white/80 border border-white/10 flex flex-col items-center leading-tight shrink-0">
+                  <span class="text-[9px] tracking-wider">WORKOUTS</span>
+                  <span class="text-[11px] leading-none text-white/90">89</span>
+                </div>
+                <!-- NOTES 48 -->
+                <div class="px-3 py-1.5 rounded-2xl bg-[#181A20] text-white/80 border border-white/10 flex flex-col items-center leading-tight shrink-0">
+                  <span class="text-[9px] tracking-wider">NOTES</span>
+                  <span class="text-[11px] leading-none text-white/90">48</span>
+                </div>
               </div>
             </div>
 
-            <!-- 8 Folder Grid (With authentic active counts) -->
-            <div class="grid grid-cols-2 gap-1.5 pt-1">
-              <div class="p-2 rounded-lg bg-surface hairline flex flex-col justify-between h-14">
+            <!-- Real Vault Timeline Cards -->
+            <div class="flex-1 overflow-y-auto py-2.5 space-y-2.5 pr-0.5">
+              <div class="text-[9px] font-mono uppercase tracking-widest text-text-tertiary font-semibold px-0.5">TODAY</div>
+
+              <!-- Card 1: Soya Masala Recipe -->
+              <div onclick="openNotesSheet('recipe')" class="p-3 rounded-2xl bg-[#14161A] border border-white/[0.08] space-y-2 cursor-pointer hover:border-amber-400/40 transition-colors shadow-sm">
                 <div class="flex items-center justify-between">
-                  <svg class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path></svg>
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#E1306C]"></span>
+                  <span class="px-2 py-0.5 rounded-full bg-[#2A1D0E] text-[#FFB547] text-[9px] font-mono font-bold border border-[#FFB547]/30">● RECIPE</span>
+                  <span class="text-[9px] font-mono text-text-tertiary">@sekhiya.kitchen</span>
                 </div>
-                <div class="flex items-baseline justify-between">
-                  <span class="text-[10px] font-semibold text-white">Instagram</span>
-                  <span class="text-[8px] text-text-tertiary font-mono">148</span>
+                <div class="text-xs font-bold text-white leading-snug">Style Soya Masala · Soya Chunks Curry</div>
+                <div class="flex items-center justify-between text-[9px] text-text-tertiary font-mono pt-1.5 border-t border-white/[0.06]">
+                  <span>19 ingredients · 8m cook</span>
+                  <span class="text-[#FFB547] font-semibold text-[10px] flex items-center gap-0.5">Cook Mode ↗</span>
                 </div>
               </div>
 
-              <div class="p-2 rounded-lg bg-surface hairline flex flex-col justify-between h-14">
+              <!-- Card 2: Dumbbell Workout -->
+              <div onclick="openNotesSheet('workout')" class="p-3 rounded-2xl bg-[#14161A] border border-white/[0.08] space-y-2 cursor-pointer hover:border-red-400/40 transition-colors shadow-sm">
                 <div class="flex items-center justify-between">
-                  <svg class="w-3 h-3 text-text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span>
+                  <span class="px-2 py-0.5 rounded-full bg-[#2B1118] text-[#FF4D6D] text-[9px] font-mono font-bold border border-[#FF4D6D]/30">● WORKOUT</span>
+                  <span class="text-[9px] font-mono text-text-tertiary">@trainwithmurph</span>
                 </div>
-                <div class="flex items-baseline justify-between">
-                  <span class="text-[10px] font-semibold text-white">YouTube</span>
-                  <span class="text-[8px] text-text-tertiary font-mono">86</span>
+                <div class="text-xs font-bold text-white leading-snug">Body Dumbbell Workout · 4 Rounds</div>
+                <div class="flex items-center justify-between text-[9px] text-text-tertiary font-mono pt-1.5 border-t border-white/[0.06]">
+                  <span>Kneeling row · 60s rest</span>
+                  <span class="text-[#FF4D6D] font-semibold text-[10px] flex items-center gap-0.5">Train Mode ↗</span>
                 </div>
-              </div>
-
-              <div class="p-2 rounded-lg bg-surface hairline flex flex-col justify-between h-14">
-                <div class="flex items-center justify-between">
-                  <svg class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#00F2FE]"></span>
-                </div>
-                <div class="flex items-baseline justify-between">
-                  <span class="text-[10px] font-semibold text-white">TikTok</span>
-                  <span class="text-[8px] text-text-tertiary font-mono">214</span>
-                </div>
-              </div>
-
-              <div class="p-2 rounded-lg bg-surface hairline flex flex-col justify-between h-14">
-                <div class="flex items-center justify-between">
-                  <svg class="w-2.5 h-2.5 text-text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
-                </div>
-                <div class="flex items-baseline justify-between">
-                  <span class="text-[10px] font-semibold text-white">X (Twitter)</span>
-                  <span class="text-[8px] text-text-tertiary font-mono">42</span>
-                </div>
-              </div>
-
-              <div class="p-2 rounded-lg bg-surface hairline flex flex-col justify-between h-14">
-                <div class="flex items-center justify-between">
-                  <svg class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
-                  <span class="w-1.5 h-1.5 rounded-full bg-accent-recipe"></span>
-                </div>
-                <div class="flex items-baseline justify-between">
-                  <span class="text-[10px] font-semibold text-white">Quick Notes</span>
-                  <span class="text-[8px] text-text-tertiary font-mono">37</span>
-                </div>
-              </div>
-
-              <div class="p-2 rounded-lg bg-surface hairline flex flex-col justify-between h-14">
-                <div class="flex items-center justify-between">
-                  <svg class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                  <span class="w-1.5 h-1.5 rounded-full bg-accent-workout"></span>
-                </div>
-                <div class="flex items-baseline justify-between">
-                  <span class="text-[10px] font-semibold text-white">Private</span>
-                  <span class="text-[8px] text-text-tertiary font-mono flex items-center gap-0.5">19 <span class="text-[8px]">🔒</span></span>
-                </div>
-              </div>
-
-              <div class="p-2 rounded-lg bg-surface hairline flex flex-col justify-between h-14">
-                <div class="flex items-center justify-between">
-                  <svg class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path></svg>
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#0A84FF]"></span>
-                </div>
-                <div class="flex items-baseline justify-between">
-                  <span class="text-[10px] font-semibold text-white">Links</span>
-                  <span class="text-[8px] text-text-tertiary font-mono">93</span>
-                </div>
-              </div>
-
-              <div class="p-2 rounded-lg bg-surface/40 border border-dashed border-white/20 flex flex-col justify-between h-14">
-                <svg class="w-3 h-3 text-text-tertiary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                <span class="text-[10px] font-semibold text-text-secondary">New</span>
               </div>
             </div>
 
-            <!-- Floating Action Button at bottom right -->
-            <div class="flex justify-end pt-1 pr-1">
-              <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-lg shadow-lg cursor-pointer">
-                +
-              </div>
-            </div>
-          </div>
-        `
-      },
-      // 3: REAL RICH RECIPE CARD (NO EMPTY VOID! Media banner + verified checklist)
-      {
-        render: () => `
-          <div class="w-full h-full flex flex-col justify-start animate-fadeIn overflow-y-auto">
-            <!-- Media Banner Image -->
-            <div class="relative h-28 w-full bg-elevated flex-shrink-0 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=600&auto=format&fit=crop" alt="Food" class="w-full h-full object-cover object-center" />
-              <div class="absolute inset-0 bg-gradient-to-t from-canvas via-transparent to-black/50"></div>
-              <div class="absolute top-2 left-2 right-2 flex items-center justify-between text-[9px]">
-                <span class="px-2 py-0.5 rounded-full bg-black/70 text-white font-mono backdrop-blur-md">
-                  Instagram Reel
-                </span>
-                <span class="px-2 py-0.5 rounded-full bg-accent-vault/20 text-accent-vault font-mono font-bold border border-accent-vault/30 backdrop-blur-md">
-                  VERIFIED
-                </span>
-              </div>
-            </div>
-
-            <div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between text-[10px] text-text-tertiary font-mono mb-0.5">
-                  <span class="text-accent-recipe font-bold">RECIPE</span>
-                  <span>15m prep · 20m cook</span>
-                </div>
-                <h4 class="text-xs font-bold text-white leading-tight">Crispy Garlic Butter Skillet Chicken</h4>
-                <div class="text-[9px] text-text-tertiary">@chef_danielle · Metric Units</div>
-              </div>
-
-              <!-- Real Ingredients Checklist -->
-              <div class="space-y-1 text-xs">
-                <label class="flex items-center gap-2 p-1.5 rounded bg-surface hairline cursor-pointer">
-                  <input type="checkbox" checked class="rounded border-white/20 text-accent-vault w-3 h-3" />
-                  <span class="text-text-primary text-[10px]">450g Chicken breasts (thin-sliced)</span>
-                </label>
-                <label class="flex items-center gap-2 p-1.5 rounded bg-surface hairline cursor-pointer">
-                  <input type="checkbox" checked class="rounded border-white/20 text-accent-vault w-3 h-3" />
-                  <span class="text-text-primary text-[10px]">4 garlic cloves, minced</span>
-                </label>
-                <label class="flex items-center gap-2 p-1.5 rounded bg-surface hairline cursor-pointer">
-                  <input type="checkbox" class="rounded border-white/20 text-accent-vault w-3 h-3" />
-                  <span class="text-text-primary text-[10px]">60ml Hot honey drizzle</span>
-                </label>
-                <label class="flex items-center gap-2 p-1.5 rounded bg-surface hairline cursor-pointer">
-                  <input type="checkbox" class="rounded border-white/20 text-accent-vault w-3 h-3" />
-                  <span class="text-text-primary text-[10px]">2 tbsp grass-fed butter</span>
-                </label>
-              </div>
-
-              <!-- Actions -->
-              <div class="pt-1 flex items-center justify-between border-t border-white/[0.06]">
-                <button class="px-4 py-1.5 rounded-lg bg-accent-recipe text-canvas font-bold text-xs">
-                  COOK
-                </button>
-                <span class="text-[10px] text-text-tertiary font-mono">Open Original ↗</span>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      // 4: REAL RICH WORKOUT CARD (Media banner + exercise sets/reps + rest timer)
-      {
-        render: () => `
-          <div class="w-full h-full flex flex-col justify-start animate-fadeIn overflow-y-auto">
-            <!-- Media Banner Image -->
-            <div class="relative h-28 w-full bg-elevated flex-shrink-0 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop" alt="Workout" class="w-full h-full object-cover object-center" />
-              <div class="absolute inset-0 bg-gradient-to-t from-canvas via-transparent to-black/50"></div>
-              <div class="absolute top-2 left-2 right-2 flex items-center justify-between text-[9px]">
-                <span class="px-2 py-0.5 rounded-full bg-black/70 text-white font-mono backdrop-blur-md">
-                  TikTok
-                </span>
-                <span class="px-2 py-0.5 rounded-full bg-accent-vault/20 text-accent-vault font-mono font-bold border border-accent-vault/30 backdrop-blur-md">
-                  TARGET: CHEST
-                </span>
-              </div>
-            </div>
-
-            <div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between text-[10px] text-text-tertiary font-mono mb-0.5">
-                  <span class="text-accent-workout font-bold">WORKOUT</span>
-                  <span>4 exercises · 60s rest</span>
-                </div>
-                <h4 class="text-xs font-bold text-white leading-tight">Push Day · Hypertrophy Focus</h4>
-                <div class="text-[9px] text-text-tertiary">@alex_athletics</div>
-              </div>
-
-              <!-- Exercise List with Sets/Reps -->
-              <div class="space-y-1 text-xs">
-                <div class="flex items-center justify-between p-1.5 rounded bg-surface hairline text-[10px]">
-                  <span class="text-text-primary">1. Incline DB Press</span>
-                  <span class="font-mono text-text-secondary">4 × 8–10</span>
-                </div>
-                <div class="flex items-center justify-between p-1.5 rounded bg-surface hairline text-[10px]">
-                  <span class="text-text-primary">2. Weighted Dips</span>
-                  <span class="font-mono text-text-secondary">3 × 10–12</span>
-                </div>
-                <div class="flex items-center justify-between p-1.5 rounded bg-surface hairline text-[10px]">
-                  <span class="text-text-primary">3. Overhead Cable Ext</span>
-                  <span class="font-mono text-text-secondary">3 × 12–15</span>
-                </div>
-              </div>
-
-              <div class="p-1.5 rounded bg-surface hairline flex items-center justify-between text-[10px]">
-                <span class="text-text-secondary">Rest Timer</span>
-                <span class="font-mono text-accent-workout font-bold">00:60</span>
-              </div>
-
-              <!-- Actions -->
-              <div class="pt-1 flex items-center justify-between border-t border-white/[0.06]">
-                <button class="px-4 py-1.5 rounded-lg bg-white text-canvas font-bold text-xs">
-                  TRAIN
-                </button>
-                <span class="text-[10px] text-text-tertiary font-mono">Open Original ↗</span>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      // 5: REAL MMA CARD (Fight breakdown + UFC video preview banner)
-      {
-        render: () => `
-          <div class="w-full h-full flex flex-col justify-start animate-fadeIn overflow-y-auto">
-            <!-- Media Banner Image -->
-            <div class="relative h-32 w-full bg-elevated flex-shrink-0 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=600&auto=format&fit=crop" alt="MMA" class="w-full h-full object-cover object-center" />
-              <div class="absolute inset-0 bg-gradient-to-t from-canvas via-transparent to-black/50"></div>
-              <div class="absolute top-2 left-2 right-2 flex items-center justify-between text-[9px]">
-                <span class="px-2 py-0.5 rounded-full bg-black/70 text-white font-mono backdrop-blur-md">
-                  YouTube Breakdown
-                </span>
-                <span class="px-2 py-0.5 rounded-full bg-accent-workout/20 text-accent-workout font-mono font-bold border border-accent-workout/30 backdrop-blur-md">
-                  0% ADS
-                </span>
-              </div>
-            </div>
-
-            <div class="p-3 space-y-2 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-1.5 text-[9px] font-mono text-accent-workout mb-0.5">
-                  <span class="px-1.5 py-0.5 rounded bg-accent-workout/10 font-bold">MMA · FIGHT EDITS</span>
-                  <span class="text-text-tertiary">Saved 2d ago</span>
-                </div>
-                <h4 class="text-xs font-bold text-white leading-tight">Islam Makhachev Head Kick KO · Precision Breakdown</h4>
-                <div class="text-[9px] text-text-tertiary">@ufc_breakdowns · YouTube</div>
-              </div>
-
-              <div class="p-2 rounded bg-surface hairline text-[10px] text-text-secondary space-y-1">
-                <p>Level change setup feint into high kick angle. Analyzed frame by frame.</p>
-                <div class="flex items-center gap-1 pt-0.5">
-                  <span class="px-1.5 py-0.2 rounded bg-elevated text-[8px] font-mono">UFC</span>
-                  <span class="px-1.5 py-0.2 rounded bg-elevated text-[8px] font-mono">Striking</span>
-                  <span class="px-1.5 py-0.2 rounded bg-elevated text-[8px] font-mono">Slow-Mo</span>
-                </div>
-              </div>
-
-              <!-- Actions -->
-              <div class="pt-1 flex items-center justify-between border-t border-white/[0.06]">
-                <button class="px-4 py-1.5 rounded-lg bg-white text-canvas font-bold text-xs">
-                  OPEN
-                </button>
-                <span class="text-[10px] text-text-tertiary font-mono">Open Original ↗</span>
-              </div>
+            <div class="text-center pt-2 border-t border-white/[0.06]">
+              <span class="text-[8px] text-text-tertiary font-mono">100% private · Stored locally on device</span>
             </div>
           </div>
         `
@@ -1516,547 +1625,54 @@
     ];
 
     let currentStage = 0;
-    let autoStageTimer = null;
 
-    // --- Dual-Mode Web Audio Synthesizer (StashAcousticEngine) ---
-    class StashAcousticEngine {
-      constructor() {
-        this.ctx = null;
-        this.muted = true; // start muted for web autoplay policies
-      }
-      init() {
-        if (!this.ctx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          this.ctx = new AudioContext();
-        }
-        if (this.ctx && this.ctx.state === 'suspended') {
-          this.ctx.resume();
-        }
-      }
-      playTick(isStyleB = true) {
-        if (this.muted) return;
-        this.init();
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = isStyleB ? 'square' : 'triangle';
-        osc.frequency.setValueAtTime(isStyleB ? 6500 : 5800, this.ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(1400, this.ctx.currentTime + 0.012);
-        gain.gain.setValueAtTime(isStyleB ? 0.08 : 0.12, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.012);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start();
-        osc.stop(this.ctx.currentTime + 0.012);
-      }
-      playContact() {
-        if (this.muted) return;
-        this.init();
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(360, this.ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(70, this.ctx.currentTime + 0.06);
-        gain.gain.setValueAtTime(0.22, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start();
-        osc.stop(this.ctx.currentTime + 0.06);
-      }
-      playDeadboltSlam() {
-        if (this.muted) return;
-        this.init();
-        // 1. Massive 60Hz sub-bass shockwave
-        const subOsc = this.ctx.createOscillator();
-        const subGain = this.ctx.createGain();
-        subOsc.type = 'sine';
-        subOsc.frequency.setValueAtTime(95, this.ctx.currentTime);
-        subOsc.frequency.exponentialRampToValueAtTime(22, this.ctx.currentTime + 0.32);
-        subGain.gain.setValueAtTime(0.65, this.ctx.currentTime);
-        subGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.32);
-        subOsc.connect(subGain);
-        subGain.connect(this.ctx.destination);
-        subOsc.start();
-        subOsc.stop(this.ctx.currentTime + 0.32);
-
-        // 2. Dual mechanical metal clack
-        [0, 0.038].forEach((delay, idx) => {
-          const clickOsc = this.ctx.createOscillator();
-          const clickGain = this.ctx.createGain();
-          clickOsc.type = 'triangle';
-          clickOsc.frequency.setValueAtTime(idx === 0 ? 3200 : 2400, this.ctx.currentTime + delay);
-          clickOsc.frequency.exponentialRampToValueAtTime(600, this.ctx.currentTime + delay + 0.035);
-          clickGain.gain.setValueAtTime(0.35, this.ctx.currentTime + delay);
-          clickGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + delay + 0.035);
-          clickOsc.connect(clickGain);
-          clickGain.connect(this.ctx.destination);
-          clickOsc.start(this.ctx.currentTime + delay);
-          clickOsc.stop(this.ctx.currentTime + delay + 0.035);
-        });
-      }
-      playAppleLock() {
-        if (this.muted) return;
-        this.init();
-        const subOsc = this.ctx.createOscillator();
-        const subGain = this.ctx.createGain();
-        subOsc.type = 'sine';
-        subOsc.frequency.setValueAtTime(80, this.ctx.currentTime);
-        subOsc.frequency.exponentialRampToValueAtTime(28, this.ctx.currentTime + 0.22);
-        subGain.gain.setValueAtTime(0.35, this.ctx.currentTime);
-        subGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
-        subOsc.connect(subGain);
-        subGain.connect(this.ctx.destination);
-        subOsc.start();
-        subOsc.stop(this.ctx.currentTime + 0.22);
-
-        const clickOsc = this.ctx.createOscillator();
-        const clickGain = this.ctx.createGain();
-        clickOsc.type = 'sine';
-        clickOsc.frequency.setValueAtTime(2200, this.ctx.currentTime);
-        clickOsc.frequency.exponentialRampToValueAtTime(900, this.ctx.currentTime + 0.03);
-        clickGain.gain.setValueAtTime(0.18, this.ctx.currentTime);
-        clickGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.03);
-        clickOsc.connect(clickGain);
-        clickGain.connect(this.ctx.destination);
-        clickOsc.start();
-        clickOsc.stop(this.ctx.currentTime + 0.03);
-      }
-    }
-    const engineAudio = new StashAcousticEngine();
-
-    function toggleEngineAudio() {
-      engineAudio.init();
-      engineAudio.muted = !engineAudio.muted;
-      const icon = document.getElementById('engineAudioIcon');
-      const label = document.getElementById('engineAudioLabel');
-      if (icon && label) {
-        icon.textContent = engineAudio.muted ? '🔇' : '🔊';
-        label.textContent = engineAudio.muted ? 'Sound' : 'Mute';
-      }
-    }
-
-    // --- 4K Centrifuge Motion Engine State ---
-    let engineConcept = 'B'; // Default is Style B (Titanium 6-Deadbolt Centrifuge)
-    let engineAnimFrameId = null;
-    let engineTimeMs = 0;
-    let engineLastTime = 0;
-    let engineLastTick = -1;
-    let engineHasPlayedLock = false;
-    let engineHasPlayedContact = false;
-    let engineBezelTicks = [];
-    let engineParticles = [];
-    const NUM_ENGINE_PARTICLES = 28;
-
-    const SOCIAL_BADGES = [
-      { name: 'YT', color: '#FF0000', icon: '▶' },
-      { name: 'TK', color: '#00F2FE', icon: '♫' },
-      { name: 'IG', color: '#E1306C', icon: '📸' },
-      { name: 'X',  color: '#FFFFFF', icon: '𝕏' },
-      { name: 'TAG', color: '#FFB547', icon: '#' },
-      { name: 'TXT', color: '#A1A1AA', icon: 'T' }
-    ];
-
-    function initMotionEngine() {
-      if (engineAnimFrameId) {
-        cancelAnimationFrame(engineAnimFrameId);
-        engineAnimFrameId = null;
-      }
-
-      const ticksGroup = document.getElementById('engineBezelTicksGroup');
-      if (!ticksGroup) return;
-
-      ticksGroup.innerHTML = '';
-      engineBezelTicks = [];
-      const TOTAL = 60;
-      for (let i = 0; i < TOTAL; i++) {
-        const angle = (i * 360) / TOTAL;
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        const rad = (angle * Math.PI) / 180;
-        const r1 = 142;
-        const r2 = (i % 5 === 0) ? 154 : 148;
-        line.setAttribute('x1', 160 + r1 * Math.cos(rad));
-        line.setAttribute('y1', 160 + r1 * Math.sin(rad));
-        line.setAttribute('x2', 160 + r2 * Math.cos(rad));
-        line.setAttribute('y2', 160 + r2 * Math.sin(rad));
-        line.setAttribute('class', 'bezel-tick');
-        ticksGroup.appendChild(line);
-        engineBezelTicks.push(line);
-      }
-
-      // Initialize particles
-      engineParticles = [];
-      for (let i = 0; i < NUM_ENGINE_PARTICLES; i++) {
-        const type = SOCIAL_BADGES[i % SOCIAL_BADGES.length];
-        const initialAngle = (i / NUM_ENGINE_PARTICLES) * Math.PI * 2;
-        const initialDist = 140 + (i % 4) * 25;
-        engineParticles.push({
-          type,
-          angle: initialAngle,
-          initialDist,
-          size: (i < 6) ? 14 : 5,
-          speedMultiplier: 1.1 + (i % 3) * 0.4,
-          color: type.color,
-          icon: type.icon,
-          isBadge: (i < 6)
-        });
-      }
-
-      engineTimeMs = 0;
-      engineLastTick = -1;
-      engineHasPlayedLock = false;
-      engineHasPlayedContact = false;
-      engineLastTime = performance.now();
-
-      applyConceptStyles();
-      engineAnimFrameId = requestAnimationFrame(engineLoop);
-    }
-
-    function applyConceptStyles() {
-      const deadbolts = document.getElementById('engineDeadboltsContainer');
-      const disc = document.getElementById('engineMonogramDisc');
-      const letter = document.getElementById('engineMonogramS');
-      const progress = document.getElementById('engineApertureProgress');
-      const btnB = document.getElementById('btnConceptB');
-      const btnA = document.getElementById('btnConceptA');
-
-      if (!disc || !progress) return;
-
-      if (engineConcept === 'B') {
-        if (deadbolts) deadbolts.style.opacity = '1';
-        disc.classList.add('red-bloom');
-        if (letter) {
-          letter.style.color = '#FF2D55';
-          letter.style.textShadow = '0 0 20px rgba(255, 45, 85, 0.7)';
-        }
-        progress.setAttribute('stroke', '#FF2D55');
-        progress.style.filter = 'drop-shadow(0 0 12px rgba(255, 45, 85, 0.7))';
-        if (btnB && btnA) {
-          btnB.className = 'px-2.5 py-1 rounded-full bg-[#FF2D55]/20 border border-[#FF2D55]/50 text-[#FF2D55] font-mono text-[9px] font-bold shadow-sm transition-all';
-          btnA.className = 'px-2.5 py-1 rounded-full bg-surface hairline text-text-tertiary hover:text-white font-mono text-[9px] font-bold transition-all';
-        }
-      } else {
-        if (deadbolts) deadbolts.style.opacity = '0';
-        disc.classList.remove('red-bloom');
-        if (letter) {
-          letter.style.color = '#FFFFFF';
-          letter.style.textShadow = 'none';
-        }
-        progress.setAttribute('stroke', '#30D158');
-        progress.style.filter = 'drop-shadow(0 0 10px rgba(48, 209, 88, 0.45))';
-        if (btnB && btnA) {
-          btnA.className = 'px-2.5 py-1 rounded-full bg-[#30D158]/20 border border-[#30D158]/50 text-[#30D158] font-mono text-[9px] font-bold shadow-sm transition-all';
-          btnB.className = 'px-2.5 py-1 rounded-full bg-surface hairline text-text-tertiary hover:text-white font-mono text-[9px] font-bold transition-all';
-        }
-      }
-    }
-
-    function setEngineConcept(concept) {
-      engineConcept = concept;
-      applyConceptStyles();
-      restartMotionEngine();
-    }
-
-    function restartMotionEngine() {
-      engineTimeMs = 0;
-      engineLastTick = -1;
-      engineHasPlayedLock = false;
-      engineHasPlayedContact = false;
-      engineLastTime = performance.now();
-    }
-
-    function renderEngineParticles(ctx, w, h, progressBeat2) {
-      ctx.clearRect(0, 0, w, h);
-      if (progressBeat2 <= 0 || progressBeat2 >= 1.0) return;
-
-      const centerX = w / 2;
-      const centerY = h / 2;
-      const isB = (engineConcept === 'B');
-
-      engineParticles.forEach((p) => {
-        const easeInVortex = Math.pow(progressBeat2, isB ? 2.2 : 1.8);
-        const currentDist = p.initialDist - (p.initialDist - 45) * easeInVortex;
-        const currentAngle = p.angle + progressBeat2 * Math.PI * (isB ? 5 : 3) * p.speedMultiplier;
-
-        const x = centerX + Math.cos(currentAngle) * currentDist;
-        const y = centerY + Math.sin(currentAngle) * currentDist;
-        const alpha = Math.max(0, 1 - Math.pow(progressBeat2, 2.5));
-
-        ctx.save();
-        ctx.globalAlpha = alpha;
-
-        if (p.isBadge) {
-          ctx.beginPath();
-          ctx.arc(x, y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(17, 19, 22, 0.9)';
-          ctx.fill();
-          ctx.lineWidth = 1.5;
-          ctx.strokeStyle = p.color;
-          ctx.shadowColor = p.color;
-          ctx.shadowBlur = isB ? 10 : 6;
-          ctx.stroke();
-
-          ctx.font = 'bold 9px sans-serif';
-          ctx.fillStyle = '#FFFFFF';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(p.icon, x, y);
-        } else {
-          const trailLength = (isB ? 16 : 10) * (1 + progressBeat2 * 2);
-          const tailX = x - Math.cos(currentAngle) * trailLength;
-          const tailY = y - Math.sin(currentAngle) * trailLength;
-
-          ctx.beginPath();
-          ctx.moveTo(tailX, tailY);
-          ctx.lineTo(x, y);
-          ctx.strokeStyle = isB ? '#FF2D55' : p.color;
-          ctx.lineWidth = isB ? 2 : 1.5;
-          ctx.shadowColor = isB ? '#FF2D55' : '#FFFFFF';
-          ctx.shadowBlur = 6;
-          ctx.stroke();
-        }
-        ctx.restore();
-      });
-    }
-
-    function engineLoop(timestamp) {
-      if (currentStage !== 1) {
-        engineAnimFrameId = null;
-        return;
-      }
-
-      const delta = timestamp - engineLastTime;
-      engineLastTime = timestamp;
-      engineTimeMs = (engineTimeMs + delta) % 1900;
-
-      const isB = (engineConcept === 'B');
-      const canvas = document.getElementById('motionParticleCanvas');
-      if (canvas) {
-        const dpr = window.devicePixelRatio || 1;
-        if (canvas.width !== canvas.clientWidth * dpr || canvas.height !== canvas.clientHeight * dpr) {
-          canvas.width = canvas.clientWidth * dpr;
-          canvas.height = canvas.clientHeight * dpr;
-        }
-        const ctx = canvas.getContext('2d');
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-        const phaseDot = document.getElementById('enginePhaseDot');
-        const phaseTitle = document.getElementById('enginePhaseTitle');
-        const statusTitle = document.getElementById('engineStatusTitle');
-        const statusSubtitle = document.getElementById('engineStatusSubtitle');
-        const ticksGroup = document.getElementById('engineBezelTicksGroup');
-        const arcProgress = document.getElementById('engineApertureProgress');
-        const disc = document.getElementById('engineMonogramDisc');
-        const letter = document.getElementById('engineMonogramS');
-        const label = document.getElementById('engineMonogramLabel');
-        const lockIcon = document.getElementById('engineVaultLockIcon');
-        const deadbolts = document.querySelectorAll('#engineDeadboltsContainer .deadbolt-bracket');
-        const phoneStage = document.getElementById('motionEngineStage');
-
-        // PHASE 1: Gravitational Vortex (0ms – 380ms / 0% – 25%)
-        if (engineTimeMs < 380) {
-          const p1 = engineTimeMs / 380;
-          if (phaseDot) {
-            phaseDot.style.background = isB ? '#FF2D55' : '#0A84FF';
-            phaseDot.style.boxShadow = `0 0 8px ${isB ? '#FF2D55' : '#0A84FF'}`;
-          }
-          if (phaseTitle) phaseTitle.textContent = `Phase 1: Gravitational (${Math.round(p1 * 25)}%)`;
-          if (statusTitle) statusTitle.textContent = isB ? 'INIT: GRAVITATIONAL FIELD' : 'Resolving Source URL...';
-          if (statusSubtitle) {
-            statusSubtitle.textContent = isB ? 'SCANNING INCOMING PACKET...' : 'Extracting platform metadata';
-            statusSubtitle.className = isB
-              ? 'text-[9px] font-mono font-bold text-[#FF2D55] bg-[#FF2D55]/10 border border-[#FF2D55]/25 px-2.5 py-0.5 rounded'
-              : 'text-[9px] font-mono font-bold text-accent-vault bg-accent-vault/10 border border-accent-vault/25 px-2.5 py-0.5 rounded';
-          }
-
-          if (ticksGroup) {
-            const rot = isB ? p1 * 360 * 2 : 0;
-            ticksGroup.style.transform = `rotate(${rot}deg)`;
-          }
-
-          if (arcProgress) {
-            arcProgress.style.strokeDashoffset = '816.81';
-            arcProgress.style.stroke = isB ? '#FF2D55' : '#30D158';
-          }
-
-          engineBezelTicks.forEach(t => {
-            t.className.baseVal = 'bezel-tick';
-          });
-
-          deadbolts.forEach(b => {
-            b.classList.remove('slammed');
-            const pin = b.querySelector('.deadbolt-pin');
-            if (pin) pin.style.transform = 'translateY(0)';
-          });
-
-          if (letter) letter.style.opacity = '1';
-          if (label) label.style.opacity = '1';
-          if (lockIcon) lockIcon.classList.add('hidden');
-
-          if (engineTimeMs > 20 && !engineHasPlayedContact) {
-            engineAudio.playContact();
-            engineHasPlayedContact = true;
-          }
-
-          renderEngineParticles(ctx, canvas.clientWidth, canvas.clientHeight, 0);
-        }
-        // PHASE 2: Centrifuge (380ms – 1150ms / 25% – 85%)
-        else if (engineTimeMs >= 380 && engineTimeMs < 1150) {
-          const p2 = (engineTimeMs - 380) / 770;
-          const pct = Math.round(25 + p2 * 60);
-
-          if (phaseDot) {
-            phaseDot.style.background = isB ? '#FF2D55' : '#FFB547';
-            phaseDot.style.boxShadow = `0 0 8px ${isB ? '#FF2D55' : '#FFB547'}`;
-          }
-          if (phaseTitle) phaseTitle.textContent = `Phase 2: Centrifuge (${pct}%)`;
-          if (statusTitle) statusTitle.textContent = isB ? `ANALYZING INSTAGRAM REEL · ${pct}%` : 'Distilling Platform Stream...';
-          if (statusSubtitle) {
-            const mb = (1.2 + p2 * 3.6).toFixed(1);
-            statusSubtitle.textContent = isB ? `${mb} MB / 4.8 MB · CONVERTING CHAOS` : 'Vaporizing noise & capturing signal';
-          }
-
-          if (ticksGroup) {
-            ticksGroup.style.transform = `rotate(${p2 * 180}deg)`;
-          }
-
-          if (arcProgress) {
-            arcProgress.style.strokeDashoffset = `${816.81 * (1 - p2)}`;
-          }
-
-          const activeCount = Math.floor(p2 * 60);
-          engineBezelTicks.forEach((t, idx) => {
-            if (idx <= activeCount) {
-              t.className.baseVal = isB ? 'bezel-tick active-red' : 'bezel-tick active-green';
-            } else {
-              t.className.baseVal = 'bezel-tick';
-            }
-          });
-
-          // Jitter deadbolt pins in Concept B
-          if (isB) {
-            deadbolts.forEach(b => {
-              const jitter = Math.sin(engineTimeMs * 0.1) * 1.5;
-              const pin = b.querySelector('.deadbolt-pin');
-              if (pin) pin.style.transform = `translateY(${jitter}px)`;
-            });
-          }
-
-          // Micro ticks acoustic
-          const currentTickIdx = Math.floor(pct / 6);
-          if (currentTickIdx !== engineLastTick) {
-            engineAudio.playTick(isB);
-            engineLastTick = currentTickIdx;
-          }
-
-          renderEngineParticles(ctx, canvas.clientWidth, canvas.clientHeight, p2);
-          engineHasPlayedLock = false;
-        }
-        // PHASE 3: Mechanical Lock Slam (1150ms – 1450ms / 85% – 100%)
-        else if (engineTimeMs >= 1150 && engineTimeMs < 1450) {
-          ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
-          if (phaseDot) {
-            phaseDot.style.background = '#10B981';
-            phaseDot.style.boxShadow = '0 0 12px #10B981';
-          }
-          if (phaseTitle) phaseTitle.textContent = `Phase 3: Locked (100%)`;
-          if (statusTitle) statusTitle.textContent = isB ? 'VAULT SECURED — 100% STORED CLEAN' : 'Vault Secured & Verified';
-          if (statusSubtitle) {
-            statusSubtitle.textContent = isB ? '6 TITANIUM DEADBOLTS ENGAGED' : 'Camera shutter precision';
-            statusSubtitle.className = 'text-[9px] font-mono font-bold text-[#10B981] bg-[#10B981]/15 border border-[#10B981]/30 px-2.5 py-0.5 rounded';
-          }
-
-          if (arcProgress) {
-            arcProgress.style.strokeDashoffset = '0';
-            arcProgress.style.stroke = '#10B981';
-            arcProgress.style.filter = 'drop-shadow(0 0 16px rgba(16, 185, 129, 0.9))';
-          }
-
-          engineBezelTicks.forEach(t => {
-            t.className.baseVal = 'bezel-tick locked-green';
-          });
-
-          // DEADBOLTS SLAM OUTWARD!
-          deadbolts.forEach(b => {
-            b.classList.add('slammed');
-            const pin = b.querySelector('.deadbolt-pin');
-            if (pin) pin.style.transform = 'translateY(-12px)';
-          });
-
-          if (!engineHasPlayedLock) {
-            if (isB) {
-              engineAudio.playDeadboltSlam();
-              if (phoneStage) {
-                phoneStage.classList.add('stage-recoil');
-                setTimeout(() => phoneStage.classList.remove('stage-recoil'), 280);
-              }
-            } else {
-              engineAudio.playAppleLock();
-            }
-            engineHasPlayedLock = true;
-          }
-
-          if (letter) letter.style.opacity = '0';
-          if (label) label.style.opacity = '0';
-          if (lockIcon) lockIcon.classList.remove('hidden');
-        }
-        // PHASE 4: Crystallized Lock (1450ms – 1900ms)
-        else {
-          ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-          if (phaseTitle) phaseTitle.textContent = `Phase 4: Vault Preserved`;
-        }
-      }
-
-      engineAnimFrameId = requestAnimationFrame(engineLoop);
-    }
-
-    function switchAppStage(index) {
-      currentStage = index;
-      const container = document.getElementById('phoneScreenBody');
-      container.innerHTML = STAGES[index].render();
-
-      // Update switcher buttons
+    function updateStageButtons(index) {
       for (let i = 0; i < STAGES.length; i++) {
         const btn = document.getElementById('stageBtn' + i);
         if (btn) {
           if (i === index) {
-            btn.className = 'px-3.5 py-1.5 rounded-full bg-elevated text-white transition-all';
+            btn.className = 'px-4 py-1.5 rounded-full bg-elevated text-white transition-all flex items-center gap-1.5 whitespace-nowrap shadow-sm';
           } else {
-            btn.className = 'px-3.5 py-1.5 rounded-full hover:text-white transition-all';
+            btn.className = 'px-4 py-1.5 rounded-full hover:text-white transition-all flex items-center gap-1.5 whitespace-nowrap';
           }
         }
       }
 
-      // Update bottom nav highlighting (Feed vs Library)
       const navFeed = document.getElementById('navFeedBtn');
       const navLibrary = document.getElementById('navLibraryBtn');
-      if (index === 2) {
-        navLibrary.className = 'flex flex-col items-center gap-0.5 text-white font-medium cursor-pointer transition-colors';
-        navFeed.className = 'flex flex-col items-center gap-0.5 text-text-tertiary font-medium cursor-pointer hover:text-white transition-colors';
-      } else {
-        navFeed.className = 'flex flex-col items-center gap-0.5 text-white font-medium cursor-pointer transition-colors';
-        navLibrary.className = 'flex flex-col items-center gap-0.5 text-text-tertiary font-medium cursor-pointer hover:text-white transition-colors';
+      if (navFeed && navLibrary) {
+        if (index === 2) {
+          navLibrary.className = 'flex flex-col items-center gap-1 text-white font-medium cursor-pointer transition-colors';
+          navFeed.className = 'flex flex-col items-center gap-1 text-text-tertiary font-medium cursor-pointer hover:text-white transition-colors';
+        } else {
+          navFeed.className = 'flex flex-col items-center gap-1 text-white font-medium cursor-pointer transition-colors';
+          navLibrary.className = 'flex flex-col items-center gap-1 text-text-tertiary font-medium cursor-pointer hover:text-white transition-colors';
+        }
       }
     }
 
-    function startAutoCycle() {
-      autoStageTimer = setInterval(() => {
-        const next = (currentStage + 1) % STAGES.length;
-        switchAppStage(next);
-      }, 5500);
+    function switchAppStage(index) {
+      // If leaving The Ring stage (index 1), stop the ring iframe animation & sound immediately!
+      if (currentStage === 1 && index !== 1) {
+        const iframe = document.getElementById('phoneRingIframe');
+        if (iframe && iframe.contentWindow) {
+          try {
+            iframe.contentWindow.postMessage('stop', '*');
+          } catch (e) {}
+        }
+      }
+
+      currentStage = index;
+      const container = document.getElementById('phoneScreenBody');
+      if (container) {
+        container.innerHTML = STAGES[index].render();
+      }
+
+      updateStageButtons(index);
     }
 
-    // Initialize with Home
+    // Boot into Stage 0 (Reel Feed) with manual control
     switchAppStage(0);
-    startAutoCycle();
-
-    // Pause auto-cycle when visitor clicks any button
-    document.querySelectorAll('[id^="stageBtn"]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        clearInterval(autoStageTimer);
-      });
-    });
   </script>
-
 </body>
 </html>
