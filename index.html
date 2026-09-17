@@ -114,7 +114,10 @@
       object-fit: cover;
       object-position: center center;
       display: block;
+      pointer-events: none; /* Prevents Chrome/Edge from showing Picture-in-Picture or Enhance Video hover overlays */
     }
+    video::-webkit-media-controls { display: none !important; }
+    video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
 
     /* Calmer authentic upright vertical float without 3D rotation */
     @keyframes hero-float-foldable {
@@ -380,7 +383,10 @@
                   id="heroAppVideo"
                   src="./assets/ui/stash_hero_4k.mp4"
                   autoplay muted loop playsinline
-                  class="w-full h-full object-cover"
+                  disablePictureInPicture
+                  disableRemotePlayback
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  class="w-full h-full object-cover pointer-events-none"
                   poster="./assets/ui/stash_ui_soya_recipe.jpg"
                   preload="auto">
                 </video>
