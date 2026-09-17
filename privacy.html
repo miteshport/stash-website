@@ -1,154 +1,533 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — STASH Video & Recipe Vault</title>
-  <meta name="description" content="Official Privacy Policy for the STASH Android application." />
-  <link rel="icon" type="image/png" href="assets/icon-512.png" />
+  <title>Privacy, by design — STASH</title>
+  <meta name="description" content="STASH is built around local-first storage, source transparency, on-device intelligence, and user-controlled portability. Your library stays on your device." />
+  <link rel="icon" type="image/png" href="./assets/icon-512.png" />
+  <link rel="apple-touch-icon" href="./assets/icon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Lora:ital@1&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            serif: ['Lora', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      background-color: #0A0A0C;
-      color: #E2E8F0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #FAFAF8;
+      color: #111214;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ─── CTA BUTTONS ─── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FF2D55;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+      white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: #e0183e;
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px -6px rgba(255,45,85,0.38);
+    }
+    .btn-primary:active { transform: scale(0.98); }
+
+    /* Hairline borders */
+    .border-hairline { border-color: rgba(17, 18, 20, 0.08); }
+    .divider-subtle { height: 1px; background: rgba(17, 18, 20, 0.08); width: 100%; }
+
+    /* Technical Monospace Tag */
+    .tech-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5F6368;
+    }
+
+    /* Architecture Pipeline Flow Box */
+    .flow-step {
+      background: #FFFFFF;
+      border: 1px solid rgba(17, 18, 20, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .flow-step:hover {
+      border-color: rgba(17, 18, 20, 0.2);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.06);
     }
   </style>
 </head>
-<body class="selection:bg-red-500 selection:text-white antialiased">
+<body class="selection:bg-[#FF2D55] selection:text-white">
 
-  <!-- Header -->
-  <header class="border-b border-neutral-800 bg-black/60 backdrop-blur-md sticky top-0 z-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2.5 text-white font-bold tracking-tight group">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-red-500 to-amber-500 flex items-center justify-center shadow-md overflow-hidden relative">
-          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
-            <path d="M9 10h6"/>
-            <path d="M12 7v6"/>
-          </svg>
-          <img src="assets/icon-512.png" alt="STASH" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
-        </div>
-        <span class="font-display font-extrabold text-lg">STASH</span>
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- HEADER                                                              -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <header id="siteHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#FAFAF8]/90 backdrop-blur-md border-b border-black/[0.06]">
+    <div class="max-w-[1380px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <img src="./assets/icon-512.png" alt="STASH Icon" class="w-7 h-7 rounded-lg shadow-sm border border-black/[0.08] flex-shrink-0 transition-transform group-hover:scale-105" />
+        <span id="logoText" class="font-extrabold text-base tracking-tight text-[#111214] font-sans">STASH</span>
       </a>
-      <a href="index.html" class="text-xs text-neutral-400 hover:text-white transition-colors font-semibold">
-        ← Back to Home
-      </a>
+      <nav class="hidden md:flex items-center gap-8 text-[13px] font-medium text-[#5F6368]">
+        <a href="index.html#hero" class="hover:text-[#111214] transition-colors">Home</a>
+        <a href="index.html#ring" class="hover:text-[#111214] transition-colors">How It Works</a>
+        <a href="index.html#trust" class="hover:text-[#111214] transition-colors">Trust</a>
+        <a href="privacy.html" class="text-[#111214] font-semibold border-b-2 border-[#111214] pb-0.5">Privacy</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="index.html#cta" class="btn-primary text-[13px]">→ STASH it</a>
+      </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-    <div class="space-y-4 mb-10 sm:mb-12 border-b border-neutral-800 pb-8">
-      <span class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-mono font-bold uppercase tracking-wider">Legal Document</span>
-      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Privacy Policy for STASH</h1>
-      <p class="text-xs text-neutral-400 font-mono">
-        Effective Date: September 1, 2026 • Last Updated: September 7, 2026 • Contact: legal@stashreel.app
-      </p>
-    </div>
-
-    <div class="space-y-10 text-sm leading-relaxed text-neutral-300">
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- HERO SECTION                                                        -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section class="pt-32 pb-16 lg:pt-40 lg:pb-20 border-b border-hairline">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
       
-      <!-- Section 1 -->
-      <section class="space-y-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="text-red-500 font-mono">1.</span> Core Privacy Philosophy
-        </h2>
-        <p>
-          STASH ("we", "our", or "the App") is engineered on a local-first principle: <strong>Your data belongs on your device.</strong>
-        </p>
-        <p>
-          Unlike traditional social applications, STASH does not require account creation, does not track your online browsing activity, and does not operate cloud databases storing your personal bookmarks or viewing habits.
-        </p>
-      </section>
+      <div class="tech-tag mb-6 text-[#FF2D55]">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#FF2D55]"></span>
+        ARCHITECTURE &amp; DATA PRIVACY
+      </div>
 
-      <!-- Section 2 -->
-      <section class="space-y-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="text-red-500 font-mono">2.</span> Information We Do NOT Collect
-        </h2>
-        <ul class="list-disc list-inside space-y-2 text-neutral-400 pl-2">
-          <li><strong class="text-neutral-200">No Personal Identifiers:</strong> We do not collect names, email addresses, phone numbers, or physical addresses.</li>
-          <li><strong class="text-neutral-200">No Browsing or Social Graph History:</strong> We do not track the accounts you follow or browse on third-party platforms.</li>
-          <li><strong class="text-neutral-200">No Location Tracking:</strong> We do not request, access, or log GPS or IP-based location data.</li>
-          <li><strong class="text-neutral-200">No Biometric Storage:</strong> Biometric authentication (fingerprint/Face Unlock) is handled entirely by your device’s local Android BiometricPrompt system. The App never sees or stores biometric data.</li>
-        </ul>
-      </section>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-[#111214] leading-[1.08] mb-6">
+        Privacy, by design.
+      </h1>
 
-      <!-- Section 3 -->
-      <section class="space-y-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="text-red-500 font-mono">3.</span> Information Processed by the App
-        </h2>
-        <p>
-          When you explicitly paste or share a public media link (e.g., from Instagram, TikTok, or YouTube) into STASH:
-        </p>
-        <ul class="list-disc list-inside space-y-2 text-neutral-400 pl-2">
-          <li><strong>Public Link Parsing:</strong> The link is processed to retrieve publicly accessible metadata (video titles, captions, recipe ingredients, and video streams) for your personal viewing.</li>
-          <li><strong>Local Sandboxed Storage:</strong> All parsed checklists, notes, recipes, and cached media files reside exclusively in your device's isolated application storage.</li>
-          <li><strong>Anonymous Diagnostic Telemetry:</strong> Anonymized crash logs may be processed via standard Google Play Console telemetry strictly to resolve technical faults.</li>
-        </ul>
-      </section>
+      <p class="text-xl sm:text-2xl text-[#111214] font-medium leading-snug mb-6 max-w-3xl">
+        Your library belongs on your device—not in an advertising database.
+      </p>
 
-      <!-- Section 4 -->
-      <section class="space-y-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="text-red-500 font-mono">4.</span> Third-Party Services
-        </h2>
-        <p>
-          <strong>Google Play In-App Billing:</strong> All purchases or PRO subscriptions are securely processed by Google LLC via Google Play Billing. STASH never stores or receives financial or payment details.
-        </p>
-        <p>
-          <strong>Third-Party Platforms:</strong> STASH is an independent bookmarking utility and is not endorsed by, affiliated with, or sponsored by Instagram, TikTok, YouTube, or Meta.
-        </p>
-      </section>
+      <p class="text-base sm:text-lg text-[#5F6368] leading-relaxed max-w-2xl">
+        STASH is built around local-first storage, source transparency, on-device intelligence, and user-controlled data portability.
+      </p>
 
-      <!-- Section 5 -->
-      <section class="space-y-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="text-red-500 font-mono">5.</span> Data Retention & Deletion
-        </h2>
-        <p>
-          Because all your saved notes, recipes, and videos are stored locally on your device:
-        </p>
-        <ul class="list-disc list-inside space-y-2 text-neutral-400 pl-2">
-          <li>You can delete any saved item or folder instantly within the App.</li>
-          <li>Uninstalling the App permanently deletes all stored media and data from your device storage.</li>
-        </ul>
-      </section>
-
-      <!-- Section 6 -->
-      <section class="space-y-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="text-red-500 font-mono">6.</span> Children's Privacy
-        </h2>
-        <p>
-          STASH complies with the Children’s Online Privacy Protection Act (COPPA). We do not knowingly collect personal information from children under the age of 13.
-        </p>
-      </section>
-
-      <!-- Section 7 -->
-      <section class="space-y-3">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span class="text-red-500 font-mono">7.</span> Contact Information
-        </h2>
-        <p>
-          If you have questions or concerns regarding this Privacy Policy, you can reach out to:
-        </p>
-        <div class="p-4 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-mono space-y-1 break-all sm:break-normal">
-          <div>Email: <a href="mailto:legal@stashreel.app" class="text-red-400 underline">legal@stashreel.app</a></div>
-          <div>Developer: STASH Media Vault Team</div>
-          <div>Website: <a href="index.html" class="text-neutral-400 hover:text-white">https://stashreel.app</a></div>
-        </div>
-      </section>
+      <div class="mt-8 pt-6 border-t border-hairline flex flex-wrap items-center gap-y-2 gap-x-8 text-xs font-mono text-[#8E9196]">
+        <span>SPECIFICATION VERSION: 2.1</span>
+        <span>VERIFIED ARCHITECTURE: LOCAL-FIRST</span>
+        <span>ZERO ADVERTISING TRACKERS</span>
+      </div>
 
     </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- EDITORIAL SECTIONS (01 - 09)                                        -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <main class="max-w-4xl mx-auto px-6 lg:px-8 py-16 lg:py-24 space-y-20 lg:space-y-28">
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 01 — YOUR VAULT                                                  -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="vault" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">01</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Storage Architecture</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-5">
+        Your personal library stays local.
+      </h2>
+      <div class="space-y-4 text-base text-[#5F6368] leading-relaxed max-w-3xl">
+        <p>
+          Most modern bookmarking tools copy your saves to central cloud databases to analyze your behavior, categorize your interests, and build audience segments. STASH is architected in reverse.
+        </p>
+        <p>
+          Your saved items, organized folders, recipe checklists, workout sets, and personal notes are stored directly within your device’s sandboxed local storage (<code class="font-mono text-xs bg-black/[0.04] px-1.5 py-0.5 rounded text-[#111214]">storageService.ts</code>). Downloaded media files write directly into local storage allocated to the app on your physical device.
+        </p>
+        <p>
+          If you use STASH without cloud backup, your vault data never leaves your physical phone. We operate no centralized database tracking what you read, cook, train, or save.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 02 — NO ADVERTISING PROFILE                                       -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="advertising" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">02</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Data Brokerage</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-5">
+        No ads. No behavioral tracking. No data brokerage.
+      </h2>
+      <div class="space-y-4 text-base text-[#5F6368] leading-relaxed max-w-3xl">
+        <p>
+          STASH contains zero third-party advertising SDKs, zero social graph monitors, and zero programmatic advertising pixels. 
+        </p>
+        <p>
+          Our application bundle contains only the core client runtime and native OS bridges. We do not sell, rent, license, or monetize your saved content, your search queries, or your reading habits to advertising networks, data brokers, or algorithmic aggregators.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 03 — WHAT HAPPENS WHEN YOU SAVE                                  -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="pipeline" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">03</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Data Flow</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-4">
+        What happens when you save.
+      </h2>
+      <p class="text-base text-[#5F6368] leading-relaxed mb-8 max-w-3xl">
+        Transparency means knowing exactly what data leaves your device, where it travels, and where processing takes place.
+      </p>
+
+      <!-- Visual Flow Diagram -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        
+        <div class="flow-step">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-xs font-bold text-[#FF2D55]">STEP 01</span>
+            <span class="text-[11px] font-mono text-[#8E9196] bg-black/[0.04] px-2 py-0.5 rounded">DEVICE</span>
+          </div>
+          <h3 class="text-sm font-bold text-[#111214] mb-1.5">You Paste a Public Link</h3>
+          <p class="text-xs text-[#5F6368] leading-relaxed">
+            You share or paste a publicly accessible social URL (Instagram, TikTok, YouTube, X, Reddit). No personal credentials, session cookies, or account logins are transmitted.
+          </p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-xs font-bold text-[#FF2D55]">STEP 02</span>
+            <span class="text-[11px] font-mono text-[#8E9196] bg-black/[0.04] px-2 py-0.5 rounded">NETWORK</span>
+          </div>
+          <h3 class="text-sm font-bold text-[#111214] mb-1.5">Stateless Metadata Resolution</h3>
+          <p class="text-xs text-[#5F6368] leading-relaxed">
+            The URL queries public media stream resolvers solely to retrieve publicly available metadata: title, creator handle, caption text, and stream location. The query is stateless; no user identity is logged.
+          </p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-xs font-bold text-[#FF2D55]">STEP 03</span>
+            <span class="text-[11px] font-mono text-[#8E9196] bg-black/[0.04] px-2 py-0.5 rounded">ON-DEVICE</span>
+          </div>
+          <h3 class="text-sm font-bold text-[#111214] mb-1.5">Deterministic Intelligence</h3>
+          <p class="text-xs text-[#5F6368] leading-relaxed">
+            Content parsing runs 100% on your device (<code class="font-mono text-[10px]">aiExtractor.ts</code>). Ingredient parsing, unit conversion, and workout set extraction happen locally. Your notes are never sent to remote AI APIs.
+          </p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-xs font-bold text-[#FF2D55]">STEP 04</span>
+            <span class="text-[11px] font-mono text-[#8E9196] bg-black/[0.04] px-2 py-0.5 rounded">LOCAL VAULT</span>
+          </div>
+          <h3 class="text-sm font-bold text-[#111214] mb-1.5">Persisted to Your Storage</h3>
+          <p class="text-xs text-[#5F6368] leading-relaxed">
+            Structured cards and media are committed to your device's sandboxed storage. The item is indexed locally for instant, offline search.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="p-4 rounded-xl bg-black/[0.02] border border-hairline text-xs font-mono text-[#5F6368]">
+        <strong class="text-[#111214]">ARCHITECTURAL TRUTH:</strong> At no point during saving does your device upload your personal library history, other saved cards, or identity metadata to any server.
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 04 — CREATOR & SOURCE INTEGRITY                                  -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="provenance" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">04</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Provenance</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-5">
+        We preserve where things came from.
+      </h2>
+      <div class="space-y-4 text-base text-[#5F6368] leading-relaxed max-w-3xl">
+        <p>
+          STASH is a personal indexer and offline reference tool, not an uncredited rehosting network. Every item saved into your vault permanently preserves its original attribution:
+        </p>
+
+        <!-- Provenance Card Demonstration -->
+        <div class="p-5 rounded-2xl bg-white border border-hairline font-mono text-xs space-y-2 text-[#111214] my-6">
+          <div class="flex items-center justify-between text-[#8E9196] border-b border-hairline pb-2">
+            <span>SAVED OBJECT PROVENANCE</span>
+            <span>SCHEMA: V1.0.0</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-xs">
+            <div><span class="text-[#8E9196]">Creator Handle:</span> @samseats</div>
+            <div><span class="text-[#8E9196]">Platform:</span> Instagram Reel</div>
+            <div class="sm:col-span-2 truncate"><span class="text-[#8E9196]">Canonical URL:</span> https://www.instagram.com/reel/C7...</div>
+            <div class="sm:col-span-2"><span class="text-[#8E9196]">Intended Use:</span> Personal offline indexing &amp; private reference</div>
+          </div>
+        </div>
+
+        <p>
+          STASH strips algorithmic ads and platform clutter, but strictly maintains the creator's identity and direct link back to their original work.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 05 — VAULT SECURITY                                              -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="security" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">05</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Access Controls</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-5">
+        Your device protects your vault.
+      </h2>
+      <div class="space-y-4 text-base text-[#5F6368] leading-relaxed max-w-3xl">
+        <p>
+          STASH provides optional device-level access gating to keep private collections secure:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-[#5F6368] pl-2">
+          <li>
+            <strong class="text-[#111214]">Hardware Biometrics:</strong> When enabled, biometric unlock invokes your operating system's native biometric prompt (e.g. Android <code class="font-mono text-xs">BiometricPrompt</code>). STASH never accesses, processes, or stores your fingerprint or facial geometry data.
+          </li>
+          <li>
+            <strong class="text-[#111214]">Salted PIN Access:</strong> Vault PINs are encoded and stored locally on your device with client-side salting (<code class="font-mono text-xs">vaultLockService.ts</code>). Your PIN is verified on-device and is never transmitted across the network.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 06 — YOUR DATA, YOUR EXPORT                                       -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="export" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">06</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Data Portability</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-5">
+        Take your library with you. Anytime.
+      </h2>
+      <div class="space-y-4 text-base text-[#5F6368] leading-relaxed max-w-3xl">
+        <p>
+          We believe personal knowledge should never be locked behind proprietary silos. STASH provides native, user-controlled export tools built directly into the app (<code class="font-mono text-xs">vaultBackupService.ts</code>):
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-[#5F6368] pl-2">
+          <li>
+            <strong class="text-[#111214]">Full Vault Archive (.stash):</strong> Export your complete collection, folder hierarchy, and checklists as an open, standard JSON archive.
+          </li>
+          <li>
+            <strong class="text-[#111214]">Plain-Text Export:</strong> Export individual recipes, workouts, or notes directly to standard plain-text formatted for Apple Notes, Google Keep, Notion, or Obsidian.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 07 — WHAT WE DON'T DO                                             -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="commitments" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">07</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Verified Commitments</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-6">
+        What we don't do.
+      </h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl bg-white border border-hairline flex items-start gap-3">
+          <span class="text-[#FF2D55] font-bold">✕</span>
+          <div class="text-sm text-[#5F6368] leading-snug">
+            <strong class="text-[#111214] block mb-1">No Data Brokerage</strong>
+            We do not sell, rent, or trade your personal library data.
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-white border border-hairline flex items-start gap-3">
+          <span class="text-[#FF2D55] font-bold">✕</span>
+          <div class="text-sm text-[#5F6368] leading-snug">
+            <strong class="text-[#111214] block mb-1">No Advertising Profiles</strong>
+            We do not profile your interests to serve behavioral advertisements.
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-white border border-hairline flex items-start gap-3">
+          <span class="text-[#FF2D55] font-bold">✕</span>
+          <div class="text-sm text-[#5F6368] leading-snug">
+            <strong class="text-[#111214] block mb-1">No Remote AI Training</strong>
+            Your personal notes and recipes are never uploaded to train external AI models.
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-white border border-hairline flex items-start gap-3">
+          <span class="text-[#FF2D55] font-bold">✕</span>
+          <div class="text-sm text-[#5F6368] leading-snug">
+            <strong class="text-[#111214] block mb-1">No Public Social Feed</strong>
+            Your vault is private. We do not publish your saves to a public feed.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 08 — EXTERNAL TECHNICAL DEPENDENCIES                              -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="third-party" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">08</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">Network Transparency</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-5">
+        External technical dependencies.
+      </h2>
+      <div class="space-y-4 text-base text-[#5F6368] leading-relaxed max-w-3xl">
+        <p>
+          We believe in total architectural honesty regarding external network requests:
+        </p>
+        <ul class="list-disc list-inside space-y-3 text-sm text-[#5F6368] pl-2">
+          <li>
+            <strong class="text-[#111214]">Public Media Stream Resolvers:</strong> When you submit a link, the app contacts public, stateless media resolver endpoints (such as Cobalt cluster mirrors, TikWM API for TikTok, and public embed endpoints) to resolve public media stream URLs. Only the public URL you submitted is sent.
+          </li>
+          <li>
+            <strong class="text-[#111214]">Optional Cloud Sync:</strong> If you explicitly choose to sign in with Google (<code class="font-mono text-xs">firebaseAuthService.ts</code>), your encrypted vault records synchronize with Google Cloud Firestore (<code class="font-mono text-xs">cloudSyncService.ts</code>) to protect your saves across device upgrades. If you do not sign in, this service remains inactive and 100% offline.
+          </li>
+          <li>
+            <strong class="text-[#111214]">App Store Distribution:</strong> App distribution, updates, and core runtime verification are handled by the Google Play Store and Apple App Store according to their platform terms.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider-subtle"></div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- 09 — DATA RIGHTS & PERMANENT REMOVAL                              -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <section id="deletion" class="scroll-mt-24">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="font-mono text-sm font-bold text-[#FF2D55]">09</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#8E9196]">User Control</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#111214] mb-5">
+        Your data rights &amp; permanent removal.
+      </h2>
+      <div class="space-y-4 text-base text-[#5F6368] leading-relaxed max-w-3xl">
+        <p>
+          Because your library is stored locally, you maintain direct control over its retention:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-[#5F6368] pl-2">
+          <li>
+            <strong class="text-[#111214]">Instant Item Deletion:</strong> Deleting an item or folder inside STASH immediately removes its record from local storage and deletes associated cached media files.
+          </li>
+          <li>
+            <strong class="text-[#111214]">Full Vault Reset:</strong> Clearing application data or uninstalling the app permanently removes all local databases, cached clips, and configuration files from your device.
+          </li>
+          <li>
+            <strong class="text-[#111214]">Permission Management:</strong> You can grant or revoke clipboard access, storage permissions, or notification access at any time through your operating system settings.
+          </li>
+        </ul>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-neutral-800/80 py-8 text-center text-xs text-neutral-500 bg-black px-4">
-    <p>© 2026 STASH Media Vault. All rights reserved.</p>
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- APPLE-GRADE 3-COLUMN FOOTER                                         -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <footer class="py-14 bg-[#FAFAF8] border-t border-hairline text-xs text-[#5F6368]">
+    <div class="max-w-[1380px] mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
+      
+      <!-- Brand & Summary -->
+      <div class="md:col-span-1 space-y-3">
+        <div class="flex items-center gap-2.5">
+          <img src="./assets/icon-512.png" alt="STASH" class="w-6 h-6 rounded-lg shadow-sm border border-black/[0.06] flex-shrink-0" />
+          <span class="font-bold text-[#111214] text-sm">STASH</span>
+        </div>
+        <p class="text-xs text-[#8E9196] leading-relaxed">
+          Your personal media library for the internet. Local-first, private by design.
+        </p>
+        <div class="text-[11px] font-mono text-[#8E9196] pt-2">
+          © 2026 STASH. Built for people who value what they keep.
+        </div>
+      </div>
+
+      <!-- Column 1: PRODUCT -->
+      <div class="space-y-3">
+        <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#111214]">Product</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="index.html#problem" class="hover:text-[#111214] transition-colors">The Problem</a></li>
+          <li><a href="index.html#ring" class="hover:text-[#111214] transition-colors">How It Works</a></li>
+          <li><a href="index.html#useful" class="hover:text-[#111214] transition-colors">In Action</a></li>
+          <li><a href="index.html#yours" class="hover:text-[#111214] transition-colors">Your Library</a></li>
+          <li><a href="index.html#cta" class="hover:text-[#111214] transition-colors">Early Access Download</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2: TRUST & PRIVACY -->
+      <div class="space-y-3">
+        <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#111214]">Trust &amp; Privacy</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="index.html#trust" class="hover:text-[#111214] transition-colors">Trust Philosophy</a></li>
+          <li><a href="privacy.html" class="text-[#111214] font-semibold transition-colors">Privacy Policy</a></li>
+          <li><a href="privacy.html#pipeline" class="hover:text-[#111214] transition-colors">What Happens When You Save</a></li>
+          <li><a href="privacy.html#provenance" class="hover:text-[#111214] transition-colors">Creator &amp; Source Integrity</a></li>
+          <li><a href="privacy.html#export" class="hover:text-[#111214] transition-colors">Data Portability (.stash)</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: STASH -->
+      <div class="space-y-3">
+        <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#111214]">STASH</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="index.html#hero" class="hover:text-[#111214] transition-colors">About</a></li>
+          <li><a href="mailto:privacy@stashreel.app" class="hover:text-[#111214] transition-colors">Contact Engineering</a></li>
+          <li><span class="text-[#8E9196]">Platform: Android &amp; Web</span></li>
+          <li><span class="text-[#8E9196]">Status: Active Preview</span></li>
+        </ul>
+      </div>
+
+    </div>
   </footer>
 
 </body>
