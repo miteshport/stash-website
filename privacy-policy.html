@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050608">
+  <meta name="color-scheme" content="dark">
+  <title>Privacy Policy · STASH</title>
+  <link rel="canonical" href="/privacy-policy.html">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      color: #E5E5E7;
+      background: #050608;
+    }
+    a {
+      color: #0A84FF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .header {
+      margin-bottom: 36px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255, 45, 85, 0.15);
+      color: #FF375F;
+      border: 1px solid rgba(255, 45, 85, 0.3);
+      font-weight: 700;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #8E8E93;
+    }
+    .card {
+      background: #121214;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    h2:first-of-type {
+      margin-top: 0;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #F2F2F7;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+    p {
+      margin-bottom: 14px;
+      color: #D1D1D6;
+      font-size: 15px;
+    }
+    ul, ol {
+      margin-left: 22px;
+      margin-bottom: 16px;
+      color: #D1D1D6;
+      font-size: 15px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    code {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FF375F;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .callout {
+      background: rgba(10, 132, 255, 0.08);
+      border: 1px solid rgba(10, 132, 255, 0.25);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 18px 0;
+      font-size: 14px;
+      color: #96C7FF;
+    }
+    .callout strong {
+      color: #FFFFFF;
+    }
+    footer {
+      margin-top: 48px;
+      font-size: 13px;
+      color: #636366;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="badge">Privacy Disclosure</span>
+    <h1>STASH Privacy Policy</h1>
+    <p class="subtitle">Effective Date: October 1, 2026 · Application Version: 1.2.7</p>
+  </div>
+
+  <div class="card">
+    <p>
+      STASH ("we", "our", or "the app") provides a personal media library and structured fact extraction application. This Privacy Policy describes how information is collected, used, stored, and deleted when you use the STASH mobile application.
+    </p>
+
+    <h2 id="architecture">1. Data Architecture: Local-First with Optional Cloud Synchronization</h2>
+    <p>
+      STASH is engineered with a <strong>local-first data model</strong>:
+    </p>
+    <ul>
+      <li><strong>Unauthenticated Use:</strong> If you use STASH without signing in, all stashed items, organizational folders, extracted recipes and workouts, personal notes, and preferences reside exclusively on your local device in application web storage (<code>localStorage</code>) and sandboxed local backup. In this mode, your vault data is never transmitted to STASH servers or third-party cloud databases.</li>
+      <li><strong>Authenticated Cloud Sync:</strong> If you sign in with a Google account, STASH synchronizes your vault items and custom folder metadata to <strong>Google Cloud Firestore</strong> under a dedicated user document path (<code>/vaults/{userId}</code>) so you can access your saved items across devices.</li>
+    </ul>
+
+    <h2 id="collected">2. Information Collected and Processed</h2>
+
+    <h3>A. Account & Authentication Information</h3>
+    <p>
+      When you sign in using Google Sign-In, authentication is managed via <strong>Firebase Authentication</strong>. We process:
+    </p>
+    <ul>
+      <li>Your unique Firebase / Google User ID (<code>uid</code>);</li>
+      <li>Your email address;</li>
+      <li>Your display name and profile image URL (if provided by Google);</li>
+      <li>Authentication tokens (ID token and refresh token) stored locally on your device to authorize requests to your cloud vault.</li>
+    </ul>
+    <p>
+      This information is used strictly to authenticate your identity and restrict access to your private cloud vault.
+    </p>
+
+    <h3>B. Vault Items & User Content</h3>
+    <p>
+      When you stash media or add items to STASH, the following data is processed and stored:
+    </p>
+    <ul>
+      <li><strong>Source URLs:</strong> The web links you submit (e.g. from Instagram, TikTok, YouTube, or X).</li>
+      <li><strong>Extracted Metadata:</strong> Public titles, creator handles, thumbnails, and platform indicators resolved from public URLs.</li>
+      <li><strong>Structured Facts:</strong> Deterministically parsed recipe ingredients/steps and workout exercise stations/timers extracted from public captions.</li>
+      <li><strong>User Notes & Checklists:</strong> Text notes you write in the app and completion states for recipe/workout checklist items.</li>
+      <li><strong>Folders:</strong> Custom folder names, colors, and item assignments.</li>
+    </ul>
+
+    <h3>C. Content Excluded from Cloud Synchronization</h3>
+    <p>
+      STASH strips physical device-local paths (such as <code>file://</code>, <code>blob:</code>, or sandboxed device storage directories) before synchronizing records to Firestore. Device-local cache and in-memory streams remain local to your physical device.
+    </p>
+
+    <h3>D. Media Streaming & External Links</h3>
+    <p>
+      STASH does not re-host or store original video or audio media files on central application servers. Media is streamed directly from public platform content delivery networks (CDNs) or embedded players (e.g. the YouTube IFrame player).
+    </p>
+
+    <h3>E. Device Permissions</h3>
+    <ul>
+      <li><strong>Clipboard Access:</strong> With your permission, STASH inspects the device clipboard when opened strictly to detect supported media links for 1-tap stashing. Clipboard contents are never logged, stored remotely, or transmitted to any server.</li>
+      <li><strong>Biometrics:</strong> If you enable biometric security for your Private folder, authentication is handled entirely by the operating system (Android <code>BiometricPrompt</code> API). STASH never collects, receives, or stores biometric identifiers.</li>
+      <li><strong>Storage Permissions:</strong> Requested strictly when you choose to export your vault archive files (<code>.stash</code> / <code>.json</code>) to your device's storage directory.</li>
+    </ul>
+
+    <h2 id="third-party">3. Third-Party Services</h2>
+    <p>STASH uses standard cloud and platform infrastructure:</p>
+    <ul>
+      <li><strong>Google Firebase Authentication:</strong> User authentication and identity verification.</li>
+      <li><strong>Google Cloud Firestore:</strong> Cloud document storage for cross-device vault synchronization. Access rules strictly require authenticated requests matching the user's specific UID (<code>request.auth.uid == userId</code>).</li>
+      <li><strong>YouTube Embedded Player:</strong> For playback of YouTube content within the app.</li>
+    </ul>
+    <div class="callout">
+      <strong>Notice:</strong> STASH does not contain third-party advertising SDKs, tracking pixels, or third-party analytics frameworks. Google Play Billing is not currently active; core features are provided without in-app purchases.
+    </div>
+
+    <h2 id="deletion">4. Deletion Semantics: Item Delete vs. Sign-Out vs. Account Deletion</h2>
+    <p>
+      To ensure complete transparency, STASH implements the following distinct behaviors:
+    </p>
+
+    <h3>1. Deleting an Individual Item</h3>
+    <ul>
+      <li><strong>Local Storage:</strong> The item is immediately removed from your active device vault.</li>
+      <li><strong>Cloud Storage (when signed in):</strong> To ensure the deletion propagates reliably to your other devices, Firestore marks the item with a deletion tombstone (<code>deletedAt: timestamp</code>) and clears its content payload. This tombstone is observed by your other devices to remove the item locally. The tombstone identifier remains in your user vault until account deletion.</li>
+    </ul>
+
+    <h3>2. Signing Out</h3>
+    <ul>
+      <li>Signing out clears your active vault, active folders, sync queue, and sync timestamp from active device memory and workspace.</li>
+      <li>Your data is retained in user-scoped storage on that device and in your Cloud Firestore vault. Signing back into the same Google account restores your vault. Signing out does not delete your cloud or local data.</li>
+    </ul>
+
+    <h3>3. Deleting Your Entire Account & Cloud Vault</h3>
+    <ul>
+      <li><strong>Scope of Deletion:</strong> Permanently deletes all document records in your Firestore subcollection (<code>/vaults/{uid}/items/*</code>, including all tombstones), permanently deletes your root vault document (<code>/vaults/{uid}</code>), permanently deletes your Firebase Authentication account record via Google Identity Toolkit, and purges all user-scoped vault data from your local device.</li>
+      <li><strong>Irreversibility:</strong> Once executed, your cloud vault and authentication record cannot be recovered.</li>
+      <li><strong>Failure Safety:</strong> If an error occurs while purging cloud documents, the account deletion sequence halts immediately to avoid orphaned cloud data, local data is preserved, and an error alert is presented.</li>
+    </ul>
+
+    <h2 id="request-deletion">5. How to Request Account & Data Deletion</h2>
+    <p>You can delete your account and all associated cloud data at any time through either of the following pathways:</p>
+    <ul>
+      <li><strong>In-App (Instant):</strong> Open STASH → Go to <em>Library</em> → Tap <em>Settings</em> (gear icon) → Under <em>Account</em>, tap <strong>Delete Account & Cloud Vault</strong> and confirm.</li>
+      <li><strong>Web / Without App:</strong> If you no longer have the app installed, visit our <a href="/delete-account.html">Account Deletion Portal</a> or email <code>support@stashvault.app</code> from your registered Google email address with the subject <em>"STASH Account Deletion Request"</em>. Requests are verified and processed within 5 business days.</li>
+    </ul>
+
+    <h2 id="contact">6. Contact Us</h2>
+    <p>
+      If you have questions regarding this Privacy Policy or your data, contact us at:<br>
+      <strong>Email:</strong> <a href="mailto:support@stashvault.app">support@stashvault.app</a>
+    </p>
+  </div>
+
+  <footer>
+    &copy; 2026 STASH. All rights reserved. Personal Media & Extraction Vault.
+  </footer>
+</body>
+</html>

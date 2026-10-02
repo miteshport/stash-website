@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/privacy",
+      "destination": "/privacy-policy.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy-policy.html",
+      "statusCode": 301
+    }
+  ]
+}
