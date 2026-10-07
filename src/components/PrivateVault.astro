@@ -1,0 +1,264 @@
+---
+// Section 6: BIOMETRIC PRIVACY — Ghost Folder Handover Simulator (Full-Screen Cinematic Layout)
+---
+
+<section id="privacy-vault" class="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-borderSpecular/40 overflow-hidden bg-gradient-to-b from-obsidian via-monolith/60 to-obsidian">
+  <!-- Subtle ambient glow -->
+  <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[650px] h-[350px] bg-emerald/10 rounded-full blur-[150px]"></div>
+
+  <div class="max-w-5xl mx-auto">
+    <!-- Centered Editorial Header -->
+    <div class="max-w-3xl mx-auto text-center mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald/10 border border-emerald/20 text-emerald text-xs font-mono tracking-widest uppercase">
+        <svg class="w-3.5 h-3.5 text-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        HARDWARE BIOMETRICS · GHOST FOLDERS
+      </div>
+      
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+        Some things are just yours.
+      </h2>
+      
+      <p class="text-base sm:text-lg text-neutral-400 font-light leading-relaxed max-w-2xl mx-auto">
+        When handing your phone to a friend to show a pasta recipe, your personal research shouldn’t be sitting behind an enticing padlock. With STASH <span class="text-white font-medium">Ghost Folders</span>, protected collections vanish completely from view.
+      </p>
+    </div>
+
+    <!-- Centered Full-Width Cinematic Interactive Simulator -->
+    <div class="bg-monolith/90 border border-borderSpecular rounded-3xl p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
+      
+      <!-- Top Simulator Controls Header -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 mb-8 border-b border-white/5">
+        <div class="text-center sm:text-left">
+          <div class="text-xs font-mono text-emerald tracking-wider uppercase font-semibold">Interactive Handover Stage</div>
+          <div class="text-sm font-bold text-white">Test the Ghost Folder Discretion System</div>
+        </div>
+
+        <!-- Mode Toggle Switch -->
+        <div class="inline-flex bg-surface p-1 rounded-2xl border border-white/10 text-xs shadow-inner">
+          <button 
+            id="btn-friend-mode" 
+            class="px-4 py-2 rounded-xl font-medium transition-all duration-300 bg-white/15 text-white shadow-sm flex items-center gap-2"
+            aria-label="Simulate handing phone to friend"
+          >
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+            <span>Hand to Friend</span>
+          </button>
+          <button 
+            id="btn-owner-mode" 
+            class="px-4 py-2 rounded-xl font-medium transition-all duration-300 text-neutral-400 hover:text-white flex items-center gap-2"
+            aria-label="Simulate authenticating with biometric unlock"
+          >
+            <svg class="w-3.5 h-3.5 text-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span>Unlock Vault</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Simulated Device Screen -->
+      <div class="bg-obsidian/95 rounded-2xl p-5 sm:p-8 border border-white/5 relative shadow-inner">
+        
+        <!-- Live Status Bar -->
+        <div class="flex items-center justify-between text-xs font-mono pb-4 mb-6 border-b border-white/5">
+          <span id="simulator-state-label" class="inline-flex items-center gap-2 text-amber font-medium">
+            <span class="w-2 h-2 rounded-full bg-amber animate-pulse"></span>
+            PUBLIC SAFE VIEW — Zero trace of private folders. No password prompt. Zero suspicion.
+          </span>
+          <span class="text-neutral-500 hidden sm:inline">Vault View</span>
+        </div>
+
+        <!-- 6-Folder Library Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          
+          <!-- Folder 1: Pasta -->
+          <div class="bg-surface/80 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-crimson/15 text-crimson flex items-center justify-center font-bold text-lg mb-4">
+              <svg class="w-5 h-5 text-crimson" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Pasta Mastery</div>
+              <div class="text-xs text-neutral-400 mt-0.5">14 action recipes</div>
+            </div>
+          </div>
+
+          <!-- Folder 2: Gym -->
+          <div class="bg-surface/80 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-emerald/15 text-emerald flex items-center justify-center font-bold text-lg mb-4">
+              <svg class="w-5 h-5 text-emerald" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Hypertrophy Chest</div>
+              <div class="text-xs text-neutral-400 mt-0.5">8 routine sets</div>
+            </div>
+          </div>
+
+          <!-- Folder 3: Kyoto -->
+          <div class="bg-surface/80 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-amber/15 text-amber flex items-center justify-center font-bold text-lg mb-4">
+              <svg class="w-5 h-5 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Kyoto Backstreets</div>
+              <div class="text-xs text-neutral-400 mt-0.5">22 geocoded spots</div>
+            </div>
+          </div>
+
+          <!-- Folder 4: Espresso -->
+          <div class="bg-surface/80 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center font-bold text-lg mb-4">
+              <svg class="w-5 h-5 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Espresso Extraction</div>
+              <div class="text-xs text-neutral-400 mt-0.5">6 dialed recipes</div>
+            </div>
+          </div>
+
+          <!-- Folder 5: BJJ -->
+          <div class="bg-surface/80 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all duration-200">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center font-bold text-lg mb-4">
+              <svg class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">BJJ Guard Recovery</div>
+              <div class="text-xs text-neutral-400 mt-0.5">11 video breakdowns</div>
+            </div>
+          </div>
+
+          <!-- Folder 6: GHOST PRIVATE FOLDER -->
+          <div 
+            id="ghost-folder-card" 
+            class="relative bg-emerald/10 border-2 border-emerald/40 rounded-2xl p-4 flex flex-col justify-between transition-all duration-500 overflow-hidden opacity-0 scale-95 pointer-events-none shadow-lg shadow-emerald/10"
+          >
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald/20 text-emerald flex items-center justify-center font-bold text-lg">
+                <svg class="w-5 h-5 text-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald/20 text-emerald border border-emerald/30 font-semibold uppercase">
+                Biometric
+              </span>
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Private Research</div>
+              <div class="text-xs text-emerald-300 font-mono mt-0.5">19 confidential saves</div>
+            </div>
+
+            <!-- Subtle Emerald Glow Pulse -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-emerald/10 to-transparent pointer-events-none"></div>
+          </div>
+
+        </div>
+
+        <!-- Biometric Feedback Banner -->
+        <div id="biometric-feedback" class="mt-6 p-4 rounded-xl bg-surface/60 border border-white/5 flex items-center gap-3.5 transition-all duration-300">
+          <div id="biometric-icon-wrap" class="w-8 h-8 rounded-full bg-amber/15 text-amber flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <div class="text-xs">
+            <div id="biometric-feedback-title" class="font-medium text-white">Ghost Mode Engaged</div>
+            <div id="biometric-feedback-desc" class="text-neutral-400">Locked collections are completely absent from the UI. Nothing asks for a PIN. Zero awkward questions.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Hint & Philosophy -->
+      <div class="mt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-neutral-400 px-1 border-t border-white/5 pt-4">
+        <span class="font-mono text-white font-medium">Private when you need it. Invisible when it's locked.</span>
+        <span class="text-neutral-500 text-[11px] font-mono">Device-level biometrics</span>
+      </div>
+
+    </div>
+
+    <!-- 3 Clean Horizontal Privacy Pillars Below -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+      
+      <div class="specular-box p-6 rounded-2xl space-y-2.5 text-left">
+        <div class="w-8 h-8 rounded-lg bg-emerald/10 text-emerald flex items-center justify-center font-mono font-bold text-xs border border-emerald/20">
+          01
+        </div>
+        <h3 class="text-base font-bold text-white">Zero Padlock Signposts</h3>
+        <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+          Visible padlock icons invite questions: <em>"What's in there?"</em> Ghost folders leave zero signposts. They simply do not exist until authenticated.
+        </p>
+      </div>
+
+      <div class="specular-box p-6 rounded-2xl space-y-2.5 text-left">
+        <div class="w-8 h-8 rounded-lg bg-emerald/10 text-emerald flex items-center justify-center font-mono font-bold text-xs border border-emerald/20">
+          02
+        </div>
+        <h3 class="text-base font-bold text-white">Device-Level Biometrics</h3>
+        <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+          STASH taps your phone's native security: Fingerprint, Face Unlock, and device biometrics. Your authentication never leaves your hardware.
+        </p>
+      </div>
+
+      <div class="specular-box p-6 rounded-2xl space-y-2.5 text-left">
+        <div class="w-8 h-8 rounded-lg bg-emerald/10 text-emerald flex items-center justify-center font-mono font-bold text-xs border border-emerald/20">
+          03
+        </div>
+        <h3 class="text-base font-bold text-white">Local-First Vault</h3>
+        <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+          Your saved recipes, workouts, and extracted notes stay on your device's encrypted local database—safe from third-party cloud data-mining.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Interactive Script for Ghost Folder Simulator -->
+<script is:inline>
+  (function initGhostSimulator() {
+    const btnFriend = document.getElementById('btn-friend-mode');
+    const btnOwner = document.getElementById('btn-owner-mode');
+    const ghostCard = document.getElementById('ghost-folder-card');
+    const stateLabel = document.getElementById('simulator-state-label');
+    const feedbackTitle = document.getElementById('biometric-feedback-title');
+    const feedbackDesc = document.getElementById('biometric-feedback-desc');
+    const iconWrap = document.getElementById('biometric-icon-wrap');
+
+    if (!btnFriend || !btnOwner || !ghostCard) return;
+
+    function setFriendMode() {
+      btnFriend.className = "px-4 py-2 rounded-xl font-medium transition-all duration-300 bg-white/15 text-white shadow-sm flex items-center gap-2";
+      btnOwner.className = "px-4 py-2 rounded-xl font-medium transition-all duration-300 text-neutral-400 hover:text-white flex items-center gap-2";
+
+      ghostCard.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+      ghostCard.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+
+      stateLabel.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber animate-pulse"></span> PUBLIC SAFE VIEW — Zero trace of private folders. No password prompt. Zero suspicion.';
+      stateLabel.className = 'inline-flex items-center gap-2 text-amber font-medium';
+
+      feedbackTitle.textContent = "Ghost Mode Engaged";
+      feedbackDesc.textContent = "Locked collections are completely absent from the UI. Nothing asks for a PIN. Zero awkward questions.";
+      iconWrap.className = "w-8 h-8 rounded-full bg-amber/15 text-amber flex items-center justify-center shrink-0";
+      iconWrap.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>';
+    }
+
+    function setOwnerMode() {
+      btnOwner.className = "px-4 py-2 rounded-xl font-medium transition-all duration-300 bg-emerald/20 text-emerald shadow-sm flex items-center gap-2 border border-emerald/30";
+      btnFriend.className = "px-4 py-2 rounded-xl font-medium transition-all duration-300 text-neutral-400 hover:text-white flex items-center gap-2";
+
+      ghostCard.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+      ghostCard.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+
+      stateLabel.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span> BIOMETRICS VERIFIED — Private collections unlocked.';
+      stateLabel.className = 'inline-flex items-center gap-2 text-emerald font-semibold';
+
+      feedbackTitle.textContent = "Biometrics Verified · Hardware Key Validated";
+      feedbackDesc.textContent = "Private Research collection unlocked. All action notes and original media restored.";
+      iconWrap.className = "w-8 h-8 rounded-full bg-emerald/20 text-emerald flex items-center justify-center shrink-0";
+      iconWrap.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>';
+    }
+
+    btnFriend.addEventListener('click', setFriendMode);
+    btnOwner.addEventListener('click', setOwnerMode);
+  })();
+</script>

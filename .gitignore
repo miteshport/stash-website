@@ -1,0 +1,8 @@
+node_modules/
+.astro/
+.vercel/
+*.zip
+.DS_Store
+*.backup*
+*old*
+*StashLogo.html

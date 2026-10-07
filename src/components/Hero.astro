@@ -1,0 +1,317 @@
+---
+---
+
+<section id="hero" class="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
+  <!-- Radial Specular Glow Backdrop -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_30%,rgba(255,45,85,0.12)_0%,transparent_70%)] pointer-events-none -z-10"></div>
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none"></div>
+
+  <div class="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col items-center text-center">
+    
+    <!-- Category & Availability Telemetry Badge -->
+    <div class="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] sm:text-xs text-[#E5E7EB] mb-8 font-medium max-w-full text-center">
+      <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse flex-shrink-0"></span>
+      <span class="font-mono text-[#10B981] font-bold">THE PERSONAL ACTION VAULT</span>
+      <span class="text-white/20 hidden xs:inline">·</span>
+      <span class="text-[#8E9196]">Available on Android</span>
+      <span class="text-white/20 hidden sm:inline">·</span>
+      <span class="text-[#8E9196] hidden sm:inline">Coming to iPhone</span>
+    </div>
+
+    <!-- Monumental Typography Anthem -->
+    <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-[76px] xl:text-[80px] font-black tracking-tight leading-[0.98] mb-6 max-w-5xl">
+      <span class="block text-white">The internet has a Save button.</span>
+      <span class="block text-[#FF2D55] drop-shadow-[0_0_40px_rgba(255,45,85,0.35)]">STASH is what happens next.</span>
+    </h1>
+
+    <!-- One-Sentence Core Positioning -->
+    <p class="text-base sm:text-lg md:text-xl text-[#9CA3AF] leading-relaxed max-w-2xl mb-8 font-normal">
+      Your best finds shouldn't disappear into the scroll. STASH transforms the videos, recipes, and guides you save into structured, private tools you can actually watch, follow, and use.
+    </p>
+
+    <!-- Operational Tagline -->
+    <div class="font-mono text-xs sm:text-sm tracking-wider uppercase text-white/90 mb-10 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10">
+      <span class="text-white">Save it.</span>
+      <span class="text-[#FF2D55] font-bold mx-1.5">STASH it.</span>
+      <span class="text-white">Actually use it.</span>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex flex-col sm:flex-row items-center gap-4 mb-16 w-full sm:w-auto">
+      <a href="https://play.google.com/store/apps/details?id=com.stash.mediavault" target="_blank" rel="noopener" class="btn-monolith-primary w-full sm:w-auto">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.793 12 3.61 22.186c-.37-.417-.61-.98-.61-1.616V3.43c0-.636.24-1.2.61-1.616zM15.207 13.414l2.793 2.793-12.83 7.37 10.037-10.163zM15.207 10.586L5.17 .423l12.83 7.37-2.793 2.793zM19.414 12l2.366 1.36c.828.476.828 1.254 0 1.73L19.414 12z"/></svg>
+        <span>GET STASH ON ANDROID</span>
+      </a>
+      <a href="#simulator" class="btn-monolith-ghost w-full sm:w-auto">
+        <span>TRY THE 1-TAP SAVE ↓</span>
+      </a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- SIGNATURE INTERACTION 01: THE SHARE-SHEET-TO-VAULT SIMULATOR        -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div id="simulator" class="w-full max-w-4xl mx-auto scroll-mt-24">
+      <div class="specular-box rounded-3xl p-4 sm:p-6 md:p-8 relative overflow-hidden">
+        
+        <!-- Header Telemetry of Simulator -->
+        <div class="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-6 text-left">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FF2D55] animate-ping"></span>
+            <span class="text-xs font-mono font-bold tracking-wider uppercase text-white">LIVE PREVIEW</span>
+          </div>
+          <div class="text-[11px] font-mono text-[#8E9196] flex items-center gap-2">
+            <span>STEP:</span>
+            <span id="simStepLabel" class="text-white font-bold">1 OF 3 · TAP SHARE</span>
+          </div>
+        </div>
+
+        <!-- Simulator Core Container -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <!-- Left: Narrative & Interactive Controls -->
+          <div class="md:col-span-5 text-left space-y-4">
+            <div class="inline-block telemetry-pill text-[#FF2D55] bg-[#FF2D55]/10 border-[#FF2D55]/30">
+              1-TAP CAPTURE
+            </div>
+            <h2 id="simTitle" class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
+              See it. Share it. STASH it.
+            </h2>
+            <p id="simDesc" class="text-sm text-[#9CA3AF] leading-relaxed">
+              One tap from your phone's native Share Sheet. No links to copy. No app-hopping.
+            </p>
+
+            <div class="pt-2">
+              <button id="simActionBtn" class="btn-monolith-primary w-full text-xs font-bold py-3">
+                <span>TAP SHARE ON REEL &rarr;</span>
+              </button>
+            </div>
+
+            <!-- Provenance Note -->
+            <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] font-mono text-[#8E9196] leading-relaxed">
+              <span class="text-white font-bold block mb-0.5">Native system integration:</span>
+              Works with public links from Instagram, TikTok, and YouTube Shorts.
+            </div>
+          </div>
+
+          <!-- Right: Interactive Device Viewport -->
+          <div class="md:col-span-7 flex justify-center">
+            <div class="w-full max-w-[340px] aspect-[9/18.5] rounded-[36px] bg-[#07080B] p-2.5 border border-white/20 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+              
+              <!-- Punchhole Camera Notch -->
+              <div class="absolute top-2.5 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-full z-40 border border-white/10"></div>
+
+              <!-- SCREEN STATE A: The Raw Instagram Reel -->
+              <div id="simScreenReel" class="relative w-full h-full rounded-[28px] overflow-hidden bg-black transition-opacity duration-300">
+                <img src="/assets/stash_ui_v3_potato_reel.jpg" alt="Original Reel in Feed" class="w-full h-full object-cover" />
+                
+                <!-- Simulated Social Clutter Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+                <div class="absolute bottom-16 left-3 right-12 text-left pointer-events-none">
+                  <span class="text-xs font-bold text-white block">@recipeincaption</span>
+                  <span class="text-[11px] text-white/80 line-clamp-2">Crispy Loaded Potato Skins with Garlic Butter Cream... more</span>
+                </div>
+
+                <!-- Highlighted Native Share Action Target Button -->
+                <button id="simShareTrigger" class="absolute bottom-16 right-3 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-transform shadow-lg cursor-pointer animate-bounce" title="Tap Share">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                </button>
+              </div>
+
+              <!-- SCREEN STATE B: Native Mobile Share Sheet Overlay -->
+              <div id="simScreenSheet" class="absolute inset-x-2.5 bottom-2.5 h-[65%] rounded-b-[28px] rounded-t-3xl bg-[#1C1E24]/95 backdrop-blur-xl border-t border-white/20 p-4 flex flex-col justify-between text-left transition-transform duration-300 translate-y-full z-30 shadow-2xl">
+                <div>
+                  <div class="w-10 h-1 bg-white/30 rounded-full mx-auto mb-3"></div>
+                  <div class="text-[11px] font-mono uppercase tracking-wider text-[#8E9196] mb-3">Share to</div>
+                  <div class="grid grid-cols-4 gap-2 text-center text-[10px]">
+                    <div class="flex flex-col items-center gap-1.5 opacity-40">
+                      <div class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                      </div>
+                      <span>Messages</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1.5 opacity-40">
+                      <div class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                      </div>
+                      <span>WhatsApp</span>
+                    </div>
+                    <!-- TARGET APP: STASH -->
+                    <button id="simStashShareBtn" class="flex flex-col items-center gap-1.5 group cursor-pointer animate-pulse">
+                      <div class="w-11 h-11 rounded-2xl bg-[#FF2D55] border border-white/40 flex items-center justify-center text-white shadow-lg shadow-[#FF2D55]/50 group-hover:scale-110 transition-transform">
+                        <img src="/assets/icon-512.png" alt="STASH" width="28" height="28" style="width: 28px; height: 28px; object-fit: contain;" class="w-7 h-7 rounded-lg" />
+                      </div>
+                      <span class="text-white font-bold">STASH</span>
+                    </button>
+                    <div class="flex flex-col items-center gap-1.5 opacity-40">
+                      <div class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                      </div>
+                      <span>Copy Link</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-2 rounded-xl bg-white/[0.04] border border-white/10 text-[10px] font-mono text-center text-[#10B981]">
+                  ✦ 1-Tap Save: No manual link copying
+                </div>
+              </div>
+
+              <!-- SCREEN STATE C: The Real God2 Spatial Living Chronometer -->
+              <div id="simScreenPulse" class="absolute inset-0 bg-[#000000] rounded-[28px] z-40 overflow-hidden flex flex-col items-center justify-center transition-opacity duration-300 opacity-0 pointer-events-none">
+                <iframe
+                  id="god2RingFrame"
+                  src="/god2.html?embed=1&prompt=0&loop=1"
+                  title="STASH God2 Spatial Living Chronometer"
+                  class="w-full h-full border-0 bg-transparent relative z-10"
+                  style="color-scheme: dark;"
+                  allow="autoplay">
+                </iframe>
+                <div class="absolute bottom-5 inset-x-4 z-20 pointer-events-none text-center">
+                  <div class="text-xs font-mono font-bold text-white tracking-wider uppercase mb-0.5">SAVING & STRUCTURING...</div>
+                  <div class="text-[11px] font-mono text-[#10B981]">Extracting ingredients, player & steps</div>
+                </div>
+              </div>
+
+              <!-- SCREEN STATE D: The STASH Action Vault Card -->
+              <div id="simScreenVault" class="absolute inset-0 bg-[#0B0D12] rounded-[28px] z-20 flex flex-col overflow-hidden text-left transition-opacity duration-300 opacity-0 pointer-events-none">
+                <!-- Top Docked Official Player Header -->
+                <div class="relative w-full h-36 bg-black flex-shrink-0">
+                  <img src="/assets/stash_ui_v3_potato_reel.jpg" alt="Docked Player" class="w-full h-full object-cover" />
+                  <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-[9px] font-mono text-white flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
+                    <span>OFFICIAL EMBED · MUTED</span>
+                  </div>
+                  <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[9px] font-mono text-white/90 bg-black/60 px-2 py-1 rounded">
+                    <span>0:14 / 0:45</span>
+                    <span class="text-[#10B981]">NO ALGORITHM FEED</span>
+                  </div>
+                </div>
+
+                <!-- Structured Cook Mode Checklist Body -->
+                <div class="flex-1 p-3 overflow-y-auto space-y-2 bg-[#0E1117]">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="text-xs font-bold text-white">Loaded Potato Skins</h4>
+                      <span class="text-[9px] font-mono text-[#8E9196]">@recipeincaption · Cook Mode</span>
+                    </div>
+                    <span class="text-[9px] font-mono font-bold px-2 py-0.5 rounded bg-[#10B981]/20 text-[#10B981]">23 INGREDIENTS</span>
+                  </div>
+
+                  <!-- Real Interactive Checklist Checkmarks -->
+                  <div class="space-y-1.5 pt-1 text-[11px]">
+                    <label class="flex items-center gap-2 p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] cursor-pointer hover:bg-white/[0.06] transition-colors">
+                      <input type="checkbox" checked class="accent-[#10B981] w-3.5 h-3.5 rounded" />
+                      <span class="text-white/90">4 Russet potatoes (scrubbed)</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] cursor-pointer hover:bg-white/[0.06] transition-colors">
+                      <input type="checkbox" checked class="accent-[#10B981] w-3.5 h-3.5 rounded" />
+                      <span class="text-white/90">2 tbsp melted garlic butter</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] cursor-pointer hover:bg-white/[0.06] transition-colors">
+                      <input type="checkbox" class="accent-[#10B981] w-3.5 h-3.5 rounded" />
+                      <span class="text-white/90">1 cup shredded sharp cheddar</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] cursor-pointer hover:bg-white/[0.06] transition-colors">
+                      <input type="checkbox" class="accent-[#10B981] w-3.5 h-3.5 rounded" />
+                      <span class="text-white/90">6 slices crispy bacon (crumbled)</span>
+                    </label>
+                  </div>
+
+                  <div class="pt-1">
+                    <button id="simResetBtn" class="w-full py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-[10px] transition-colors">
+                      ↺ RESET SIMULATOR
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Interactive Logic for Hero Simulator -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    let currentSimStep = 1;
+
+    const reelScreen = document.getElementById('simScreenReel');
+    const sheetOverlay = document.getElementById('simScreenSheet');
+    const pulseOverlay = document.getElementById('simScreenPulse');
+    const vaultScreen = document.getElementById('simScreenVault');
+
+    const stepLabel = document.getElementById('simStepLabel');
+    const simTitle = document.getElementById('simTitle');
+    const simDesc = document.getElementById('simDesc');
+    const actionBtn = document.getElementById('simActionBtn');
+
+    const shareTrigger = document.getElementById('simShareTrigger');
+    const stashShareBtn = document.getElementById('simStashShareBtn');
+    const resetBtn = document.getElementById('simResetBtn');
+
+    function openShareSheet() {
+      currentSimStep = 2;
+      sheetOverlay.classList.remove('translate-y-full');
+      stepLabel.textContent = '2 OF 3 · TAP STASH';
+      simTitle.textContent = 'Native Share Sheet opens.';
+      simDesc.textContent = 'One tap on STASH. No copying links. No switching apps.';
+      actionBtn.innerHTML = '<span>TAP STASH ICON &rarr;</span>';
+    }
+
+    function executeTransformation() {
+      currentSimStep = 3;
+      sheetOverlay.classList.add('translate-y-full');
+      reelScreen.classList.add('opacity-0');
+      pulseOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      stepLabel.textContent = '3 OF 3 · STRUCTURING';
+      simTitle.textContent = 'Saving to your Action Vault.';
+      simDesc.textContent = 'Ingredients checkable on your kitchen counter. Video docked and muted.';
+      actionBtn.innerHTML = '<span>STRUCTURING VAULT...</span>';
+
+      // Play real God2 Spatial Living Chronometer
+      const god2 = document.getElementById('god2RingFrame');
+      if (god2 && god2.contentWindow) {
+        god2.contentWindow.postMessage('play', '*');
+      }
+
+      setTimeout(() => {
+        pulseOverlay.classList.add('opacity-0', 'pointer-events-none');
+        vaultScreen.classList.remove('opacity-0', 'pointer-events-none');
+        stepLabel.textContent = 'SAVED · READY TO USE';
+        simTitle.textContent = 'Your Action Card is ready.';
+        simDesc.textContent = 'Ingredients checkable on your kitchen counter. Video docked and muted. Zero feed rabbit holes.';
+        actionBtn.innerHTML = '<span>SAVE COMPLETE ✓</span>';
+      }, 2200);
+    }
+
+    function resetSimulation() {
+      currentSimStep = 1;
+      const god2 = document.getElementById('god2RingFrame');
+      if (god2 && god2.contentWindow) {
+        god2.contentWindow.postMessage('stop', '*');
+      }
+      vaultScreen.classList.add('opacity-0', 'pointer-events-none');
+      pulseOverlay.classList.add('opacity-0', 'pointer-events-none');
+      reelScreen.classList.remove('opacity-0');
+      sheetOverlay.classList.add('translate-y-full');
+      stepLabel.textContent = '1 OF 3 · TAP SHARE';
+      simTitle.textContent = 'See it. Share it. STASH it.';
+      simDesc.textContent = 'One tap from your phone\'s native Share Sheet. No links to copy. No app-hopping.';
+      actionBtn.innerHTML = '<span>TAP SHARE ON REEL &rarr;</span>';
+    }
+
+    shareTrigger?.addEventListener('click', openShareSheet);
+    actionBtn?.addEventListener('click', () => {
+      if (currentSimStep === 1) openShareSheet();
+      else if (currentSimStep === 2) executeTransformation();
+      else resetSimulation();
+    });
+    stashShareBtn?.addEventListener('click', executeTransformation);
+    resetBtn?.addEventListener('click', resetSimulation);
+  });
+</script>

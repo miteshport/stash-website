@@ -1,0 +1,50 @@
+---
+// STASH Website 2.0 — Index Page
+// Assembles all 8 strategic sections in strict accordance with the Master Strategic Directive
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import RealityCheck from '../components/RealityCheck.astro';
+import NativeShareSheet from '../components/NativeShareSheet.astro';
+import ActionEngine from '../components/ActionEngine.astro';
+import MultiCategoryBreadth from '../components/MultiCategoryBreadth.astro';
+import PrivateVault from '../components/PrivateVault.astro';
+import TruthEngine from '../components/TruthEngine.astro';
+import ClosingConversion from '../components/ClosingConversion.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="STASH — Save it. STASH it. Actually use it. | The Personal Action Vault"
+  description="The internet has a Save button. STASH is what happens next. Turn saved recipes, workouts, travel guides, and tutorials from Instagram, TikTok, and YouTube into action."
+>
+  <Header />
+  
+  <main class="relative z-10">
+    <!-- Section 1: Hero & Share-Sheet Simulator -->
+    <Hero />
+
+    <!-- Section 2: The Problem / Saved-Content Black Hole -->
+    <RealityCheck />
+
+    <!-- Section 3: The 1-Tap Capture Habit -->
+    <NativeShareSheet />
+
+    <!-- Section 4: One Save, Three Tools (WATCH · SOURCE · DO) -->
+    <ActionEngine />
+
+    <!-- Section 5: Beyond Recipes (Cook · Train · Travel · Learn) -->
+    <MultiCategoryBreadth />
+
+    <!-- Section 6: PROTECT — The Personal Privacy Vault & Ghost Folders -->
+    <PrivateVault />
+
+    <!-- Section 7: SOURCE — The Truth Engine & Verbatim Notes -->
+    <TruthEngine />
+
+    <!-- Section 8: CONVERT — Closing Conversion Dock & Play Store Access -->
+    <ClosingConversion />
+  </main>
+
+  <Footer />
+</Layout>

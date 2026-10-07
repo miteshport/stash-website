@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STASH · Signature Film</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#050608;color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',sans-serif;
+  -webkit-font-smoothing:antialiased}
+body{display:flex;flex-direction:column}
+
+/* ── 4K STUDIO LIGHTING ENVIRONMENT ── */
+#stage{
+  flex:1;min-height:0;position:relative;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  /* Controlled studio ambient lighting: key light top-center, rim floor */
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 28%, rgba(255,45,85,0.038) 0%, transparent 62%),
+    radial-gradient(circle at 50% 50%, #111318 0%, #090B0E 52%, #050608 100%);
+  transition:filter 0.3s ease;
+}
+
+#stage.vacuum{
+  filter:contrast(1.15) brightness(0.68);
+}
+
+#vignette{
+  position:absolute;inset:0;pointer-events:none;z-index:30;
+  background:
+    radial-gradient(ellipse 85% 75% at 50% 50%, transparent 35%, rgba(4,5,7,0.45) 70%, rgba(2,3,4,0.92) 100%),
+    linear-gradient(180deg, rgba(6,7,9,0.3) 0%, transparent 20%, transparent 80%, rgba(4,5,7,0.7) 100%);
+}
+
+#canvasBackdrop{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:2;opacity:0.65;
+}
+
+:root { --stage-scale: 1; }
+@media (max-width: 500px) { :root { --stage-scale: 0.72; } }
+body.embed { --stage-scale: 0.68; background: transparent !important; }
+@media (max-width: 340px) { body.embed { --stage-scale: 0.58; } }
+body.embed #controls { display: none !important; }
+body.embed #stage { height: 100vh !important; flex: 1; background: transparent !important; }
+
+/* ── 3D CAMERA SYSTEM ── */
+#perspContainer{
+  position:absolute;inset:0;perspective:1100px;transform-style:preserve-3d;
+  display:flex;align-items:center;justify-content:center;z-index:5;
+  transform: scale(var(--stage-scale));
+}
+#camera3d{
+  position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  display:flex;align-items:center;justify-content:center;will-change:transform;
+}
+
+/* ── 3D VISIONOS GLASS MEDIA CARDS (REFERENCE-ACCURATE) ── */
+.glass-tile{
+  position:absolute;
+  border-radius:24px;
+  display:flex;align-items:center;justify-content:center;
+  transform-style:preserve-3d;
+  will-change:transform,opacity,filter;
+  backface-visibility:hidden;
+}
+
+/* 45° Polished chamfered bevel highlight */
+.glass-tile::before{
+  content:'';position:absolute;inset:1px;border-radius:23px;
+  background:linear-gradient(135deg, rgba(255,255,255,0.58) 0%, rgba(255,255,255,0.09) 32%, transparent 60%);
+  pointer-events:none;z-index:4;
+}
+
+/* 1. S TILE: 3D Amber / Rose-Gold Liquid Glass Squircle Core */
+#sTileWrap{
+  position:absolute;z-index:15;
+  display:flex;align-items:center;justify-content:center;
+  transform-style:preserve-3d;
+  will-change:transform,opacity;
+}
+#sTile{
+  width:94px;height:94px;border-radius:26px;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,185,120,0.45) 0%, rgba(255,75,45,0.2) 40%, transparent 70%),
+    linear-gradient(145deg, #2D1412 0%, #180B0D 45%, #0C0608 100%);
+  border:1px solid rgba(255,150,110,0.55);
+  box-shadow:
+    0 0 32px rgba(255,65,45,0.68),
+    0 0 70px rgba(255,45,85,0.32),
+    inset 0 0 20px rgba(255,115,65,0.42),
+    inset 0 1px 3px rgba(255,255,255,0.85),
+    0 24px 55px rgba(0,0,0,0.88);
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:border-color 0.1s, box-shadow 0.1s;
+}
+
+/* On 100% Vault Unlock: Snaps into radiant Emerald Green */
+#sTile.unlocked{
+  border-color:rgba(16,185,129,0.85);
+  box-shadow:
+    0 0 38px rgba(16,185,129,0.8),
+    0 0 80px rgba(16,185,129,0.4),
+    inset 0 0 24px rgba(16,185,129,0.45),
+    inset 0 1px 3px rgba(255,255,255,0.95),
+    0 24px 55px rgba(0,0,0,0.88);
+}
+#sLetter{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
+  font-size:54px;font-weight:900;line-height:1;
+  background:linear-gradient(180deg, #FFFFFF 0%, #FFB69B 30%, #FF453A 75%, #D41A3D 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 8px rgba(255,45,85,0.85));
+  transform:translateY(-1px);
+  user-select:none;
+}
+#sTile.unlocked #sLetter{
+  background:linear-gradient(180deg, #FFFFFF 0%, #B8FFD2 30%, #10B981 75%, #065F46 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 10px rgba(16,185,129,0.95));
+}
+
+/* 2. TIKTOK TILE: Cyan & Magenta Split Rim Glow */
+#tileTikTok{
+  width:84px;height:84px;
+  background:linear-gradient(145deg, #121922 0%, #0A0E14 45%, #05070A 100%);
+  border:1px solid rgba(0,242,254,0.45);
+  box-shadow:
+    -5px -5px 24px rgba(0,242,254,0.55),
+     5px  5px 24px rgba(254,44,85,0.55),
+    inset 0 0 16px rgba(0,242,254,0.2),
+    0 20px 45px rgba(0,0,0,0.82);
+}
+
+/* 3. INSTAGRAM TILE: Sunset Neon Gradient Rim */
+#tileInstagram{
+  width:84px;height:84px;
+  background:linear-gradient(145deg, #1F101A 0%, #120910 45%, #070407 100%);
+  border:1px solid rgba(253,104,58,0.5);
+  box-shadow:
+    0 0 28px rgba(225,48,108,0.65),
+    0 0 55px rgba(253,104,58,0.38),
+    inset 0 0 16px rgba(225,48,108,0.24),
+    0 20px 45px rgba(0,0,0,0.82);
+}
+
+/* 4. YOUTUBE TILE: Laser Red Neon Rim */
+#tileYouTube{
+  width:84px;height:84px;
+  background:linear-gradient(145deg, #1C0C0E 0%, #100608 45%, #070304 100%);
+  border:1px solid rgba(255,44,44,0.55);
+  box-shadow:
+    0 0 30px rgba(255,44,44,0.7),
+    0 0 60px rgba(255,44,44,0.28),
+    inset 0 0 18px rgba(255,44,44,0.28),
+    0 20px 45px rgba(0,0,0,0.82);
+}
+
+/* 5. X (TWITTER) TILE: Icy Silver/Cyan Metallic Rim */
+#tileX{
+  width:84px;height:84px;
+  background:linear-gradient(145deg, #15181E 0%, #0C0E12 45%, #060709 100%);
+  border:1px solid rgba(180,210,240,0.5);
+  box-shadow:
+    0 0 26px rgba(180,220,255,0.48),
+    0 0 48px rgba(100,160,255,0.22),
+    inset 0 0 16px rgba(255,255,255,0.18),
+    0 20px 45px rgba(0,0,0,0.82);
+}
+
+/* 6. REDDIT TILE: Radiant Neon Orange Rim */
+#tileReddit{
+  width:84px;height:84px;
+  background:linear-gradient(145deg, #1D130A 0%, #110B05 45%, #070402 100%);
+  border:1px solid rgba(255,100,30,0.55);
+  box-shadow:
+    0 0 28px rgba(255,100,30,0.7),
+    0 0 55px rgba(255,120,40,0.28),
+    inset 0 0 18px rgba(255,100,30,0.28),
+    0 20px 45px rgba(0,0,0,0.82);
+}
+
+.tile-icon{
+  width:44px;height:44px;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+  z-index:3;
+}
+
+/* ── PHYSICAL S-TILE SHAKE & RECOIL ── */
+@keyframes sJitter {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  10%  { transform: translate(-3.2px, 1.8px) rotate(-2.2deg); }
+  20%  { transform: translate(2.8px, -2.2px) rotate(1.8deg); }
+  30%  { transform: translate(-2.2px, -2.8px) rotate(-1.4deg); }
+  40%  { transform: translate(3.2px, 2.2px) rotate(2.2deg); }
+  50%  { transform: translate(-2.8px, 1.4px) rotate(-1.8deg); }
+  60%  { transform: translate(2.2px, -3.2px) rotate(1.6deg); }
+  70%  { transform: translate(-3.2px, -1.4px) rotate(-2deg); }
+  80%  { transform: translate(2.8px, 2.8px) rotate(1.8deg); }
+  90%  { transform: translate(-1.4px, -1.8px) rotate(-1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.s-chaotic { animation: sJitter 0.28s cubic-bezier(0.36,0.07,0.19,0.97) infinite; }
+.s-settling { animation: sJitter 0.52s ease-out infinite; opacity: 0.9; }
+.s-still { animation: none; transform: translate(0, 0) rotate(0deg); }
+
+/* The physical vault impact recoil (from stashreel.app / compare file) */
+@keyframes impactRecoil {
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(-4px, 3px) scale(0.96); }
+  40%  { transform: translate(3px, -3px) scale(1.02); }
+  60%  { transform: translate(-2px, -1px) scale(0.99); }
+  80%  { transform: translate(1px, 1px) scale(1.01); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.s-recoil { animation: impactRecoil 0.28s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+
+/* ── 60-TICK PRECISION CHRONOMETER BEZEL ── */
+#apertureRig{
+  position:absolute;display:flex;align-items:center;justify-content:center;
+  transform-style:preserve-3d;
+}
+#svgRing{position:absolute;overflow:visible;will-change:transform,opacity;}
+
+.bezel-track{
+  fill:none;stroke:rgba(255,255,255,0.05);stroke-width:2.5px;
+}
+.bezel-tick{
+  stroke:rgba(255,255,255,0.14);stroke-width:1.3px;stroke-linecap:round;
+  transition:stroke 0.06s, stroke-width 0.06s;
+}
+.bezel-tick.major{
+  stroke:rgba(255,255,255,0.30);stroke-width:2.0px;
+}
+.bezel-tick.active-red{
+  stroke:#FF2D55 !important;stroke-width:2.2px;
+}
+.bezel-tick.locked-green{
+  stroke:#10B981 !important;stroke-width:2.4px;
+}
+
+/* Obsidian iris disc (reveals depth as camera crosses) */
+#obsidianIris{
+  position:absolute;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%, #12141B 0%, #0B0D12 55%, #050608 100%);
+  box-shadow:0 0 75px rgba(0,0,0,0.98), inset 0 0 35px rgba(0,0,0,0.95);
+  will-change:transform,opacity;opacity:0;
+}
+
+/* ── DESTINATION: REAL STASH LIBRARY ── */
+#destOverlay{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  z-index:25;opacity:0;pointer-events:none;will-change:opacity,filter;
+}
+.libCard{
+  width:470px;max-width:88vw;
+  background:rgba(9,10,12,0.98);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:28px;
+  padding:24px 22px 22px;
+  box-shadow:0 35px 95px rgba(0,0,0,0.98), inset 0 1px 0 rgba(255,255,255,0.1);
+  box-sizing:border-box;
+}
+.libTop{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.libTitle{font-size:23px;font-weight:700;letter-spacing:-0.4px;color:#fff;}
+.libActions{display:flex;gap:15px;align-items:center;}
+.libGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
+.libTile{
+  background:#121418;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:12px 12px 10px;
+  display:flex;flex-direction:column;aspect-ratio:1.05;justify-content:space-between;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.tileTop{display:flex;align-items:flex-start;justify-content:space-between;}
+.tileDot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:2px;}
+.tileBot{display:flex;align-items:flex-end;justify-content:space-between;gap:4px;}
+.tileName{font-size:12px;font-weight:500;color:rgba(255,255,255,0.85);line-height:1.2;}
+.tileCount{font-size:11px;color:rgba(255,255,255,0.3);font-family:monospace;flex-shrink:0;}
+
+/* REAL AUTHENTIC STASH BRAND TYPOGRAPHY */
+.libFoot{
+  padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);
+  text-align:center;
+}
+.libFootBrand{
+  font-size:16px;font-weight:900;letter-spacing:0.04em;color:#FFFFFF;
+  line-height:1.2;text-transform:uppercase;
+}
+.libFootSub{
+  font-size:12px;font-weight:500;color:#10B981;margin-top:4px;
+  letter-spacing:0.02em;
+}
+.libFootNote{
+  font-size:10px;color:rgba(255,255,255,0.32);margin-top:4px;
+  letter-spacing:0.06em;text-transform:uppercase;font-family:monospace;
+}
+
+/* ── RESPONSIVE ADAPTATION FOR PHONE / EMBED VIEWPORT ── */
+@media (max-width: 480px) {
+  .libCard{
+    width:calc(100% - 20px) !important;max-width:320px !important;
+    padding:14px 12px 12px !important;border-radius:18px !important;
+  }
+  .libTop{margin-bottom:10px !important;}
+  .libTitle{font-size:18px !important;}
+  .libGrid{gap:6px !important;margin-bottom:10px !important;}
+  .libTile{border-radius:12px !important;padding:8px 8px 6px !important;}
+  .tileTop svg{width:16px !important;height:16px !important;}
+  .tileDot{width:7px !important;height:7px !important;}
+  .tileName{font-size:10px !important;}
+  .tileCount{font-size:9px !important;}
+  .libFoot{padding-top:10px !important;}
+  .libFootBrand{font-size:11px !important;letter-spacing:0.03em !important;}
+  .libFootSub{font-size:10px !important;margin-top:2px !important;}
+  .libFootNote{font-size:8px !important;margin-top:2px !important;}
+}
+body.embed .libCard{
+  width:calc(100% - 24px) !important;max-width:310px !important;
+  padding:12px 10px 10px !important;border-radius:18px !important;
+}
+body.embed .libTop{margin-bottom:8px !important;}
+body.embed .libTitle{font-size:16px !important;}
+body.embed .libGrid{gap:5px !important;margin-bottom:8px !important;}
+body.embed .libTile{border-radius:11px !important;padding:7px 6px 5px !important;}
+body.embed .tileTop svg{width:14px !important;height:14px !important;}
+body.embed .tileDot{width:6px !important;height:6px !important;}
+body.embed .tileName{font-size:9px !important;}
+body.embed .tileCount{font-size:8px !important;}
+body.embed .libFoot{padding-top:8px !important;}
+body.embed .libFootBrand{font-size:10px !important;letter-spacing:0.03em !important;}
+body.embed .libFootSub{font-size:9px !important;margin-top:2px !important;}
+body.embed .libFootNote{font-size:7px !important;margin-top:2px !important;}
+
+/* ── BOTTOM HUD & TIMELINE CONTROLS ── */
+#controls{
+  flex-shrink:0;padding:14px 24px 20px;
+  border-top:1px solid rgba(255,255,255,0.065);background:rgba(8,9,12,0.99);
+  display:flex;flex-direction:column;gap:11px;z-index:40;
+}
+#fInfo{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+#fName{font-size:13px;font-weight:700;color:rgba(255,255,255,0.92);letter-spacing:0.02em;}
+#fDesc{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5;margin-top:3px;max-width:620px;}
+.hud-btn-wrap{display:flex;align-items:center;gap:8px;}
+.hud-btn{
+  padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.7);cursor:pointer;transition:all 0.16s ease;
+  user-select:none;display:flex;align-items:center;gap:5px;
+}
+.hud-btn:hover{background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.2);}
+.hud-btn.active{background:rgba(16,185,129,0.15);border-color:#10B981;color:#10B981;}
+
+#scrubRow{display:flex;align-items:center;gap:14px;}
+#scrubSlider{
+  flex:1;-webkit-appearance:none;height:3px;border-radius:2px;
+  background:rgba(255,255,255,0.12);outline:none;cursor:pointer;
+}
+#scrubSlider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:15px;height:15px;border-radius:50%;
+  background:#FFFFFF;border:2px solid #10B981;
+  box-shadow:0 0 10px rgba(16,185,129,0.8);cursor:pointer;
+}
+#sVal{font-size:11px;font-family:monospace;color:#10B981;font-weight:700;width:55px;text-align:right;}
+#pills{display:flex;gap:6px;flex-wrap:wrap;}
+.pill{
+  display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.03);
+  color:rgba(255,255,255,0.42);font-size:11px;font-family:'SF Mono',monospace;
+  cursor:pointer;transition:all .14s ease;user-select:none;white-space:nowrap;
+}
+.pill:hover{border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.06);}
+.pill.on{border-color:#10B981;background:rgba(16,185,129,0.12);color:#fff;}
+.pill-n{font-size:9px;color:rgba(16,185,129,0.6);}
+.pill.on .pill-n{color:#10B981;font-weight:700;}
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <!-- Dynamic ambient dust canvas -->
+  <canvas id="canvasBackdrop"></canvas>
+
+  <div id="perspContainer">
+    <div id="camera3d">
+
+      <!-- 5 VISIONOS 3D GLASS MEDIA CARDS -->
+      <div id="tileTikTok" class="glass-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="#FFFFFF">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.05a8.27 8.27 0 004.84 1.55V7.15a4.85 4.85 0 01-1.07-.46z"/>
+        </svg>
+      </div>
+
+      <div id="tileInstagram" class="glass-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="6"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="#FFFFFF" stroke="none"/>
+        </svg>
+      </div>
+
+      <div id="tileYouTube" class="glass-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24">
+          <rect x="2" y="4.5" width="20" height="15" rx="5" fill="#FF0033"/>
+          <polygon points="10,8 16,12 10,16" fill="#FFFFFF"/>
+        </svg>
+      </div>
+
+      <div id="tileX" class="glass-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="#FFFFFF">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.261 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </div>
+
+      <div id="tileReddit" class="glass-tile">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="#FF4500">
+          <circle cx="12" cy="12" r="10" fill="#FF4500"/>
+          <path d="M16.5 13.5c0-.8-.7-1.5-1.5-1.5-.4 0-.8.2-1.1.4-1-.7-2.3-1.1-3.8-1.2l.6-3 2.1.4c0 .6.5 1 1.1 1 .6 0 1.2-.5 1.2-1.2 0-.6-.5-1.2-1.2-1.2-.5 0-1 .4-1.1.9l-2.4-.5c-.1 0-.3.1-.3.2l-.8 3.6c-1.5.1-2.9.5-3.9 1.2-.3-.3-.7-.4-1.1-.4-.8 0-1.5.7-1.5 1.5 0 .6.3 1.1.8 1.3 0 .2 0 .4 0 .6 0 2.4 2.7 4.3 6 4.3s6-1.9 6-4.3c0-.2 0-.4 0-.6.5-.2.8-.7.8-1.3zm-7.8.8c.4 0 .8.4.8.8 0 .4-.4.8-.8.8s-.8-.4-.8-.8c0-.4.4-.8.8-.8zm4.7 2.7c-.6.6-1.8.6-2.4.6s-1.8 0-2.4-.6c-.1-.1-.1-.3 0-.4.1-.1.3-.1.4 0 .4.4 1.4.5 2 .5.6 0 1.6-.1 2-.5.1-.1.3-.1.4 0 .1.1.1.3 0 .4zm-.1-1.9c-.4 0-.8-.4-.8-.8 0-.4.4-.8.8-.8s.8.4.8.8c0 .4-.4.8-.8.8z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+
+      <!-- 60-TICK PRECISION CHRONOMETER BEZEL & APERTURE RING -->
+      <div id="apertureRig">
+        <svg id="svgRing" width="400" height="400" viewBox="0 0 400 400" fill="none" overflow="visible">
+          <defs>
+            <filter id="aGlow" x="-35%" y="-35%" width="170%" height="170%">
+              <feGaussianBlur stdDeviation="5.5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="auraF" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="15"/>
+            </filter>
+          </defs>
+
+          <!-- Outer Housing Track -->
+          <circle class="bezel-track" cx="200" cy="200" r="168" />
+          
+          <!-- 60 Laser-Etched Horological Bezel Ticks -->
+          <g id="bezelTicks"></g>
+
+          <!-- Soft Aura Glow -->
+          <circle id="auraArc" cx="200" cy="200" r="168"
+            stroke="rgba(255,45,85,0.35)" stroke-width="10" fill="none"
+            filter="url(#auraF)"
+            stroke-dasharray="1055.6" stroke-dashoffset="1055.6"
+            transform="rotate(-90 200 200)" opacity="0"/>
+
+          <!-- Active Clocking Arc (Red Sweeping -> Snaps to Emerald Green #10B981) -->
+          <circle id="causticArc" cx="200" cy="200" r="168"
+            stroke="#FF2D55" stroke-width="3.2" stroke-linecap="round" fill="none"
+            filter="url(#aGlow)"
+            stroke-dasharray="1055.6" stroke-dashoffset="1055.6"
+            transform="rotate(-90 200 200)"/>
+        </svg>
+
+        <!-- Obsidian iris disc (dilates open during camera crossing) -->
+        <div id="obsidianIris"></div>
+
+        <!-- S Core Squircle (Chaotic micro-jitter -> Stillness -> Physical recoil lock) -->
+        <div id="sTileWrap">
+          <div id="sTile" class="s-chaotic">
+            <div id="sLetter">S</div>
+          </div>
+        </div>
+
+      </div><!-- /apertureRig -->
+
+    </div><!-- /camera3d -->
+  </div><!-- /perspContainer -->
+
+  <!-- DESTINATION: REAL STASH LIBRARY OVERLAY -->
+  <div id="destOverlay">
+    <div class="libCard">
+      <div class="libTop">
+        <span class="libTitle">Library</span>
+        <div class="libActions">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6"/><line x1="12" y1="18" x2="12" y2="12"/>
+            <line x1="9" y1="15" x2="15" y2="15"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Real STASH App Grid -->
+      <div class="libGrid">
+        <div class="libTile">
+          <div class="tileTop">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            <div class="tileDot" style="background:#E1306C;box-shadow:0 0 7px rgba(225,48,108,0.7)"></div>
+          </div>
+          <div class="tileBot"><span class="tileName">Instagram</span><span class="tileCount">1</span></div>
+        </div>
+
+        <div class="libTile">
+          <div class="tileTop">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon fill="rgba(255,255,255,0.85)" stroke="none" points="9.75,15.02 15.5,12 9.75,8.98"/>
+            </svg>
+            <div class="tileDot" style="background:#FF3C3C;box-shadow:0 0 7px rgba(255,44,44,0.7)"></div>
+          </div>
+          <div class="tileBot"><span class="tileName">YouTube</span><span class="tileCount">0</span></div>
+        </div>
+
+        <div class="libTile">
+          <div class="tileTop">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.05a8.27 8.27 0 004.84 1.55V7.15a4.85 4.85 0 01-1.07-.46z"/>
+            </svg>
+            <div class="tileDot" style="background:#00C2CB;box-shadow:0 0 7px rgba(0,194,203,0.7)"></div>
+          </div>
+          <div class="tileBot"><span class="tileName">TikTok</span><span class="tileCount">0</span></div>
+        </div>
+
+        <div class="libTile">
+          <div class="tileTop">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.261 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <div class="tileDot" style="background:rgba(255,255,255,0.75);box-shadow:0 0 6px rgba(255,255,255,0.3)"></div>
+          </div>
+          <div class="tileBot"><span class="tileName">X (Twitter)</span><span class="tileCount">0</span></div>
+        </div>
+
+        <div class="libTile">
+          <div class="tileTop">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            <div class="tileDot" style="background:#F7B731;box-shadow:0 0 7px rgba(247,183,49,0.7)"></div>
+          </div>
+          <div class="tileBot"><span class="tileName">Quick Notes</span><span class="tileCount">0</span></div>
+        </div>
+
+        <div class="libTile">
+          <div class="tileTop">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            <div class="tileDot" style="background:#4A6CF7;box-shadow:0 0 7px rgba(74,108,247,0.7)"></div>
+          </div>
+          <div class="tileBot"><span class="tileName">Links</span><span class="tileCount">0</span></div>
+        </div>
+      </div>
+
+      <!-- AUTHENTIC STASH BRAND TYPOGRAPHY -->
+      <div class="libFoot">
+        <div class="libFootBrand">SAVE IT. STASH IT. ACTUALLY USE IT.</div>
+        <div class="libFootSub">Your personal media library.</div>
+        <div class="libFootNote">A tool, not another feed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAP RING TO ACTIVATE PROMPT -->
+  <div id="embedPlayPrompt" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:45;display:none;pointer-events:none;text-align:center;">
+    <div style="padding:8px 18px;border-radius:24px;background:rgba(0,0,0,0.85);border:1px solid rgba(255,45,85,0.6);color:#fff;font-size:11px;font-family:monospace;letter-spacing:0.05em;box-shadow:0 0 25px rgba(255,45,85,0.4);display:flex;align-items:center;gap:8px;">
+      <span style="color:#FF2D55;font-size:13px;">▶</span><span>Tap Ring to Stash</span>
+    </div>
+  </div>
+
+  <!-- EMBED AUDIO BUTTON (Active only when embedded inside phone frame) -->
+  <div id="embedAudioHint" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:40;display:none;">
+    <button id="embedAudioBtn" style="padding:5px 14px;border-radius:20px;background:rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:10px;font-family:monospace;cursor:pointer;display:flex;align-items:center;gap:6px;backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(0,0,0,0.6);">
+      <span id="embedAudioIcon">🔊</span><span id="embedAudioText">Sound On · Tactile Glass</span>
+    </button>
+  </div>
+
+  <div id="vignette"></div>
+</div><!-- /stage -->
+
+<!-- CONTROLS HUD -->
+<div id="controls">
+  <div id="fInfo">
+    <div>
+      <div id="fName">01 · The Drift (0.0s)</div>
+      <div id="fDesc">Five 3D VisionOS glass cards float quietly. 60-tick chronometer begins clocking in Ruby Red. The S core vibrates with magnetic instability.</div>
+    </div>
+    <div class="hud-btn-wrap">
+      <button class="hud-btn active" id="playBtn">⏸ Pause</button>
+      <button class="hud-btn active" id="audioBtn">🔊 Audio On</button>
+      <div id="keyHint" style="font-size:10px;color:rgba(255,255,255,0.3);font-family:monospace;padding:5px 9px;border:1px solid rgba(255,255,255,0.08);border-radius:6px;">← → / Space / R</div>
+    </div>
+  </div>
+  <div id="scrubRow">
+    <input type="range" id="scrubSlider" min="0" max="6000" step="10" value="0">
+    <div id="sVal">0.00s</div>
+  </div>
+  <div id="pills"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+//  STASH · SIGNATURE BRAND FILM
+//  2.9s Ticks Cut Dead · 2.9–3.3s Absolute Silence & Freeze
+//  3.3s Tactile Glass Snap (Apple Pay Chime) · Calm Resolution
+// ══════════════════════════════════════════════════════════════════
+
+const TOTAL_MS = 6000;
+
+const KF = [
+  {n:'01', ms: 0,    sec:'0.0s',  name:'The Drift',
+   desc:'Five VisionOS 3D glass media cards float quietly in dark space. 60-tick chronometer begins clocking in Ruby Red. S core has magnetic micro-jitter.'},
+  {n:'02', ms: 1400, sec:'1.4s',  name:'Active Processing',
+   desc:'The red arc clocks smoothly through the ticks. Escapement clicks pulse with precision.'},
+  {n:'03', ms: 2200, sec:'2.2s',  name:'Gravitational Pull',
+   desc:'Cards tilt on Z-axis and accelerate inward toward the S. Clocking frequency accelerates.'},
+  {n:'04', ms: 2900, sec:'2.9s',  name:'Silence & Visual Freeze',
+   desc:'2.9s: All ratchet/ticking cuts dead. Visual system freezes in mid-air at 97%. 400ms absolute silence. No audio tails, no reverb.'},
+  {n:'05', ms: 3300, sec:'3.3s',  name:'THE LOCK IMPACT',
+   desc:'3.3s: SNAP! Instant Emerald Green. Tactile Glass Chime (Apple Pay). Ascending crystal bell with micro-haptic tap into calm.'},
+  {n:'06', ms: 3800, sec:'3.8s',  name:'Luminous Aperture',
+   desc:'Green energy expands into an optical threshold. Obsidian lens dilates organically open.'},
+  {n:'07', ms: 4400, sec:'4.4s',  name:'Camera Crossing',
+   desc:'Camera dollies through the green aperture into quiet clarity.'},
+  {n:'08', ms: 5200, sec:'5.2s',  name:'Arrival: STASH Library',
+   desc:'Camera enters the real STASH Library grid. Clean dark platform tiles. Verified Vault.'},
+  {n:'09', ms: 6000, sec:'6.0s',  name:'Save it. Stash it.',
+   desc:'Absolute stillness. SAVE IT. STASH IT. ACTUALLY USE IT. Everything you care about in one private place.'},
+];
+
+const ARC = 1055.6; // 2 * PI * 168
+let cur = 0;
+let isPlaying = true;
+let playRaf = null;
+let lastTime = null;
+let audioEnabled = true;
+
+// DOM Elements
+const stageEl    = document.getElementById('stage');
+const cam        = document.getElementById('camera3d');
+const svgR       = document.getElementById('svgRing');
+const caustic    = document.getElementById('causticArc');
+const aura       = document.getElementById('auraArc');
+const iris       = document.getElementById('obsidianIris');
+const sTileWrap  = document.getElementById('sTileWrap');
+const sTile      = document.getElementById('sTile');
+const destOv     = document.getElementById('destOverlay');
+const fName      = document.getElementById('fName');
+const fDesc      = document.getElementById('fDesc');
+const pills      = document.getElementById('pills');
+const slider     = document.getElementById('scrubSlider');
+const sValEl     = document.getElementById('sVal');
+const playBtn        = document.getElementById('playBtn');
+const audioBtn       = document.getElementById('audioBtn');
+const bezelTicks     = document.getElementById('bezelTicks');
+
+const tiles = {
+  TikTok:    document.getElementById('tileTikTok'),
+  Instagram: document.getElementById('tileInstagram'),
+  YouTube:   document.getElementById('tileYouTube'),
+  X:         document.getElementById('tileX'),
+  Reddit:    document.getElementById('tileReddit'),
+};
+
+const TILE_COORDS = {
+  TikTok:    {x: -280, y: -160, z: -50, rx: 12, ry: -14, rz: 4},
+  Instagram: {x:  270, y: -150, z:  40, rx: -10, ry: 15, rz: -6},
+  YouTube:   {x: -260, y:  140, z: -70, rx: 14, ry: -12, rz: 3},
+  X:         {x:   90, y:  220, z:  20, rx: -8, ry: 10, rz: -4},
+  Reddit:    {x:  300, y:  110, z: -30, rx: 10, ry: 12, rz: 5},
+};
+
+// Generate the 60 precision horological bezel ticks
+const tickElements = [];
+for (let i = 0; i < 60; i++) {
+  const rad = ((i * 6) * Math.PI) / 180;
+  const isMajor = (i % 5 === 0);
+  const r1 = 175, r2 = isMajor ? 186 : 181;
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.setAttribute('x1', (200 + r1 * Math.cos(rad)).toFixed(2));
+  line.setAttribute('y1', (200 + r1 * Math.sin(rad)).toFixed(2));
+  line.setAttribute('x2', (200 + r2 * Math.cos(rad)).toFixed(2));
+  line.setAttribute('y2', (200 + r2 * Math.sin(rad)).toFixed(2));
+  line.setAttribute('class', 'bezel-tick' + (isMajor ? ' major' : ''));
+  bezelTicks.appendChild(line);
+  tickElements.push(line);
+}
+
+// Particle backdrop
+const canvasBackdrop = document.getElementById('canvasBackdrop');
+const ctx = canvasBackdrop.getContext('2d');
+let particles = [];
+function resizeCanvas() {
+  canvasBackdrop.width = stageEl.clientWidth;
+  canvasBackdrop.height = stageEl.clientHeight;
+  particles = [];
+  for (let i = 0; i < 50; i++) {
+    particles.push({
+      x: Math.random() * canvasBackdrop.width,
+      y: Math.random() * canvasBackdrop.height,
+      r: Math.random() * 1.5 + 0.4,
+      alpha: Math.random() * 0.35 + 0.1,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25
+    });
+  }
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function drawParticles(isFrozen = false) {
+  ctx.clearRect(0, 0, canvasBackdrop.width, canvasBackdrop.height);
+  particles.forEach(p => {
+    if (!isFrozen) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvasBackdrop.width;
+      if (p.x > canvasBackdrop.width) p.x = 0;
+      if (p.y < 0) p.y = canvasBackdrop.height;
+      if (p.y > canvasBackdrop.height) p.y = 0;
+    }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = isFrozen ? `rgba(255,255,255,${p.alpha * 0.2})` : `rgba(255,255,255,${p.alpha})`;
+    ctx.fill();
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════
+// WEB AUDIO SYNTHESIS: PRECISION ESCAPEMENT + DISTINCTIVE LATCH IMPACT
+// TUNED FOR PHONE SPEAKERS AND HEADPHONES
+// ZERO MUSIC · ZERO CHORDS · ZERO PITCH-SWEEP CHIRPS
+// ══════════════════════════════════════════════════════════════════
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let actx = null;
+function initAudio() {
+  if (!actx) actx = new AudioContext();
+  if (actx.state === 'suspended') actx.resume();
+}
+
+// Unlock audio context on any user interaction
+['pointerdown', 'keydown', 'touchstart'].forEach(evt => {
+  window.addEventListener(evt, () => initAudio(), { passive: true });
+});
+
+// 1. Horological Escapement Ratchet Tick (Microsecond precision click)
+function playRatchetTick() {
+  if (!audioEnabled || !actx) return;
+  const now = actx.currentTime;
+
+  const clickLen = Math.floor(actx.sampleRate * 0.0022); // 2.2ms impulse
+  const buf = actx.createBuffer(1, clickLen, actx.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < clickLen; i++) {
+    data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (clickLen * 0.28));
+  }
+  const noise = actx.createBufferSource();
+  noise.buffer = buf;
+
+  const bp = actx.createBiquadFilter();
+  bp.type = 'bandpass';
+  bp.frequency.setValueAtTime(3500, now);
+  bp.Q.setValueAtTime(5.5, now);
+
+  const g = actx.createGain();
+  g.gain.setValueAtTime(0.042, now);
+  g.gain.exponentialRampToValueAtTime(0.0001, now + 0.003);
+
+  noise.connect(bp);
+  bp.connect(g);
+  g.connect(actx.destination);
+  noise.start(now);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 2. SIGNATURE LOCK SOUND: TACTILE GLASS (APPLE PAY CHIME)
+// Delicate micro-tactile switch tap (2.5ms @ 2900Hz) instantly
+// blooming into an ascending crystalline chime: A6 (1760Hz) -> E7 (2637Hz)
+// ══════════════════════════════════════════════════════════════════
+function playLockSound() {
+  if (!audioEnabled || !actx) return;
+  const now = actx.currentTime;
+
+  // 1. Delicate micro-tactile switch tap (subtle 2.5ms physical feedback)
+  const clickLen = Math.floor(actx.sampleRate * 0.003);
+  const clickBuf = actx.createBuffer(1, clickLen, actx.sampleRate);
+  const cData = clickBuf.getChannelData(0);
+  for (let i = 0; i < clickLen; i++) {
+    cData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (clickLen * 0.25));
+  }
+  const click = actx.createBufferSource();
+  click.buffer = clickBuf;
+  const bp = actx.createBiquadFilter();
+  bp.type = 'bandpass';
+  bp.frequency.setValueAtTime(2900, now);
+  bp.Q.setValueAtTime(4.0, now);
+  const cg = actx.createGain();
+  cg.gain.setValueAtTime(0.35, now);
+  cg.gain.exponentialRampToValueAtTime(0.0001, now + 0.003);
+  click.connect(bp);
+  bp.connect(cg);
+  cg.connect(actx.destination);
+  click.start(now);
+
+  // 2. Ascending crystalline chime: A6 (1760 Hz) -> E7 (2637 Hz)
+  const chimes = [
+    { freq: 1760.0, time: 0.002, vol: 0.50, decay: 0.60, type: 'sine' },      // A6 bell
+    { freq: 2637.0, time: 0.038, vol: 0.55, decay: 0.70, type: 'sine' },      // E7 crystal
+    { freq: 3520.0, time: 0.038, vol: 0.16, decay: 0.30, type: 'sine' },      // High sparkle
+    { freq: 440.0,  time: 0.005, vol: 0.28, decay: 0.50, type: 'triangle' }   // Subtle warm body A4
+  ];
+
+  chimes.forEach(c => {
+    const osc = actx.createOscillator();
+    const g = actx.createGain();
+    osc.type = c.type;
+    osc.frequency.setValueAtTime(c.freq, now + c.time);
+
+    g.gain.setValueAtTime(0.0001, now + c.time);
+    g.gain.linearRampToValueAtTime(c.vol, now + c.time + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + c.time + c.decay);
+
+    osc.connect(g);
+    g.connect(actx.destination);
+    osc.start(now + c.time);
+    osc.stop(now + c.time + c.decay + 0.05);
+  });
+}
+
+let hasPlayedLockSound = false;
+
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const lerp  = (a, b, t) => a + (b - a) * clamp(t, 0, 1);
+const eOut  = t => 1 - Math.pow(1 - t, 2.6);
+const eIn   = t => Math.pow(t, 2.2);
+const eIO   = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+
+let lastTickIndex = -1;
+
+// ── MASTER RENDER LOOP (6.0 SECONDS) ──
+function render(ms) {
+  const t = clamp(ms, 0, TOTAL_MS);
+
+  // ══════════════════════════════════════════════════════════════════
+  // TIMELINE ARCHITECTURE (CHAOS → SILENCE → PHYSICAL LOCK → CALM)
+  // 0.0s – 1.8s: The Drift (ambient cards, S micro-jitter, slow clocking)
+  // 1.8s – 2.9s: Convergence (accelerating clocking, cards pull inward)
+  // 2.9s – 3.3s: THE VACUUM (400ms ABSOLUTE SILENCE & VISUAL FREEZE)
+  // 3.3s       : THE LOCK IMPACT (Snap to Emerald Green, Recoil, Latch)
+  // 3.3s – 6.0s: CALM (Luminous aperture, dolly into real STASH library)
+  // ══════════════════════════════════════════════════════════════════
+
+  const isVacuum = (t >= 2900 && t < 3300);
+  stageEl.classList.toggle('vacuum', isVacuum);
+
+  // ── A. 3D CAMERA Z-DOLLY ──
+  let cZ = 0;
+  if      (t < 3300) cZ = 0;
+  else if (t < 4300) cZ = lerp(0, 120, eIn((t - 3300) / 1000));
+  else if (t < 5300) cZ = lerp(120, 520, eIn((t - 4300) / 1000));
+  else if (t < 5900) cZ = lerp(520, 950, eIO((t - 5300) / 600));
+  else               cZ = 950;
+  cam.style.transform = `translate3d(0, 0, ${cZ.toFixed(1)}px)`;
+
+  // ── B. 5 VISIONOS GLASS CARDS CONVERGENCE ──
+  let pull = 0, fOp = 0.95;
+  if (t < 1800) {
+    pull = 0;
+    fOp = 0.95;
+  } else if (t < 2900) {
+    const p = (t - 1800) / 1100;
+    pull = Math.pow(p, 1.45);
+    fOp = lerp(0.95, 0.4, p);
+  } else if (t < 3300) {
+    // 2.9s–3.3s: 400ms Vacuum Freeze: completely static in space at 97%
+    pull = 0.97;
+    fOp = 0.4;
+  } else {
+    // 3.3s+: absorbed into S core
+    pull = 1.0;
+    fOp = 0;
+  }
+
+  const inv = 1 - pull;
+  const fscale = clamp(1.0 - pull * 0.92, 0.08, 1.0);
+
+  Object.keys(TILE_COORDS).forEach(key => {
+    const el = tiles[key];
+    const c = TILE_COORDS[key];
+    const curX = c.x * inv;
+    const curY = c.y * inv;
+    const curZ = c.z * inv;
+    const curRx = c.rx * inv;
+    const curRy = c.ry * inv;
+    const curRz = c.rz * inv;
+    el.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, ${curZ.toFixed(1)}px) rotateX(${curRx.toFixed(1)}deg) rotateY(${curRy.toFixed(1)}deg) rotateZ(${curRz.toFixed(1)}deg) scale(${fscale.toFixed(3)})`;
+    el.style.opacity = fOp.toFixed(3);
+  });
+
+  // ── C. 60-TICK CHRONOMETER & CAUSTIC ARC ──
+  let clockProgress = 0;
+  let isGreen = false;
+
+  if (t < 1800) {
+    clockProgress = (t / 1800) * 0.15;
+    isGreen = false;
+  } else if (t < 2900) {
+    clockProgress = 0.15 + ((t - 1800) / 1100) * 0.82;
+    isGreen = false;
+  } else if (t < 3300) {
+    // 2.9s–3.3s: 400ms DEAD SILENCE VACUUM - frozen at tick 58 (97%)
+    clockProgress = 0.97;
+    isGreen = false;
+  } else {
+    // 3.3s+: 100% full closure + INSTANT SNAP TO GREEN (#10B981)
+    clockProgress = 1.0;
+    isGreen = true;
+  }
+
+  const currentActiveTick = Math.floor(clockProgress * 60);
+
+  // Play ratchet sound ONLY during active clocking (t < 2900ms)
+  // During vacuum (2900ms - 3300ms): TOTAL ABSOLUTE SILENCE - NO TAILS, NO REVERB
+  if (t < 2900 && currentActiveTick !== lastTickIndex && currentActiveTick > 0) {
+    lastTickIndex = currentActiveTick;
+    playRatchetTick();
+  }
+
+  // Update ticks styling
+  tickElements.forEach((el, i) => {
+    if (isGreen) {
+      el.className.baseVal = 'bezel-tick locked-green';
+    } else if (i <= currentActiveTick) {
+      el.className.baseVal = 'bezel-tick active-red';
+    } else {
+      el.className.baseVal = 'bezel-tick' + (i % 5 === 0 ? ' major' : '');
+    }
+  });
+
+  // Arc stroke offset
+  const curOffset = ARC * (1 - clockProgress);
+  caustic.setAttribute('stroke-dashoffset', curOffset.toFixed(1));
+  aura.setAttribute('stroke-dashoffset', curOffset.toFixed(1));
+
+  if (isGreen) {
+    caustic.setAttribute('stroke', '#10B981');
+    caustic.setAttribute('stroke-width', '3.8');
+    aura.setAttribute('stroke', 'rgba(16,185,129,0.45)');
+  } else {
+    caustic.setAttribute('stroke', '#FF2D55');
+    caustic.setAttribute('stroke-width', '3.2');
+    aura.setAttribute('stroke', 'rgba(255,45,85,0.35)');
+  }
+
+  // Hide ring as camera crosses
+  let ringOpacity = 1.0;
+  if (t >= 4800 && t < 5400) {
+    ringOpacity = lerp(1.0, 0.0, (t - 4800) / 600);
+  } else if (t >= 5400) {
+    ringOpacity = 0;
+  }
+  svgR.style.opacity = ringOpacity.toFixed(3);
+
+  // ── D. S TILE DYNAMICS: Jitter -> Settle -> Freeze -> Recoil Snap ──
+  if (t < 1800) {
+    sTile.className = 's-chaotic';
+    sTile.classList.remove('unlocked');
+  } else if (t < 2900) {
+    sTile.className = 's-settling';
+    sTile.classList.remove('unlocked');
+  } else if (t < 3300) {
+    // 2.9s–3.3s: Frozen dead still
+    sTile.className = 's-still';
+    sTile.classList.remove('unlocked');
+  } else {
+    // 3.3s+ : SNAP LOCK IMPACT
+    sTile.className = 's-still unlocked';
+    if (!hasPlayedLockSound) {
+      sTile.classList.add('s-recoil');
+      playLockSound();
+      hasPlayedLockSound = true;
+    }
+  }
+
+  if (t < 3200) {
+    hasPlayedLockSound = false;
+  }
+
+  // Fade S tile as camera enters
+  let sOp = 1.0;
+  if      (t < 4200) sOp = 1.0;
+  else if (t < 5000) sOp = lerp(1.0, 0.0, (t - 4200) / 800);
+  else               sOp = 0.0;
+  sTileWrap.style.opacity = sOp.toFixed(3);
+
+  // ── E. OBSIDIAN IRIS DILATION ──
+  let isc = 1.0, iOp = 0;
+  if      (t < 3300) { isc = 1.0; iOp = 0; }
+  else if (t < 4100) { const p = (t - 3300) / 800; isc = lerp(1.0, 1.25, eOut(p)); iOp = lerp(0, 1, eOut(p)); }
+  else if (t < 5100) { const p = (t - 4100) / 1000; isc = lerp(1.25, 5.5, eIn(p)); iOp = lerp(1, 0, eIn(p)); }
+  else               { isc = 5.5; iOp = 0; }
+  iris.style.transform = `scale(${isc.toFixed(4)})`;
+  iris.style.opacity = iOp.toFixed(3);
+
+  // ── F. DESTINATION: REAL STASH LIBRARY ──
+  let dOp = 0, dBlur = 28;
+  if      (t < 4100) { dOp = 0; dBlur = 28; }
+  else if (t < 5100) { const p = (t - 4100) / 1000; dOp = lerp(0, 0.65, eOut(p)); dBlur = lerp(28, 6, p); }
+  else if (t < 5700) { const p = (t - 5100) / 600;  dOp = lerp(0.65, 1.0, p);  dBlur = lerp(6, 0, p); }
+  else               { dOp = 1.0; dBlur = 0; }
+  destOv.style.opacity = dOp.toFixed(3);
+  destOv.style.filter = dBlur > 0.2 ? `blur(${dBlur.toFixed(1)}px)` : 'none';
+  destOv.style.pointerEvents = t >= 5500 ? 'auto' : 'none';
+}
+
+// Keyframe navigation pills
+KF.forEach((kf, i) => {
+  const b = document.createElement('button');
+  b.className = 'pill' + (i === 0 ? ' on' : '');
+  b.innerHTML = `<span class="pill-n">${kf.n}</span>${kf.name}`;
+  b.addEventListener('click', () => {
+    stopPlay();
+    jumpTo(i);
+  });
+  pills.appendChild(b);
+});
+
+function jumpTo(i) {
+  cur = clamp(i, 0, KF.length - 1);
+  const kf = KF[cur];
+  document.querySelectorAll('.pill').forEach((p, j) => p.classList.toggle('on', j === cur));
+  fName.textContent = kf.n + ' · ' + kf.name + ' (' + kf.sec + ')';
+  fDesc.textContent = kf.desc;
+  slider.value = kf.ms;
+  sValEl.textContent = (kf.ms / 1000).toFixed(2) + 's';
+  if (kf.ms < 3200) hasPlayedLockSound = false;
+  lastTickIndex = Math.floor((kf.ms / 3300) * 60);
+  render(kf.ms);
+}
+
+slider.addEventListener('input', () => {
+  stopPlay();
+  const ms = parseFloat(slider.value);
+  sValEl.textContent = (ms / 1000).toFixed(2) + 's';
+  if (ms < 3200) hasPlayedLockSound = false;
+  let near = 0, md = Infinity;
+  KF.forEach((kf, i) => { const d = Math.abs(kf.ms - ms); if (d < md) { md = d; near = i; } });
+  document.querySelectorAll('.pill').forEach((p, j) => p.classList.toggle('on', j === near));
+  fName.textContent = KF[near].n + ' · ' + KF[near].name + ' (' + KF[near].sec + ')';
+  cur = near;
+  lastTickIndex = Math.floor((ms / 3300) * 60);
+  render(ms);
+});
+
+// Autonomous Playback Loop
+function startPlay() {
+  initAudio();
+  isPlaying = true;
+  playBtn.textContent = '⏸ Pause';
+  playBtn.classList.add('active');
+  lastTime = performance.now();
+  playLoop(lastTime);
+}
+
+function stopPlay() {
+  isPlaying = false;
+  playBtn.textContent = '▶ Auto Play';
+  playBtn.classList.remove('active');
+  if (playRaf) cancelAnimationFrame(playRaf);
+  playRaf = null;
+}
+
+playBtn.addEventListener('click', () => {
+  if (isPlaying) stopPlay();
+  else startPlay();
+});
+
+audioBtn.addEventListener('click', () => {
+  initAudio();
+  audioEnabled = !audioEnabled;
+  audioBtn.textContent = audioEnabled ? '🔊 Audio On' : '🔇 Audio Off';
+  audioBtn.classList.toggle('active', audioEnabled);
+});
+
+function playLoop(now) {
+  if (!isPlaying) return;
+  const dt = now - lastTime;
+  lastTime = now;
+
+  let curMs = parseFloat(slider.value);
+  curMs += dt;
+
+  // Linger at destination for 1.8 seconds before seamless loop
+  if (curMs > TOTAL_MS + 1800) {
+    curMs = 0;
+    lastTickIndex = -1;
+    hasPlayedLockSound = false;
+  }
+
+  const renderMs = Math.min(curMs, TOTAL_MS);
+  slider.value = renderMs;
+  sValEl.textContent = (renderMs / 1000).toFixed(2) + 's';
+
+  let near = 0, md = Infinity;
+  KF.forEach((kf, i) => { const d = Math.abs(kf.ms - renderMs); if (d < md) { md = d; near = i; } });
+  document.querySelectorAll('.pill').forEach((p, j) => p.classList.toggle('on', j === near));
+  fName.textContent = KF[near].n + ' · ' + KF[near].name + ' (' + KF[near].sec + ')';
+  cur = near;
+
+  render(renderMs);
+  const isVac = (renderMs >= 2900 && renderMs < 3300);
+  drawParticles(isVac);
+  playRaf = requestAnimationFrame(playLoop);
+}
+
+// Keyboard controls
+document.addEventListener('keydown', e => {
+  if (e.key === ' ' || e.code === 'Space') {
+    if (isPlaying) stopPlay(); else startPlay();
+    e.preventDefault();
+  }
+  if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+    stopPlay();
+    jumpTo(cur + 1);
+    e.preventDefault();
+  }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+    stopPlay();
+    jumpTo(cur - 1);
+    e.preventDefault();
+  }
+  if (e.key === 'r' || e.key === 'R') {
+    stopPlay();
+    jumpTo(0);
+    e.preventDefault();
+  }
+});
+
+// Continuous particles
+function tickCanvas() {
+  if (!isPlaying) {
+    const curMs = parseFloat(slider.value);
+    const isVac = (curMs >= 2900 && curMs < 3300);
+    drawParticles(isVac);
+  }
+  requestAnimationFrame(tickCanvas);
+}
+tickCanvas();
+
+// Check if embedded in iframe or embed mode
+let isEmbedded = false;
+try {
+  const urlParams = new URLSearchParams(window.location.search);
+  isEmbedded = (urlParams.get('embed') === '1' || window.self !== window.top);
+  if (isEmbedded) {
+    document.body.classList.add('embed');
+    const embedAudio = document.getElementById('embedAudioHint');
+    const embedBtn = document.getElementById('embedAudioBtn');
+    const playPrompt = document.getElementById('embedPlayPrompt');
+    const hidePrompt = (urlParams.get('prompt') === '0');
+    if (!hidePrompt) {
+      if (embedAudio) embedAudio.style.display = 'block';
+      if (playPrompt) playPrompt.style.display = 'block';
+    }
+
+    if (embedBtn) {
+      embedBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        initAudio();
+        audioEnabled = !audioEnabled;
+        const icon = document.getElementById('embedAudioIcon');
+        const text = document.getElementById('embedAudioText');
+        if (icon) icon.textContent = audioEnabled ? '🔊' : '🔇';
+        if (text) text.textContent = audioEnabled ? 'Sound On · Tactile Glass' : 'Sound Muted';
+        if (!isPlaying) {
+          if (playPrompt) playPrompt.style.display = 'none';
+          startPlay();
+        }
+      });
+    }
+
+    // User click on the ring/stage to activate animation
+    stageEl.style.cursor = 'pointer';
+    stageEl.addEventListener('click', () => {
+      initAudio();
+      audioEnabled = true;
+      const icon = document.getElementById('embedAudioIcon');
+      const text = document.getElementById('embedAudioText');
+      if (icon) icon.textContent = '🔊';
+      if (text) text.textContent = 'Sound On · Tactile Glass';
+      if (playPrompt) playPrompt.style.display = 'none';
+      if (window.parent) {
+        window.parent.postMessage({ type: 'stash_ring_tapped' }, '*');
+      }
+
+      if (isPlaying) {
+        stopPlay();
+        slider.value = 0;
+        lastTickIndex = -1;
+        hasPlayedLockSound = false;
+        render(0);
+        startPlay();
+      } else {
+        startPlay();
+      }
+    });
+
+    // Handle messages from parent page to pause/stop/play/seek
+    window.addEventListener('message', (ev) => {
+      const msg = ev.data;
+      if (msg === 'stop' || msg === 'pause' || msg?.action === 'stop' || msg?.action === 'pause') {
+        stopPlay();
+        slider.value = 0;
+        lastTickIndex = -1;
+        hasPlayedLockSound = false;
+        render(0);
+        if (playPrompt && !hidePrompt) playPrompt.style.display = 'block';
+      } else if (msg === 'play' || msg?.action === 'play') {
+        initAudio();
+        if (playPrompt) playPrompt.style.display = 'none';
+        stopPlay();
+        slider.value = 0;
+        lastTickIndex = -1;
+        hasPlayedLockSound = false;
+        render(0);
+        startPlay();
+      } else if (msg === 'success' || msg?.action === 'success') {
+        initAudio();
+        if (playPrompt) playPrompt.style.display = 'none';
+        stopPlay();
+        slider.value = 3300;
+        hasPlayedLockSound = false;
+        render(3300);
+        startPlay();
+      } else if (msg?.action === 'seek' && typeof msg.ms === 'number') {
+        stopPlay();
+        slider.value = msg.ms;
+        render(msg.ms);
+      } else if (msg?.action === 'progress' && typeof msg.progress === 'number') {
+        stopPlay();
+        const p = Math.max(0, Math.min(100, msg.progress));
+        const ms = (p / 100) * 3300;
+        slider.value = ms;
+        render(ms);
+      }
+    });
+  }
+} catch (e) {
+  console.warn('Embed detection note:', e);
+}
+
+// Initial render
+render(0);
+if (!isEmbedded) {
+  startPlay();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050608">
+<meta name="color-scheme" content="dark">
+<title>STASH · GOD2 · Spatial Living Chronometer</title>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   STASH · GOD2 · SPATIAL LIVING CHRONOMETER
+   ───────────────────────────────────────────────────────────────────────────
+   DESIGN PHILOSOPHY:
+   Apple-level restraint + ChatGPT Voice-style organic presence + unmistakable
+   STASH identity.
+   • Negative Space: 85-90% obsidian black base. Light exists only where optically justified.
+   • Living Material: Liquid glass optical caustic ribbons with harmonic deformation.
+   • Encased Emblem: Translucent optical glass lens with encased S logo.
+   • Swiss Hairlines: Ultra-fine 1.0px–1.8px chronometer tick horology.
+   • The 4-Phase Transmutation (3.3s):
+     A. Inward Compression (3300-3340ms)
+     B. Neutral Optical Flash (3340-3390ms)
+     C. Outward Emerald Wave (3390-3750ms)
+     D. Settled Calm Mint (3750ms+)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%; min-height: 100%;
+  background: #000000; color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+               Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overscroll-behavior: none; overflow: hidden;
+}
+
+body { display: flex; flex-direction: column; height: 100dvh; }
+
+:root {
+  --stash-red:        #FF2D55;
+  --stash-red-deep:   #D41A3D;
+  --stash-green:      #10B981;
+  --stash-green-deep: #065F46;
+  --bg-0: #050608; --bg-1: #080A0D; --bg-2: #0E1015;
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --stage-scale: 1;
+}
+
+/* ── Main Stage ── */
+#stage {
+  position: relative; flex: 1; min-height: 0;
+  width: 100%; height: auto; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(ellipse 65% 45% at 50% 32%, rgba(255,45,85,0.016) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, #0B0D12 0%, #07080B 50%, #050608 100%);
+  isolation: isolate;
+  transition: filter 0.28s ease;
+}
+#stage.vacuum { filter: contrast(1.15) brightness(0.68); }
+
+/* ── WebGL Canvas Layer ── */
+#glCanvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 2;
+  mix-blend-mode: normal;
+}
+
+/* ── Spatial God Emblem ── */
+#godBadge {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 220; pointer-events: none;
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 14px; border-radius: 999px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  font: 600 8.5px/1.2 -apple-system, BlinkMacSystemFont, 'SF Mono', monospace;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.60);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.40);
+}
+#godBadge::before {
+  content: ""; width: 4.5px; height: 4.5px; border-radius: 50%;
+  background: #FF2D55; box-shadow: 0 0 6px #FF2D55;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+#godBadge.locked::before {
+  background: #10B981; box-shadow: 0 0 6px #10B981;
+}
+
+/* ── 3D Perspective World ── */
+#perspContainer {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  perspective: 1100px; transform-style: preserve-3d;
+  transform: scale(var(--stage-scale));
+  z-index: 5; pointer-events: none;
+}
+#camera3d {
+  position: relative; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  transform-style: preserve-3d; will-change: transform;
+}
+
+/* ── High-Detail VisionOS Source Tiles ── */
+.glass-tile {
+  position: absolute; width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 22px; transform-style: preserve-3d; backface-visibility: hidden;
+  will-change: transform, opacity;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.85);
+}
+.glass-tile::before {
+  content: ""; position: absolute; inset: 1px; border-radius: 21px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0.08) 32%, transparent 60%);
+  pointer-events: none; z-index: 4;
+}
+.tile-icon { width: 40px; height: 40px; z-index: 3; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.55)); display: block; }
+
+#tileTikTok {
+  background: linear-gradient(145deg, #121820, #090D12 45%, #040608);
+  border: 1px solid rgba(0,242,254,0.40);
+  box-shadow: -4px -4px 20px rgba(0,242,254,0.28), 4px 4px 20px rgba(254,44,85,0.28),
+              inset 0 0 14px rgba(0,242,254,0.12), 0 16px 40px rgba(0,0,0,0.85);
+}
+#tileInstagram {
+  background: linear-gradient(145deg, #1C0F18, #10080E 45%, #060305);
+  border: 1px solid rgba(253,104,58,0.45);
+  box-shadow: 0 0 24px rgba(225,48,108,0.38), 0 0 45px rgba(253,104,58,0.18),
+              inset 0 0 14px rgba(225,48,108,0.16), 0 16px 40px rgba(0,0,0,0.85);
+}
+#tileYouTube {
+  background: linear-gradient(145deg, #1A0B0D, #0F0607 45%, #050203);
+  border: 1px solid rgba(255,44,44,0.48);
+  box-shadow: 0 0 26px rgba(255,44,44,0.42), 0 0 50px rgba(255,44,44,0.16),
+              inset 0 0 14px rgba(255,44,44,0.16), 0 16px 40px rgba(0,0,0,0.85);
+}
+#tileX {
+  background: linear-gradient(145deg, #13161C, #0B0D11 45%, #050608);
+  border: 1px solid rgba(180,210,240,0.45);
+  box-shadow: 0 0 22px rgba(180,220,255,0.28), 0 0 40px rgba(100,160,255,0.12),
+              inset 0 0 14px rgba(255,255,255,0.10), 0 16px 40px rgba(0,0,0,0.85);
+}
+#tileReddit {
+  background: linear-gradient(145deg, #1B1209, #100A04 45%, #060402);
+  border: 1px solid rgba(255,100,30,0.48);
+  box-shadow: 0 0 24px rgba(255,100,30,0.42), 0 0 45px rgba(255,120,40,0.16),
+              inset 0 0 14px rgba(255,100,30,0.16), 0 16px 40px rgba(0,0,0,0.85);
+}
+
+/* ── Center Aperture Rig ── */
+#apertureRig {
+  position: absolute; width: 400px; height: 400px;
+  display: flex; align-items: center; justify-content: center;
+  transform-style: preserve-3d; will-change: transform;
+}
+#svgRing {
+  position: absolute; width: 400px; height: 400px;
+  overflow: visible; will-change: transform, opacity;
+}
+
+/* ── Swiss Chronometer Ticks (Hairline Horological Precision) ── */
+.bezel-track { fill: none; stroke: rgba(255,255,255,0.04); stroke-width: 1.2; }
+.bezel-tick {
+  stroke: rgba(255,255,255,0.10); stroke-width: 1.0; stroke-linecap: round;
+  transition: stroke 0.08s ease, stroke-width 0.08s ease;
+}
+.bezel-tick.major { stroke: rgba(255,255,255,0.22); stroke-width: 1.4; }
+.bezel-tick.active-red   { stroke: #FF2D55 !important; stroke-width: 1.6 !important; }
+.bezel-tick.pulse-red    { stroke: rgba(255,75,110,0.75) !important; stroke-width: 1.4 !important; }
+.bezel-tick.dim-red      { stroke: rgba(255,45,85,0.30) !important; stroke-width: 1.1 !important; }
+.bezel-tick.locked-green { stroke: #10B981 !important; stroke-width: 1.8 !important; }
+
+/* ── S Core Tile (GOD2 Translucent Optical Glass Lens) ── */
+#sTileWrap {
+  position: absolute; width: 88px; height: 88px;
+  display: flex; align-items: center; justify-content: center;
+  transform-style: preserve-3d; z-index: 18; will-change: transform, opacity;
+}
+#sTile {
+  position: relative; width: 88px; height: 88px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 24px; overflow: hidden;
+  background: rgba(8,10,14,0.32);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.65), 0 0 16px rgba(255,45,85,0.12), inset 0 1px 1px rgba(255,255,255,0.25);
+  transform-origin: center; will-change: transform;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+#sTile::before {
+  content: ""; position: absolute; inset: 1px; border-radius: 23px;
+  background: radial-gradient(circle at 35% 25%, rgba(255,255,255,0.14), transparent 42%),
+              linear-gradient(145deg, rgba(255,255,255,0.06), transparent 40%, rgba(0,0,0,0.25));
+  mix-blend-mode: screen; pointer-events: none; z-index: 2;
+}
+#sTile::after {
+  content: ""; position: absolute; inset: 0; border-radius: 23px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.02) 36%, transparent 60%);
+  pointer-events: none; z-index: 4;
+}
+#sTile.unlocked {
+  border-color: rgba(16,185,129,0.45);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.65), 0 0 24px rgba(16,185,129,0.28), inset 0 1px 1px rgba(255,255,255,0.35);
+}
+#centerLogo {
+  position: relative; width: 100%; height: 100%; object-fit: cover;
+  border-radius: 23px; display: block; z-index: 3; pointer-events: none; user-select: none;
+  opacity: 0.94; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+  transition: filter 0.3s ease;
+}
+#sTile.unlocked #centerLogo {
+  filter: drop-shadow(0 4px 14px rgba(16,185,129,0.35));
+}
+#sFallback {
+  position: relative; z-index: 1; display: none;
+  font-size: 48px; font-weight: 800; line-height: 1;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFA8BA 40%, #FF2D55 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(255,45,85,0.55)); user-select: none;
+}
+#sTile.unlocked #sFallback {
+  background: linear-gradient(180deg, #FFFFFF 0%, #A7F3D0 40%, #10B981 100%);
+  filter: drop-shadow(0 2px 8px rgba(16,185,129,0.60));
+}
+
+/* ── Horological 1% to 100% Progress Cluster (Quiet Luxury) ── */
+#progressCluster {
+  position: absolute; top: 268px; left: 50%; transform: translateX(-50%);
+  z-index: 25; text-align: center; pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  will-change: opacity; transition: opacity 0.25s ease;
+}
+#progressPercent {
+  font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.92); text-shadow: 0 0 8px rgba(255,45,85,0.25);
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+#progressPercent.locked {
+  color: #10B981; text-shadow: 0 0 10px rgba(16,185,129,0.40);
+}
+#progressStatus {
+  font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
+  font-size: 8px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.38); white-space: nowrap;
+  transition: color 0.25s ease;
+}
+#progressStatus.locked {
+  color: rgba(16,185,129,0.85);
+}
+
+/* ── Video Aperture ── */
+#videoReveal {
+  position: absolute; inset: 0; z-index: 70;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: #000; opacity: 1; pointer-events: none;
+  clip-path: circle(var(--aperture-radius, 0px) at 50% 50%);
+  -webkit-clip-path: circle(var(--aperture-radius, 0px) at 50% 50%);
+  will-change: clip-path, -webkit-clip-path;
+}
+#savedVideo {
+  width: 100%; height: 100%; display: block;
+  object-fit: contain; object-position: center; background: #000;
+  opacity: 0; transform: scale(1.012); will-change: opacity, transform;
+  transition: opacity 0.18s ease, transform 0.52s cubic-bezier(0.16,1,0.3,1);
+}
+#savedVideo.ready { opacity: 1; transform: scale(1); }
+
+#screenApertureRing {
+  position: absolute; top: 50%; left: 50%;
+  width: 336px; height: 336px; transform: translate(-50%, -50%);
+  border: 2px solid rgba(16,185,129,0.92); border-radius: 50%;
+  box-shadow: 0 0 14px rgba(16,185,129,0.60), 0 0 30px rgba(16,185,129,0.30),
+              inset 0 0 8px rgba(16,185,129,0.35);
+  z-index: 90; pointer-events: none; opacity: 0;
+  will-change: width, height, opacity;
+}
+#screenApertureAura {
+  position: absolute; top: 50%; left: 50%;
+  width: 336px; height: 336px; transform: translate(-50%, -50%);
+  border: 6px solid rgba(16,185,129,0.12); border-radius: 50%;
+  filter: blur(8px); z-index: 89; pointer-events: none; opacity: 0;
+  will-change: width, height, opacity;
+}
+#videoWaiting {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; opacity: 0; transition: opacity 0.16s ease;
+}
+#videoWaiting.active { opacity: 1; }
+.videoWaitingDot {
+  width: 6px; height: 6px; border-radius: 50%; background: #10B981;
+  box-shadow: 0 0 14px rgba(16,185,129,0.75);
+  animation: waitingPulse 1s ease-in-out infinite alternate;
+}
+@keyframes waitingPulse { from { opacity: 0.35; transform: scale(0.85); } to { opacity: 1; transform: scale(1.15); } }
+
+/* ── HUD Controls ── */
+#controls {
+  position: relative; flex-shrink: 0; z-index: 150;
+  display: flex; flex-direction: column; gap: 11px;
+  padding: 14px 24px calc(20px + var(--safe-bottom));
+  border-top: 1px solid rgba(255,255,255,0.065);
+  background: rgba(8,9,12,0.99);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+}
+#fInfo { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+#fName { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: 0.02em; }
+#fDesc { max-width: 700px; margin-top: 3px; font-size: 11px; color: rgba(255,255,255,0.40); line-height: 1.5; }
+.hud-btn-wrap { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.hud-btn {
+  display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 6px;
+  font-size: 11px; font-weight: 600;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.70); cursor: pointer; transition: all 0.16s ease;
+  user-select: none;
+}
+.hud-btn:hover { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.20); }
+.hud-btn.active { background: rgba(16,185,129,0.15); border-color: #10B981; color: #10B981; }
+#organicToggle.on { border-color: #FF2D55; background: rgba(255,45,85,0.14); color: #FF2D55; }
+#scrubRow { display: flex; align-items: center; gap: 14px; }
+#scrubSlider {
+  flex: 1; -webkit-appearance: none; appearance: none; height: 3px;
+  border-radius: 2px; background: rgba(255,255,255,0.12); outline: none; cursor: pointer;
+}
+#scrubSlider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 15px; height: 15px;
+  border-radius: 50%; background: #FFFFFF; border: 2px solid #10B981;
+  box-shadow: 0 0 10px rgba(16,185,129,0.80); cursor: pointer;
+}
+#scrubSlider::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: #FFFFFF;
+  border: 2px solid #10B981; box-shadow: 0 0 10px rgba(16,185,129,0.80); cursor: pointer;
+}
+#sVal { width: 55px; font-size: 11px; font-family: 'SF Mono', SFMono-Regular, Consolas, monospace; color: #10B981; font-weight: 700; text-align: right; }
+#pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill {
+  display: flex; align-items: center; gap: 5px; padding: 5px 11px;
+  border-radius: 100px; border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.42);
+  font-size: 11px; font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
+  cursor: pointer; transition: all 0.14s ease; user-select: none; white-space: nowrap;
+}
+.pill:hover { border-color: rgba(255,255,255,0.22); color: rgba(255,255,255,0.80); background: rgba(255,255,255,0.06); }
+.pill.on { border-color: #10B981; background: rgba(16,185,129,0.12); color: #fff; }
+.pill-n { font-size: 9px; color: rgba(16,185,129,0.60); }
+.pill.on .pill-n { color: #10B981; font-weight: 700; }
+#keyHint {
+  font-size: 10px; color: rgba(255,255,255,0.3); font-family: 'SF Mono', monospace;
+  padding: 5px 9px; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;
+}
+
+/* ── Embed Mode ── */
+html, body.embed { --stage-scale: 0.78; background: transparent !important; }
+body.embed #stage { height: 100% !important; width: 100% !important; flex: 1; background: transparent !important; }
+body.embed #controls { display: none !important; }
+body.embed #godBadge { display: none !important; }
+body.embed #videoReveal { position: fixed; }
+@media (max-width: 900px) { body.embed { --stage-scale: 0.72; } }
+@media (max-width: 680px) { body.embed { --stage-scale: 0.64; } }
+@media (max-width: 480px) { body.embed { --stage-scale: 0.54; } }
+@media (max-width: 380px) { body.embed { --stage-scale: 0.48; } }
+@media (max-width: 760px) {
+  #controls { padding: 10px 14px calc(14px + var(--safe-bottom)); }
+  #fInfo { flex-direction: column; gap: 10px; }
+  #fDesc { max-width: none; }
+  .hud-btn-wrap { width: 100%; }
+  #keyHint { display: none; }
+}
+
+#embedAudioHint { position: fixed; left: 50%; bottom: calc(14px + var(--safe-bottom)); transform: translateX(-50%); z-index: 160; display: none; }
+#embedAudioBtn {
+  display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px;
+  background: rgba(0,0,0,0.80); border: 1px solid rgba(255,255,255,0.25); color: #fff;
+  font-size: 10px; font-family: 'SF Mono', monospace; cursor: pointer;
+  backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,0.60);
+}
+#embedPlayPrompt {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  z-index: 140; display: none; pointer-events: none; text-align: center;
+}
+#embedPlayPrompt > div {
+  display: flex; align-items: center; gap: 8px; padding: 8px 18px;
+  border-radius: 24px; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,45,85,0.60);
+  color: #fff; font-size: 11px; font-family: 'SF Mono', monospace;
+  box-shadow: 0 0 25px rgba(255,45,85,0.40);
+}
+</style>
+</head>
+
+<body>
+
+<div id="stage">
+  <!-- ── GOD2 Badge ── -->
+  <div id="godBadge">STASH · GOD2 · SPATIAL CHRONOMETER</div>
+
+  <!-- ── 4K Spatial WebGL Shader Canvas ── -->
+  <canvas id="glCanvas" aria-hidden="true"></canvas>
+
+  <!-- ── 3D Camera World ── -->
+  <div id="perspContainer">
+    <div id="camera3d">
+
+      <!-- Official Precision Platform Vector Icons -->
+      <!-- TIKTOK -->
+      <div id="tileTikTok" class="glass-tile" aria-hidden="true">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="#FFFFFF">
+          <path d="M19.321 5.562a5.122 5.122 0 0 1-.44-.04 5.228 5.228 0 0 1-3.64-2.82 5.38 5.38 0 0 1-.49-1.7V0h-3.61v16.19a2.76 2.76 0 0 1-2.76 2.76 2.76 2.76 0 0 1-2.76-2.76 2.76 2.76 0 0 1 2.76-2.76c.38 0 .74.08 1.07.22V9.81a6.38 6.38 0 0 0-1.07-.09A6.38 6.38 0 0 0 2 16.1a6.38 6.38 0 0 0 6.38 6.38 6.38 6.38 0 0 0 6.38-6.38V8.16a8.88 8.88 0 0 0 5.18 1.66V6.22a5.28 5.28 0 0 1-.619-.658z"/>
+        </svg>
+      </div>
+
+      <!-- INSTAGRAM -->
+      <div id="tileInstagram" class="glass-tile" aria-hidden="true">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="#FFFFFF">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </div>
+
+      <!-- YOUTUBE -->
+      <div id="tileYouTube" class="glass-tile" aria-hidden="true">
+        <svg class="tile-icon" viewBox="0 0 24 24">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" fill="#FF0000"/>
+          <polygon points="9.545,8.432 15.818,12 9.545,15.568" fill="#FFFFFF"/>
+        </svg>
+      </div>
+
+      <!-- X -->
+      <div id="tileX" class="glass-tile" aria-hidden="true">
+        <svg class="tile-icon" viewBox="0 0 24 24" fill="#FFFFFF">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </div>
+
+      <!-- REDDIT -->
+      <div id="tileReddit" class="glass-tile" aria-hidden="true">
+        <svg class="tile-icon" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="11" fill="#FF4500"/>
+          <path d="M17.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .868.182 1.17.472 1.18-.842 2.808-1.396 4.61-1.484l.872-4.086a.465.465 0 0 1 .55-.36l2.97.625c.196-.407.6-.669 1.056-.669zm-7.004 7.64c-.7 0-1.267.567-1.267 1.267s.567 1.267 1.267 1.267s.567-.567 1.267-1.267zm4.008 0c-.7 0-1.267.567-1.267 1.267s.567 1.267 1.267 1.267s.567-.567 1.267-1.267zm-3.957 3.398a.333.333 0 0 0-.236.568c.67.67 1.747.886 2.19.886.443 0 1.52-.216 2.19-.886a.333.333 0 0 0-.472-.472c-.44.44-1.28.625-1.718.625-.438 0-1.278-.185-1.718-.625a.33.33 0 0 0-.236-.096z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+
+      <!-- ── Aperture Rig ── -->
+      <div id="apertureRig">
+        <svg id="svgRing" width="400" height="400" viewBox="0 0 400 400" fill="none" overflow="visible" aria-hidden="true">
+          <!-- Housing Bezel Track -->
+          <circle class="bezel-track" cx="200" cy="200" r="168"/>
+
+          <!-- 60 Swiss Chronometer Ticks -->
+          <g id="bezelTicks"></g>
+
+          <!-- Precision Caustic Sweep Arc (Hairline 1.6px, Tracks 0% to 100%) -->
+          <circle id="causticArc" cx="200" cy="200" r="168" stroke="#FF2D55" stroke-width="1.6" stroke-linecap="round" fill="none"
+                  stroke-dasharray="1055.6" stroke-dashoffset="1055.6" transform="rotate(-90 200 200)"/>
+        </svg>
+
+        <!-- S Core Encased in Optical Glass Lens -->
+        <div id="sTileWrap">
+          <div id="sTile">
+            <img id="centerLogo" src="./stash-icon.png" alt="STASH" onerror="this.style.display='none';document.getElementById('sFallback').style.display='block'">
+            <div id="sFallback">S</div>
+          </div>
+        </div>
+
+        <!-- Real-Time Horological Progress Cluster (Quiet Luxury) -->
+        <div id="progressCluster">
+          <div id="progressPercent">0%</div>
+          <div id="progressStatus">INITIALIZING SECURE ENCLAVE</div>
+        </div>
+
+      </div><!-- /apertureRig -->
+    </div><!-- /camera3d -->
+  </div><!-- /perspContainer -->
+
+  <!-- Video Aperture Reveal -->
+  <div id="videoReveal" aria-hidden="true">
+    <video id="savedVideo" playsinline preload="auto" controls disablepictureinpicture></video>
+  </div>
+
+  <div id="screenApertureAura" aria-hidden="true"></div>
+  <div id="screenApertureRing" aria-hidden="true"></div>
+  <div id="videoWaiting" aria-hidden="true"><div class="videoWaitingDot"></div></div>
+
+  <div id="embedAudioHint">
+    <button id="embedAudioBtn" type="button">
+      <span id="embedAudioIcon">🔊</span>
+      <span id="embedAudioText">Sound On · Tactile Glass</span>
+    </button>
+  </div>
+
+  <div id="embedPlayPrompt" aria-hidden="true">
+    <div>
+      <span style="color:#FF2D55;font-size:13px;">▶</span>
+      <span>Tap Ring to Stash</span>
+    </div>
+  </div>
+</div><!-- /stage -->
+
+<!-- ── HUD Controls (Side-by-side verification baseline) ── -->
+<div id="controls">
+  <div id="fInfo">
+    <div>
+      <div id="fName">01 · Living Drift (0.00s)</div>
+      <div id="fDesc">Obsidian negative space (85-90%) with gentle ruby breath. Quiet Swiss restraint.</div>
+    </div>
+    <div class="hud-btn-wrap">
+      <button class="hud-btn active" id="playBtn" type="button">▶ Play</button>
+      <button class="hud-btn active" id="audioBtn" type="button">🔊 Audio On</button>
+      <button class="hud-btn on" id="organicToggle" type="button">◎ Organic On</button>
+      <div id="keyHint">← → / Space / R / O</div>
+    </div>
+  </div>
+  <div id="scrubRow">
+    <input type="range" id="scrubSlider" min="0" max="5200" step="10" value="0" aria-label="STASH GOD2 timeline">
+    <div id="sVal">0.00s</div>
+  </div>
+  <div id="pills"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     VERTEX SHADER
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<script id="vert-src" type="x-shader/x-vertex">
+attribute vec2 a_pos;
+void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     FRAGMENT SHADER · GOD2 SPATIAL LIVING CORONA & 4-PHASE TRANSMUTATION
+     ───────────────────────────────────────────────────────────────────────────
+     • 85-90% Obsidian Negative Space: Velvet black interior allows the translucent
+       S glass lens to breathe. Light exists only where physically justified.
+     • Liquid Glass Optical Caustic Ribbons: Smooth low-frequency harmonic
+       deformations replace grainy noise.
+     • Act 3 Vacuum: Dead silence, internal field drains to 100% obsidian black.
+     • Act 4 Transmutation: 4 distinct deterministic physical phases:
+       1. Inward Compression
+       2. Neutral Clear Flash
+       3. Outward Emerald Wave
+       4. Settled Calm Mint
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<script id="frag-src" type="x-shader/x-fragment">
+precision highp float;
+
+uniform float u_time;
+uniform vec2  u_res;
+uniform float u_ringRadius;        /* dynamic radius synced to SVG 168px */
+uniform float u_progress;          /* 0..1 timeline */
+uniform float u_phase;             /* 0=idle 1=convergence 2=vacuum 3=lock 4=aperture */
+uniform float u_energy;            /* 0..1 smoothed energy */
+uniform float u_vacuum;            /* 0..1 vacuum drain */
+uniform float u_transmutePhase;    /* 0=pre-lock 1=compress 2=flash 3=wave 4=calm */
+uniform float u_transmuteProgress; /* 0..1 within phase */
+uniform float u_organic;           /* 0 or 1 */
+
+/* ── Smooth Harmonic Optical Caustic Ribbon Engine ── */
+/* Replaces grainy FBM noise with continuous liquid glass / optical caustics */
+float opticalCausticRibbon(vec2 p, float t, float speed) {
+  float tt = t * speed;
+  
+  // First harmonic warp
+  vec2 p1 = p + vec2(
+    sin(p.y * 3.4 + tt * 1.05) * 0.22 + cos(p.x * 2.8 - tt * 0.85) * 0.15,
+    cos(p.x * 3.2 + tt * 0.95) * 0.22 + sin(p.y * 2.9 - tt * 1.10) * 0.15
+  );
+  
+  // Second harmonic warp (lens refraction flow)
+  vec2 p2 = p1 + vec2(
+    cos(p1.y * 4.6 - tt * 1.25) * 0.16 + sin(p1.x * 4.1 + tt * 0.90) * 0.12,
+    sin(p1.x * 4.4 + tt * 1.15) * 0.16 + cos(p1.y * 4.3 - tt * 1.05) * 0.12
+  );
+  
+  // Dual caustic interference ribbons
+  float w1 = sin(p2.x * 5.2 + sin(p2.y * 4.4 + tt * 0.8));
+  float w2 = cos(p2.y * 5.0 - cos(p2.x * 4.6 - tt * 1.1));
+  
+  // Sharp caustic ridge focusing (like light through liquid lens)
+  float ridge = 1.0 - abs(w1 - w2) * 0.5;
+  return pow(clamp(ridge, 0.0, 1.0), 3.6);
+}
+
+// Complementary secondary caustic strand for depth
+float opticalRibbonStrand(vec2 p, float t, float speed) {
+  float tt = t * speed * 0.85 + 2.4;
+  vec2 q = p + vec2(
+    cos(p.y * 3.8 - tt * 0.9) * 0.20,
+    sin(p.x * 3.6 + tt * 1.1) * 0.20
+  );
+  float s1 = sin(q.x * 4.8 + q.y * 3.6 + tt);
+  float s2 = cos(q.y * 4.6 - q.x * 3.4 - tt * 0.7);
+  float ridge = 1.0 - abs(s1 - s2) * 0.5;
+  return pow(clamp(ridge, 0.0, 1.0), 4.2);
+}
+
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
+  float len = length(uv);
+  float ang = atan(uv.y, uv.x);
+
+  float organic = u_organic;
+  float energy  = u_energy;
+  float time    = u_time;
+  float ringR   = u_ringRadius;
+
+  /* ── 1. Swiss Razor Hairline Sapphire Rim ── */
+  // Ultra-fine hairline (1.0px - 1.2px optical stroke)
+  float sapphireRim = smoothstep(0.0022, 0.0, abs(len - ringR));
+  float outerHalo   = smoothstep(0.024, 0.0, max(0.0, len - ringR)) * 0.18;
+
+  /* Traveling Wavefront Photon (tracking exact progress 0% to 100%) */
+  float clockAngle = mod(u_progress * 6.2831853, 6.2831853);
+  float dAng       = abs(atan(sin(ang - clockAngle), cos(ang - clockAngle)));
+  float photonHead = smoothstep(0.18, 0.0, dAng) * sapphireRim;
+
+  /* ── 2. Spatial Negative Space Architecture (85-90% Obsidian) ── */
+  /* Internal chamber mask */
+  float chamberMask = smoothstep(0.0015, -0.0015, len - ringR);
+
+  /* Central clearing pocket: pure obsidian negative space for the S emblem */
+  /* Center has 0 ribbon density; ribbons only condense in outer annular zone */
+  float annularZone = smoothstep(ringR * 0.55, ringR * 0.96, len);
+
+  /* ── 3. Fluid Optical Dynamics ── */
+  float baseSpeed = 0.08 + energy * 0.40;
+  // Rotation of coordinate frame
+  float rotAngle = time * (0.020 + energy * 0.060);
+  mat2 rotMat = mat2(cos(rotAngle), -sin(rotAngle), sin(rotAngle), cos(rotAngle));
+  vec2 ruv = rotMat * uv;
+
+  // Primary and secondary caustic ribbons
+  float ribbon1 = opticalCausticRibbon(ruv / ringR, time, baseSpeed);
+  float ribbon2 = opticalRibbonStrand(ruv / ringR, time, baseSpeed);
+  float ribbonComposite = clamp(ribbon1 * 0.70 + ribbon2 * 0.55, 0.0, 1.0);
+
+  // Apply strict negative space: ribbons exist almost exclusively in the annular perimeter
+  float ribbonField = ribbonComposite * annularZone * chamberMask;
+  // Scale down idle intensity to preserve 85-90% darkness
+  ribbonField *= (0.35 + energy * 0.65);
+
+  /* ── 4. Color Hierarchy & Palette ── */
+  /* Strict luxury hierarchy: OBSIDIAN > RUBY > VIOLET REFRACTION > WHITE CREST */
+  vec3 c_obsidian     = vec3(0.000, 0.000, 0.000);
+  vec3 c_ruby_whisper = vec3(0.240, 0.010, 0.045);
+  vec3 c_ruby         = vec3(1.000, 0.176, 0.333); // STASH Ruby #FF2D55
+  vec3 c_violet_ref   = vec3(0.460, 0.050, 0.920); // optical dispersion
+  vec3 c_crest        = vec3(1.000, 0.880, 0.940); // specular crest
+
+  /* Emerald Palette (Act 4) */
+  vec3 c_emerald_deep = vec3(0.008, 0.200, 0.130);
+  vec3 c_emerald      = vec3(0.063, 0.729, 0.506); // STASH Emerald #10B981
+  vec3 c_mint         = vec3(0.180, 0.920, 0.740); // luminous mint highlight
+  vec3 c_neutral_flash= vec3(0.960, 0.985, 1.000); // pure clear optical crystal
+
+  /* ── 5. Master Scene Composition ── */
+  vec3 col = vec3(0.0);
+
+  if (u_transmutePhase < 0.5) {
+    /* Ruby Fluid Material Shading (Acts 1, 2, 3) */
+    vec3 rubyFluid = c_obsidian;
+    rubyFluid = mix(rubyFluid, c_ruby_whisper, smoothstep(0.02, 0.22, ribbonField));
+    rubyFluid = mix(rubyFluid, c_ruby,         smoothstep(0.18, 0.52, ribbonField));
+    rubyFluid = mix(rubyFluid, c_violet_ref,   smoothstep(0.48, 0.82, ribbonField) * (0.35 + 0.45 * energy));
+    rubyFluid = mix(rubyFluid, c_crest,        smoothstep(0.80, 1.00, ribbonField) * (0.15 + 0.65 * energy));
+
+    /* Normal Pre-Lock Ruby Mode (Act 1, Act 2, and Act 3) */
+    col += rubyFluid;
+    col += c_ruby * sapphireRim * (0.75 + 0.30 * energy);
+    col += c_ruby * outerHalo * (0.25 + 0.30 * energy);
+    col += c_crest * photonHead * 1.25;
+
+    /* ── 6. Act 3: Vacuum Suspense (2.9s – 3.3s / 97%) ── */
+    /* Absolute drain to pure obsidian black interior. Razor-thin still hairline. */
+    if (u_vacuum > 0.001) {
+      float drain = 1.0 - u_vacuum;
+      col *= drain; // Internal light drains to 0
+      // Quiet, razor-thin hairline ring remains
+      col += c_ruby * sapphireRim * (0.32 * u_vacuum);
+    }
+  } else {
+    /* ── 7. Act 4: 4-Phase Transmutation (3.3s+ / 100% Lock) ── */
+    float tPhase = u_transmutePhase;
+    float tProg  = u_transmuteProgress;
+
+    /* Only evaluate emerald caustics if in wave/calm phases (Phases C & D) */
+    vec3 emeraldFluid = c_obsidian;
+    if (tPhase >= 2.5) {
+      float calmSpeed = 0.07;
+      float calmRibbon1 = opticalCausticRibbon(ruv / ringR, time, calmSpeed);
+      float calmRibbon2 = opticalRibbonStrand(ruv / ringR, time, calmSpeed);
+      float calmField = clamp(calmRibbon1 * 0.65 + calmRibbon2 * 0.50, 0.0, 1.0) * annularZone * chamberMask * 0.55;
+
+      emeraldFluid = mix(emeraldFluid, c_emerald_deep, smoothstep(0.06, 0.35, calmField));
+      emeraldFluid = mix(emeraldFluid, c_emerald,      smoothstep(0.30, 0.70, calmField));
+      emeraldFluid = mix(emeraldFluid, c_mint,         smoothstep(0.65, 0.95, calmField) * 0.60);
+      emeraldFluid = mix(emeraldFluid, c_neutral_flash,smoothstep(0.90, 1.00, calmField) * 0.45);
+    }
+
+    if (tPhase < 1.5) {
+      /* Phase A (3300 - 3340ms): Inward Compression */
+      float compRadius = mix(ringR, ringR * 0.45, tProg);
+      float compRing   = smoothstep(0.015, 0.0, abs(len - compRadius)) * (1.0 - tProg * 0.5);
+      col += mix(c_ruby, c_violet_ref, 0.5) * compRing * 0.85;
+      col += c_ruby * sapphireRim * (0.32 * (1.0 - tProg));
+
+    } else if (tPhase < 2.5) {
+      /* Phase B (3340 - 3390ms): Neutral Optical Flash / Clear Glass */
+      float centerFlash = smoothstep(ringR * 0.48, 0.0, len);
+      float flashIntensity = sin(tProg * 3.14159) * 1.35;
+      col += c_neutral_flash * centerFlash * flashIntensity;
+      col += c_neutral_flash * sapphireRim * (flashIntensity * 0.70);
+
+    } else if (tPhase < 3.5) {
+      /* Phase C (3390 - 3750ms): Outward Emerald Wave */
+      float waveDistort = sin(ang * 4.0 + tProg * 5.0) * 0.006;
+      float waveRadius = mix(ringR * 0.22, ringR * 1.15, tProg);
+      float waveDist   = abs(len - (waveRadius + waveDistort));
+      float waveBand   = smoothstep(0.032, 0.0, waveDist);
+      float insideWave = smoothstep(waveRadius + 0.015, waveRadius - 0.040, len) * chamberMask;
+
+      // Inside the wave: new emerald fluid born from the center
+      col += emeraldFluid * insideWave;
+      // Wavefront crest: luminous mint/emerald arc
+      col += mix(c_emerald, c_mint, 0.65) * waveBand * 1.35;
+      // Sapphire rim switches to emerald as wave arrives
+      float rimHit = smoothstep(ringR * 0.85, ringR * 1.05, waveRadius);
+      col += c_emerald * sapphireRim * (0.80 * rimHit);
+      col += c_mint * outerHalo * (0.40 * rimHit);
+
+    } else {
+      /* Phase D (3750ms+): Settled Calm Mint */
+      col += emeraldFluid;
+      col += c_emerald * sapphireRim * 0.75;
+      col += c_emerald * outerHalo * 0.22;
+      col += c_mint * photonHead * 0.85;
+    }
+  }
+
+  float alpha = clamp(max(col.r, max(col.g, col.b)), 0.0, 1.0);
+  gl_FragColor = vec4(col, alpha);
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     ENGINE JAVASCRIPT
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ── 01 · TIMELINE ── */
+const TIMING = Object.freeze({
+  driftEnd:        1800,
+  convergenceEnd:  2900,
+  vacuumStart:     2900,
+  vacuumEnd:       3300,
+  lockImpact:      3300,
+  apertureStart:   3800,
+  apertureEnd:     4450,
+  total:           5200,
+  linger:          1400
+});
+
+const ARC_LENGTH = 1055.6;
+
+const COLORS = Object.freeze({
+  red:   '#FF2D55',
+  green: '#10B981'
+});
+
+/* ── 02 · TILE GEOMETRY ── */
+const TILE_COORDS = Object.freeze({
+  TikTok:    { x: -280, y: -160, z: -50, rx: 12,  ry: -14, rz: 4  },
+  Instagram: { x:  270, y: -150, z:  40, rx: -10, ry:  15, rz: -6 },
+  YouTube:   { x: -260, y:  140, z: -70, rx: 14,  ry: -12, rz: 3  },
+  X:         { x:   90, y:  220, z:  20, rx: -8,  ry:  10, rz: -4 },
+  Reddit:    { x:  300, y:  110, z: -30, rx: 10,  ry:  12, rz: 5  }
+});
+
+/* ── 03 · KEYFRAMES (Side-by-side with GOD1) ── */
+const KF = Object.freeze([
+  { n: '01', ms: 0,    name: 'Living Drift',      desc: 'Obsidian negative space (85-90%) with gentle ruby breath. Quiet Swiss restraint.' },
+  { n: '02', ms: 1400, name: 'Active Processing', desc: 'Liquid optical ribbons awaken with smooth refraction. Hairline ticks track extraction.' },
+  { n: '03', ms: 2200, name: 'Convergence',       desc: 'Source tiles gravitate inward while the living optical material gathers toward rim.' },
+  { n: '04', ms: 2900, name: 'Absolute Silence',  desc: '97% vacuum suspense. Internal chamber drains to pure obsidian black. Razor hairline rim.' },
+  { n: '05', ms: 3300, name: 'The Lock (Emerald)',desc: '4-phase transmutation: Inward compression → Neutral clear flash → Emerald wave → Calm mint.' },
+  { n: '06', ms: 3800, name: 'Aperture',          desc: 'Emerald portal opens smoothly into the destination media.' },
+  { n: '07', ms: 4300, name: 'Screen Takeover',   desc: 'The aperture expands seamlessly beyond the viewport.' },
+  { n: '08', ms: 4450, name: 'Video',             desc: 'Saved media owns the screen natively.' },
+  { n: '09', ms: 5200, name: 'Still',             desc: 'Quiet arrival. Zero unnecessary motion.' }
+]);
+
+/* ── 04 · STATE ── */
+const state = {
+  time: 0, previousTime: 0,
+  playing: false, audioEnabled: true,
+  lockTriggered: false, vacuumEntered: false,
+  videoPrepared: false, videoReady: false, videoRevealed: false,
+  embedded: false, parentOrigin: null,
+  reducedMotion: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  rafId: null, lastFrameTime: null,
+  currentVideoSource: null,
+  lastTickIndex: -1,
+  organicOn: true,
+  glEnergy: 0.0,
+  glVacuum: 0.0,
+  glTransmutePhase: 0.0,
+  glTransmuteProgress: 0.0,
+  progressPct: 0
+};
+
+/* ── 05 · DOM ── */
+const DOM = {
+  stage:           document.getElementById('stage'),
+  glCanvas:        document.getElementById('glCanvas'),
+  camera:          document.getElementById('camera3d'),
+  svgRing:         document.getElementById('svgRing'),
+  causticArc:      document.getElementById('causticArc'),
+  sTileWrap:       document.getElementById('sTileWrap'),
+  sTile:           document.getElementById('sTile'),
+  godBadge:        document.getElementById('godBadge'),
+  progressCluster: document.getElementById('progressCluster'),
+  progressPercent: document.getElementById('progressPercent'),
+  progressStatus:  document.getElementById('progressStatus'),
+  videoReveal:     document.getElementById('videoReveal'),
+  video:           document.getElementById('savedVideo'),
+  apertureRing:    document.getElementById('screenApertureRing'),
+  apertureAura:    document.getElementById('screenApertureAura'),
+  videoWaiting:    document.getElementById('videoWaiting'),
+  fName:           document.getElementById('fName'),
+  fDesc:           document.getElementById('fDesc'),
+  playButton:      document.getElementById('playBtn'),
+  audioButton:     document.getElementById('audioBtn'),
+  organicButton:   document.getElementById('organicToggle'),
+  slider:          document.getElementById('scrubSlider'),
+  timeValue:       document.getElementById('sVal'),
+  pills:           document.getElementById('pills'),
+  embedAudioHint:  document.getElementById('embedAudioHint'),
+  embedAudioButton:document.getElementById('embedAudioBtn'),
+  embedAudioIcon:  document.getElementById('embedAudioIcon'),
+  embedAudioText:  document.getElementById('embedAudioText'),
+  embedPlayPrompt: document.getElementById('embedPlayPrompt')
+};
+
+const TILES = {
+  TikTok:    document.getElementById('tileTikTok'),
+  Instagram: document.getElementById('tileInstagram'),
+  YouTube:   document.getElementById('tileYouTube'),
+  X:         document.getElementById('tileX'),
+  Reddit:    document.getElementById('tileReddit')
+};
+
+/* ── 06 · HELPERS ── */
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+const lerp  = (a, b, t) => a + (b - a) * clamp(t, 0, 1);
+const eOut  = t => 1 - Math.pow(1 - clamp(t, 0, 1), 2.6);
+const eIn   = t => Math.pow(clamp(t, 0, 1), 2.2);
+const eIO   = t => { const p = clamp(t, 0, 1); return p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2, 2)/2; };
+const normalizeMs = v => Number.isFinite(Number(v)) ? clamp(Number(v), 0, TIMING.total) : 0;
+const formatSeconds = ms => (ms / 1000).toFixed(2) + 's';
+const crossedForward = (a, b, t) => a < t && b >= t;
+const crossedBackward = (a, b, t) => a > t && b <= t;
+
+function set3DTransform(el, { x=0, y=0, z=0, rx=0, ry=0, rz=0, scale=1 } = {}) {
+  el.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,${z.toFixed(2)}px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) rotateZ(${rz.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+}
+
+/* ── 07 · BUILD 60 PRECISION HAIRLINE TICKS ── */
+const tickElements = [];
+(() => {
+  const g = document.getElementById('bezelTicks');
+  for (let i = 0; i < 60; i++) {
+    const a = (i * 6 * Math.PI) / 180;
+    const major = i % 5 === 0;
+    const r1 = 175;
+    const r2 = major ? 186 : 181;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', (200 + r1 * Math.cos(a)).toFixed(2));
+    line.setAttribute('y1', (200 + r1 * Math.sin(a)).toFixed(2));
+    line.setAttribute('x2', (200 + r2 * Math.cos(a)).toFixed(2));
+    line.setAttribute('y2', (200 + r2 * Math.sin(a)).toFixed(2));
+    line.setAttribute('class', `bezel-tick${major ? ' major' : ''}`);
+    g.appendChild(line);
+    tickElements.push(line);
+  }
+})();
+
+/* ── 08 · WEBGL PORTAL ENGINE ── */
+let gl = null, prog = null, u = {}, glStart = 0, glRaf = null;
+
+function initWebGL() {
+  if (state.reducedMotion) return;
+  try {
+    gl = DOM.glCanvas.getContext('webgl', { alpha: true, premultipliedAlpha: false, antialias: false, powerPreference: 'high-performance' })
+      || DOM.glCanvas.getContext('experimental-webgl', { alpha: true, premultipliedAlpha: false });
+  } catch (_) { gl = null; }
+  if (!gl) { console.warn('[STASH GOD2] WebGL unavailable'); return; }
+
+  const compile = (src, type) => {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error('[STASH GOD2] Shader error:', gl.getShaderInfoLog(s));
+      return null;
+    }
+    return s;
+  };
+
+  const vs = compile(document.getElementById('vert-src').textContent, gl.VERTEX_SHADER);
+  const fs = compile(document.getElementById('frag-src').textContent, gl.FRAGMENT_SHADER);
+  if (!vs || !fs) { gl = null; return; }
+
+  prog = gl.createProgram();
+  gl.attachShader(prog, vs); gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    console.error('[STASH GOD2] Link error:', gl.getProgramInfoLog(prog));
+    gl = null; return;
+  }
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+  ['u_time','u_res','u_ringRadius','u_progress','u_phase','u_energy','u_vacuum','u_transmutePhase','u_transmuteProgress','u_organic'].forEach(n => {
+    u[n] = gl.getUniformLocation(prog, n);
+  });
+
+  glStart = performance.now();
+  resizeGL();
+  window.addEventListener('resize', resizeGL, { passive: true });
+  glRaf = requestAnimationFrame(glLoop);
+}
+
+let stageVisible = true;
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    stageVisible = entries[0]?.isIntersecting ?? true;
+  }, { threshold: 0.05 });
+  io.observe(DOM.stage || document.body);
+}
+
+function resizeGL() {
+  if (!gl) return;
+  // Cap devicePixelRatio to 1.25 to prevent GPU pipeline saturation on high-DPI retina screens
+  const d = Math.min(window.devicePixelRatio || 1, 1.25);
+  const w = DOM.stage.clientWidth || window.innerWidth;
+  const h = DOM.stage.clientHeight || window.innerHeight;
+  DOM.glCanvas.width = Math.round(w * d);
+  DOM.glCanvas.height = Math.round(h * d);
+  gl.viewport(0, 0, DOM.glCanvas.width, DOM.glCanvas.height);
+}
+
+function glLoop(now) {
+  glRaf = requestAnimationFrame(glLoop);
+  if (!gl || document.visibilityState === 'hidden' || !stageVisible) return;
+
+  const wt = (now - glStart) / 1000;
+  const t  = state.time;
+
+  /* Smooth energy escalation */
+  const targetEnergy = t < TIMING.vacuumStart ? (state.playing ? clamp(t / TIMING.convergenceEnd, 0, 1) : 0.05) : 0;
+  state.glEnergy = lerp(state.glEnergy, targetEnergy, 0.038);
+
+  /* Calculate vacuum and transmutation states deterministically */
+  let vacuum = 0.0;
+  let transmutePhase = 0.0;
+  let transmuteProgress = 0.0;
+
+  if (t >= TIMING.vacuumStart && t < TIMING.vacuumEnd) {
+    vacuum = clamp((t - TIMING.vacuumStart) / 80, 0, 1);
+  } else if (t >= TIMING.lockImpact) {
+    const dt = t - TIMING.lockImpact;
+    if (dt < 40) {
+      transmutePhase = 1.0;
+      transmuteProgress = dt / 40;
+    } else if (dt < 90) {
+      transmutePhase = 2.0;
+      transmuteProgress = (dt - 40) / 50;
+    } else if (dt < 450) {
+      transmutePhase = 3.0;
+      transmuteProgress = (dt - 90) / 360;
+    } else {
+      transmutePhase = 4.0;
+      transmuteProgress = Math.min(1.0, (dt - 450) / 500);
+    }
+  }
+
+  let ph = 0;
+  if (t >= TIMING.apertureStart)    ph = 4;
+  else if (t >= TIMING.lockImpact)  ph = 3;
+  else if (t >= TIMING.vacuumStart) ph = 2;
+  else if (t >= TIMING.driftEnd)    ph = 1;
+
+  gl.clearColor(0, 0, 0, 0);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  /* Sub-pixel synchronization matching SVG 168px */
+  const cssMin = Math.min(DOM.stage.clientWidth || window.innerWidth, DOM.stage.clientHeight || window.innerHeight);
+  const stageScale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stage-scale')) || 1;
+  const ringRadiusCss = (168 * stageScale) / Math.max(cssMin, 1);
+
+  gl.uniform1f(u.u_time,              wt);
+  gl.uniform2f(u.u_res,               DOM.glCanvas.width, DOM.glCanvas.height);
+  gl.uniform1f(u.u_ringRadius,        ringRadiusCss);
+  gl.uniform1f(u.u_progress,          state.progressPct / 100);
+  gl.uniform1f(u.u_phase,             ph);
+  gl.uniform1f(u.u_energy,            state.glEnergy);
+  gl.uniform1f(u.u_vacuum,            vacuum);
+  gl.uniform1f(u.u_transmutePhase,    transmutePhase);
+  gl.uniform1f(u.u_transmuteProgress, transmuteProgress);
+  gl.uniform1f(u.u_organic,           state.organicOn ? 1.0 : 0.0);
+
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+}
+
+/* ── 09 · TACTILE AUDIO ENGINE ── */
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioContext = null, masterGain = null;
+const activeNodes = new Set();
+
+function initAudio() {
+  if (!AudioCtx) return false;
+  if (!audioContext) {
+    audioContext = new AudioCtx();
+    masterGain = audioContext.createGain();
+    masterGain.connect(audioContext.destination);
+    masterGain.gain.value = 1;
+  }
+  if (audioContext.state === 'suspended') audioContext.resume().catch(() => {});
+  return true;
+}
+function stopTrackedAudio() {
+  for (const n of activeNodes) {
+    try { n.stop?.(); } catch {}
+    try { n.disconnect?.(); } catch {}
+  }
+  activeNodes.clear();
+}
+function hardMuteAudio() {
+  if (!audioContext || !masterGain) return;
+  stopTrackedAudio();
+  const n = audioContext.currentTime;
+  masterGain.gain.cancelScheduledValues(n);
+  masterGain.gain.setValueAtTime(0, n);
+}
+function restoreAudio() {
+  if (!audioContext || !masterGain) return;
+  const n = audioContext.currentTime;
+  masterGain.gain.cancelScheduledValues(n);
+  masterGain.gain.setValueAtTime(state.audioEnabled ? 1 : 0, n);
+}
+
+function playRatchetTick() {
+  if (!state.audioEnabled || state.reducedMotion || !audioContext || audioContext.state !== 'running') return;
+  const now = audioContext.currentTime, sr = audioContext.sampleRate;
+  const len = Math.max(1, Math.floor(sr * 0.0020));
+  const buf = audioContext.createBuffer(1, len, sr);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.28));
+  const src = audioContext.createBufferSource(), f = audioContext.createBiquadFilter(), g = audioContext.createGain();
+  src.buffer = buf; f.type = 'bandpass'; f.frequency.setValueAtTime(3600, now); f.Q.setValueAtTime(6.0, now);
+  g.gain.setValueAtTime(0.034, now); g.gain.exponentialRampToValueAtTime(0.0001, now + 0.0028);
+  src.connect(f); f.connect(g); g.connect(masterGain);
+  src.start(now);
+  src.onended = () => { try { src.disconnect(); f.disconnect(); g.disconnect(); } catch {} };
+  activeNodes.add(src);
+}
+
+function playLockSound() {
+  if (!state.audioEnabled || !audioContext || audioContext.state !== 'running') return;
+  const now = audioContext.currentTime;
+  const clickLen = Math.max(1, Math.floor(audioContext.sampleRate * 0.003));
+  const buf = audioContext.createBuffer(1, clickLen, audioContext.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < clickLen; i++) d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (clickLen * 0.25));
+  const click = audioContext.createBufferSource(), f = audioContext.createBiquadFilter(), g = audioContext.createGain();
+  click.buffer = buf; f.type = 'bandpass'; f.frequency.setValueAtTime(2900, now); f.Q.setValueAtTime(4, now);
+  g.gain.setValueAtTime(0.34, now); g.gain.exponentialRampToValueAtTime(0.0001, now + 0.003);
+  click.connect(f); f.connect(g); g.connect(masterGain);
+  click.start(now);
+  activeNodes.add(click);
+
+  /* Crystal Harmonic Resolution */
+  const notes = [
+    { f: 1760, d: 0.002, v: 0.46, e: 0.58, t: 'sine' },
+    { f: 2637, d: 0.038, v: 0.50, e: 0.68, t: 'sine' },
+    { f: 3520, d: 0.038, v: 0.14, e: 0.28, t: 'sine' },
+    { f:  440, d: 0.005, v: 0.24, e: 0.45, t: 'triangle' }
+  ];
+  notes.forEach(n => {
+    const o = audioContext.createOscillator(), gg = audioContext.createGain();
+    const s = now + n.d, e = s + n.e;
+    o.type = n.t; o.frequency.setValueAtTime(n.f, s);
+    gg.gain.setValueAtTime(0.0001, s);
+    gg.gain.linearRampToValueAtTime(n.v, s + 0.004);
+    gg.gain.exponentialRampToValueAtTime(0.0001, e);
+    o.connect(gg); gg.connect(masterGain);
+    o.start(s); o.stop(e + 0.05);
+    activeNodes.add(o);
+  });
+}
+
+/* ── 10 · VIDEO & APERTURE BRIDGE ── */
+function getViewportSize() { return { width: DOM.stage.clientWidth || window.innerWidth, height: DOM.stage.clientHeight || window.innerHeight }; }
+function getCoverRadius() {
+  const { width, height } = getViewportSize();
+  return Math.ceil(Math.sqrt(width * width + height * height) / 2) + 40;
+}
+function setApertureRadius(r) {
+  const sr = Math.max(0, Number(r) || 0);
+  const d  = sr * 2;
+  DOM.videoReveal.style.setProperty('--aperture-radius', `${sr}px`);
+  DOM.apertureRing.style.width   = `${d}px`;
+  DOM.apertureRing.style.height  = `${d}px`;
+  DOM.apertureAura.style.width   = `${d}px`;
+  DOM.apertureAura.style.height  = `${d}px`;
+}
+function hideVideoReveal() {
+  DOM.videoReveal.style.setProperty('--aperture-radius', '0px');
+  DOM.videoReveal.setAttribute('aria-hidden', 'true');
+  DOM.video.classList.remove('ready');
+  DOM.apertureRing.style.opacity = '0'; DOM.apertureAura.style.opacity = '0';
+  DOM.videoWaiting.classList.remove('active');
+  state.videoRevealed = false; setApertureRadius(0);
+}
+function revealVideoElement() {
+  if (!state.videoReady) return;
+  DOM.video.classList.add('ready');
+  DOM.videoWaiting.classList.remove('active');
+  const p = DOM.video.play();
+  p?.catch?.(() => {});
+}
+function prepareVideo(source) {
+  if (typeof source !== 'string' || !source.trim()) return false;
+  try {
+    DOM.video.pause();
+    DOM.video.classList.remove('ready');
+    state.videoReady = false;
+    state.currentVideoSource = source;
+    DOM.video.src = source; DOM.video.load();
+    state.videoPrepared = true;
+    return true;
+  } catch (e) { console.warn('[STASH GOD2] video prepare', e); return false; }
+}
+function clearVideoEl() {
+  try { DOM.video.pause(); } catch {}
+  DOM.video.removeAttribute('src'); DOM.video.load();
+  DOM.video.classList.remove('ready');
+  state.videoPrepared = false; state.videoReady = false; state.currentVideoSource = null;
+}
+
+/* ── 11 · 1% TO 100% REAL-TIME PROGRESS ENGINE ── */
+function calculateTimelineProgress(t) {
+  if (t < TIMING.driftEnd) {
+    // 0% -> 15% (Act 1: The Calm Drift)
+    return (t / TIMING.driftEnd) * 15;
+  } else if (t < TIMING.convergenceEnd) {
+    // 15% -> 96% (Act 2: Energy Charge)
+    const p = (t - TIMING.driftEnd) / (TIMING.convergenceEnd - TIMING.driftEnd);
+    return 15 + p * 81;
+  } else if (t < TIMING.vacuumEnd) {
+    // 97% hold (Act 3: Vacuum Suspense)
+    return 97;
+  }
+  // 100% completed (Act 4: Emerald Triumph)
+  return 100;
+}
+
+function updateProgressDisplay(pct, t) {
+  state.progressPct = clamp(pct, 0, 100);
+  const rounded = Math.floor(state.progressPct);
+  DOM.progressPercent.textContent = rounded + '%';
+
+  const isLocked = t >= TIMING.lockImpact;
+  DOM.progressPercent.classList.toggle('locked', isLocked);
+  DOM.progressStatus.classList.toggle('locked', isLocked);
+  DOM.godBadge.classList.toggle('locked', isLocked);
+
+  if (isLocked) {
+    DOM.progressStatus.textContent = '100% · SECURED IN VAULT';
+  } else if (t >= TIMING.vacuumStart) {
+    DOM.progressStatus.textContent = 'VACUUM ENCRYPTION';
+  } else if (t >= TIMING.driftEnd) {
+    DOM.progressStatus.textContent = 'EXTRACTING 4K MEDIA';
+  } else {
+    DOM.progressStatus.textContent = 'CONNECTING TO SOURCE';
+  }
+
+  // Fade out cluster during full aperture expansion
+  if (t >= 3800 && t < 4450) {
+    DOM.progressCluster.style.opacity = lerp(1, 0, (t - 3800) / 450).toFixed(3);
+  } else if (t >= 4450) {
+    DOM.progressCluster.style.opacity = '0';
+  } else {
+    DOM.progressCluster.style.opacity = '1';
+  }
+}
+
+/* ── 12 · RENDER PASSES ── */
+function renderCamera(t) {
+  let z = 0, rx = 0, ry = 0;
+  if (t >= TIMING.lockImpact && t < TIMING.apertureEnd) {
+    const p = clamp((t - TIMING.lockImpact) / (TIMING.apertureEnd - TIMING.lockImpact), 0, 1);
+    z = lerp(0, 128, eIn(p));
+    rx = state.organicOn ? Math.sin(t * 0.0012) * 0.4 : 0;
+    ry = state.organicOn ? Math.cos(t * 0.0010) * 0.3 : 0;
+  } else if (t >= TIMING.apertureEnd) {
+    z = lerp(128, 350, eIn(clamp((t - TIMING.apertureEnd) / 700, 0, 1)));
+  }
+  set3DTransform(DOM.camera, { z, rx, ry });
+}
+
+function renderTiles(t) {
+  let pull = 0, opacity = 0.95;
+  if (t >= TIMING.driftEnd && t < TIMING.convergenceEnd) {
+    const p = (t - TIMING.driftEnd) / (TIMING.convergenceEnd - TIMING.driftEnd);
+    pull = Math.pow(p, 1.45); opacity = lerp(0.95, 0.40, p);
+  } else if (t >= TIMING.convergenceEnd && t < TIMING.vacuumEnd) {
+    pull = 0.97; opacity = 0.40;
+  } else if (t >= TIMING.vacuumEnd) {
+    pull = 1.00; opacity = 0.00;
+  }
+  const inv = 1 - pull;
+  const scale = clamp(1 - pull * 0.92, 0.08, 1);
+  for (const [name, tile] of Object.entries(TILES)) {
+    const c = TILE_COORDS[name];
+    const drift = state.organicOn && pull < 0.95 ? Math.sin(t * 0.0011 + c.x) * 1.2 : 0;
+    set3DTransform(tile, { x: c.x * inv + drift, y: c.y * inv + drift * 0.6, z: c.z * inv, rx: c.rx * inv, ry: c.ry * inv, rz: c.rz * inv, scale });
+    tile.style.opacity = opacity.toFixed(3);
+  }
+}
+
+function renderChronometer(t) {
+  const pct = state.progressPct;
+  const progressRatio = pct / 100;
+  const green = t >= TIMING.lockImpact;
+  const active = Math.floor(progressRatio * 60);
+  const wall = performance.now() / 1000;
+
+  if (active !== state.lastTickIndex || green !== state.lastGreen) {
+    state.lastTickIndex = active;
+    state.lastGreen = green;
+    for (let i = 0; i < tickElements.length; i++) {
+      const tick = tickElements[i];
+      if (green) {
+        tick.setAttribute('class', 'bezel-tick locked-green');
+      } else {
+        const dist = (i - active + 60) % 60;
+        if (dist === 0) {
+          tick.setAttribute('class', 'bezel-tick active-red');
+        } else if (dist <= 2 && state.organicOn) {
+          const p = 0.5 + 0.5 * Math.sin(wall * 8.0 + i * 1.1);
+          tick.setAttribute('class', p > 0.6 ? 'bezel-tick pulse-red' : 'bezel-tick dim-red');
+        } else if (i < active && (active - i) < 7) {
+          tick.setAttribute('class', 'bezel-tick dim-red');
+        } else {
+          tick.setAttribute('class', `bezel-tick${i % 5 === 0 ? ' major' : ''}`);
+        }
+      }
+    }
+  }
+
+  const off = ARC_LENGTH * (1 - progressRatio);
+  DOM.causticArc.setAttribute('stroke-dashoffset', off.toFixed(1));
+  DOM.causticArc.setAttribute('stroke', green ? COLORS.green : COLORS.red);
+  DOM.causticArc.setAttribute('stroke-width', green ? '2.0' : '1.6');
+
+  let ringOpacity = 1, ringScale = 1;
+  if (t >= TIMING.apertureStart && t < TIMING.apertureEnd) {
+    const p = eOut((t - TIMING.apertureStart) / (TIMING.apertureEnd - TIMING.apertureStart));
+    ringScale = lerp(1, 1.15, p); ringOpacity = lerp(1, 0, p);
+  } else if (t >= TIMING.apertureEnd) {
+    ringOpacity = 0;
+  }
+  DOM.svgRing.style.opacity = ringOpacity.toFixed(3);
+  DOM.svgRing.style.transform = `scale(${ringScale.toFixed(4)})`;
+}
+
+function renderCore(t) {
+  const processing = t >= TIMING.driftEnd && t < TIMING.convergenceEnd;
+  const vacuum     = t >= TIMING.vacuumStart && t < TIMING.vacuumEnd;
+  const locked     = t >= TIMING.lockImpact;
+  const now = performance.now() / 1000;
+
+  let scale = 1, rot = 0, ty = 0;
+
+  if (t < TIMING.driftEnd) {
+    /* 5.8s natural organic breath */
+    scale = 1 + 0.012 * Math.sin(now * 1.08) + 0.005 * Math.sin(now * 0.65 + 1.1);
+    rot = 0.25 * Math.sin(now * 0.85);
+  } else if (processing) {
+    const p = (t - TIMING.driftEnd) / (TIMING.convergenceEnd - TIMING.driftEnd);
+    scale = lerp(1.0, 0.965, eIO(p));
+    rot = state.organicOn ? Math.sin(now * 4.0) * 0.8 * (1 - p * 0.3) : 0;
+    ty = -2.5 * p;
+  } else if (vacuum) {
+    scale = 0.96; rot = 0; ty = -2.5; // absolute still anticipation
+  } else if (locked) {
+    const dt = t - TIMING.lockImpact;
+    if (dt < 40) {
+      // Phase A: Inward compression
+      scale = lerp(0.96, 0.94, dt / 40);
+    } else if (dt < 90) {
+      // Phase B: Neutral flash
+      scale = lerp(0.94, 1.0, (dt - 40) / 50);
+    } else if (dt < 450) {
+      // Phase C: Emerald wave release snap
+      const u = (dt - 90) / 360;
+      scale = 1.0 + 0.038 * Math.sin(u * Math.PI);
+    } else {
+      // Phase D: Settled calm
+      scale = 1.0;
+    }
+    rot = 0; ty = 0;
+  }
+
+  DOM.sTileWrap.style.transform = `scale(${scale.toFixed(4)}) translateY(${ty.toFixed(2)}px)`;
+  DOM.sTile.style.transform = `rotate(${rot.toFixed(2)}deg)`;
+  DOM.sTile.classList.toggle('unlocked', locked);
+
+  if (state.videoPrepared && t >= 4040 && t < 4450) {
+    DOM.sTileWrap.style.opacity = lerp(1, 0, (t - 4040) / 410).toFixed(3);
+  } else if (state.videoPrepared && t >= 4450) {
+    DOM.sTileWrap.style.opacity = '0';
+  } else {
+    DOM.sTileWrap.style.opacity = '1';
+  }
+}
+
+function renderVideoReveal(t) {
+  if (t < TIMING.apertureStart || !state.videoPrepared) { hideVideoReveal(); return; }
+  const final = getCoverRadius();
+  const p = eOut(clamp((t - TIMING.apertureStart) / (TIMING.apertureEnd - TIMING.apertureStart), 0, 1));
+  const r = lerp(168, final, p);
+  setApertureRadius(r);
+  DOM.videoReveal.setAttribute('aria-hidden', 'false');
+  const op = p < 0.88 ? 1 : lerp(1, 0, (p - 0.88) / 0.12);
+  DOM.apertureRing.style.opacity = op.toFixed(3);
+  DOM.apertureAura.style.opacity = (op * 0.72).toFixed(3);
+  if (state.videoReady) {
+    DOM.videoWaiting.classList.remove('active');
+    DOM.video.classList.add('ready');
+  } else {
+    DOM.videoWaiting.classList.add('active');
+  }
+  if (p >= 0.98) {
+    state.videoRevealed = true;
+    if (state.videoReady) revealVideoElement();
+  }
+}
+
+function nearestKeyframeIndex(ms) {
+  let best = 0, d = Infinity;
+  for (let i = 0; i < KF.length; i++) {
+    const x = Math.abs(KF[i].ms - ms);
+    if (x < d) { d = x; best = i; }
+  }
+  return best;
+}
+function updateHUD(ms) {
+  const k = KF[nearestKeyframeIndex(ms)];
+  DOM.fName.textContent = `${k.n} · ${k.name} (${formatSeconds(ms)})`;
+  DOM.fDesc.textContent = k.desc;
+  DOM.slider.value = ms.toFixed(0);
+  DOM.timeValue.textContent = formatSeconds(ms);
+  DOM.pills.querySelectorAll('.pill').forEach((b, i) => b.classList.toggle('on', i === nearestKeyframeIndex(ms)));
+}
+
+function render(ms) {
+  const t = normalizeMs(ms);
+  state.time = t;
+  const vacuum = t >= TIMING.vacuumStart && t < TIMING.vacuumEnd;
+  DOM.stage.classList.toggle('vacuum', vacuum);
+
+  const pct = calculateTimelineProgress(t);
+  updateProgressDisplay(pct, t);
+
+  renderCamera(t);
+  renderTiles(t);
+  renderChronometer(t);
+  renderCore(t);
+  renderVideoReveal(t);
+  updateHUD(t);
+}
+
+/* ── 13 · TIMELINE TRANSITIONS ── */
+function enterVacuum() {
+  if (state.vacuumEntered) return;
+  state.vacuumEntered = true;
+  hardMuteAudio();
+}
+function triggerLockImpact() {
+  if (state.lockTriggered) return;
+  state.lockTriggered = true;
+  DOM.sTile.classList.add('unlocked');
+  if (state.audioEnabled) {
+    restoreAudio();
+    playLockSound();
+  }
+}
+function processEvents(prev, next) {
+  if (crossedForward(prev, next, TIMING.vacuumStart))  enterVacuum();
+  if (crossedForward(prev, next, TIMING.lockImpact))   triggerLockImpact();
+  if (crossedBackward(prev, next, TIMING.vacuumStart)) { state.vacuumEntered = false; hardMuteAudio(); }
+  if (crossedBackward(prev, next, TIMING.lockImpact))  { state.lockTriggered = false; state.vacuumEntered = false; if (state.audioEnabled) restoreAudio(); }
+}
+
+function resetTimeline() {
+  state.time = 0; state.previousTime = 0;
+  state.lockTriggered = false; state.vacuumEntered = false; state.videoRevealed = false;
+  state.lastTickIndex = -1;
+  hideVideoReveal();
+  if (audioContext) { stopTrackedAudio(); if (state.audioEnabled) restoreAudio(); }
+  render(0);
+}
+function seekTo(ms, { triggerEvents = true } = {}) {
+  const next = normalizeMs(ms), prev = state.time;
+  state.previousTime = prev;
+  if (next < TIMING.lockImpact) { state.lockTriggered = false; state.videoRevealed = false; }
+  if (next < TIMING.vacuumStart) { state.vacuumEntered = false; hardMuteAudio(); }
+  if (triggerEvents) processEvents(prev, next);
+  state.time = next;
+  render(next);
+}
+
+function startPlayback() {
+  if (state.audioEnabled && !state.embedded) initAudio();
+  if (state.time >= TIMING.total) resetTimeline();
+  state.playing = true;
+  DOM.playButton.textContent = '⏸ Pause';
+  DOM.playButton.classList.add('active');
+  state.lastFrameTime = performance.now();
+  if (state.rafId === null) state.rafId = requestAnimationFrame(loop);
+}
+function stopPlayback() {
+  state.playing = false;
+  DOM.playButton.textContent = '▶ Play';
+  DOM.playButton.classList.remove('active');
+  if (state.rafId !== null) { cancelAnimationFrame(state.rafId); state.rafId = null; }
+  state.lastFrameTime = null;
+}
+
+function loop(now) {
+  if (!state.playing) { state.rafId = null; return; }
+  if (state.embedded && !stageVisible) {
+    state.rafId = requestAnimationFrame(loop);
+    state.lastFrameTime = now;
+    return;
+  }
+  const prev  = state.time;
+  const delta = state.lastFrameTime === null ? 0 : now - state.lastFrameTime;
+  state.lastFrameTime = now;
+  let next = prev + delta;
+  if (state.embedded && !state.videoPrepared && next >= TIMING.apertureStart) {
+    if (state.autoLoop) {
+      if (next >= TIMING.apertureStart + 2200) {
+        stopPlayback();
+        resetTimeline();
+        startPlayback();
+        return;
+      }
+    } else {
+      next = TIMING.apertureStart;
+      processEvents(prev, next);
+      state.previousTime = prev;
+      state.time = next;
+      render(state.time);
+      stopPlayback();
+      return;
+    }
+  }
+  if (next > TIMING.total + TIMING.linger) {
+    next = 0;
+    state.lockTriggered = false; state.vacuumEntered = false; state.videoRevealed = false;
+    state.lastTickIndex = -1;
+    hideVideoReveal();
+    if (state.audioEnabled) restoreAudio();
+  }
+  processEvents(prev, next);
+  if (next < TIMING.vacuumStart) {
+    const tick = Math.floor((state.progressPct / 100) * 60);
+    if (tick !== state.lastTickIndex) {
+      if (tick > 0) { state.lastTickIndex = tick; playRatchetTick(); }
+    }
+  }
+  state.previousTime = prev;
+  state.time = Math.min(next, TIMING.total);
+  render(state.time);
+  requestAnimationFrame(loop);
+}
+
+function buildPills() {
+  DOM.pills.replaceChildren();
+  KF.forEach((k, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = `pill${i === 0 ? ' on' : ''}`;
+    const n = document.createElement('span');
+    n.className = 'pill-n'; n.textContent = k.n;
+    b.appendChild(n);
+    b.appendChild(document.createTextNode(k.name));
+    b.addEventListener('click', () => { stopPlayback(); seekTo(k.ms); });
+    DOM.pills.appendChild(b);
+  });
+}
+
+/* ── 14 · EVENT HANDLERS ── */
+DOM.playButton.addEventListener('click', () => state.playing ? stopPlayback() : startPlayback());
+
+DOM.audioButton.addEventListener('click', () => {
+  initAudio();
+  state.audioEnabled = !state.audioEnabled;
+  if (!state.audioEnabled) hardMuteAudio();
+  else {
+    const v = state.time >= TIMING.vacuumStart && state.time < TIMING.vacuumEnd;
+    if (!v) restoreAudio();
+  }
+  DOM.audioButton.textContent = state.audioEnabled ? '🔊 Audio On' : '🔇 Audio Off';
+  DOM.audioButton.classList.toggle('active', state.audioEnabled);
+  DOM.embedAudioIcon.textContent = state.audioEnabled ? '🔊' : '🔇';
+  DOM.embedAudioText.textContent = state.audioEnabled ? 'Sound On · Tactile Glass' : 'Sound Muted';
+});
+
+DOM.organicButton.addEventListener('click', () => {
+  state.organicOn = !state.organicOn;
+  DOM.organicButton.textContent = state.organicOn ? '◎ Organic On' : '◎ Organic Off';
+  DOM.organicButton.classList.toggle('on', state.organicOn);
+});
+
+DOM.slider.addEventListener('input', () => { stopPlayback(); seekTo(parseFloat(DOM.slider.value)); });
+
+document.addEventListener('keydown', e => {
+  if (e.code === 'Space') {
+    e.preventDefault(); state.playing ? stopPlayback() : startPlayback();
+  } else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+    e.preventDefault(); stopPlayback(); seekTo(KF[clamp(nearestKeyframeIndex(state.time) + 1, 0, KF.length - 1)].ms);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+    e.preventDefault(); stopPlayback(); seekTo(KF[clamp(nearestKeyframeIndex(state.time) - 1, 0, KF.length - 1)].ms);
+  } else if (e.key === 'r' || e.key === 'R') {
+    e.preventDefault(); stopPlayback(); resetTimeline(); startPlayback();
+  } else if (e.key === 'o' || e.key === 'O') {
+    DOM.organicButton.click();
+  }
+});
+
+DOM.video.addEventListener('canplay', () => {
+  state.videoReady = true;
+  DOM.videoWaiting.classList.remove('active');
+  if (state.time >= TIMING.apertureStart) { DOM.video.classList.add('ready'); revealVideoElement(); }
+});
+DOM.video.addEventListener('loadeddata', () => {
+  state.videoReady = true;
+  DOM.videoWaiting.classList.remove('active');
+});
+DOM.video.addEventListener('error', () => {
+  state.videoReady = false;
+  DOM.videoWaiting.classList.add('active');
+});
+
+/* ── 15 · PUBLIC STASHDrop API (100% Backward Compatible) ── */
+window.STASHDrop = {
+  prepare(src)       { return prepareVideo(src); },
+  play(src=null)     {
+    if (src) prepareVideo(src);
+    if (state.audioEnabled && !state.embedded) initAudio();
+    stopPlayback(); resetTimeline();
+    DOM.embedPlayPrompt.style.display = 'none';
+    postToParent({ type: 'stash_drop_started' });
+    startPlayback();
+  },
+  reset()            { stopPlayback(); resetTimeline(); },
+  clearVideo()       { clearVideoEl(); },
+  seek(ms)           { stopPlayback(); seekTo(ms); },
+  showVideo()        {
+    if (!state.videoPrepared) return false;
+    stopPlayback();
+    seekTo(TIMING.apertureEnd, { triggerEvents: false });
+    state.videoRevealed = true;
+    setApertureRadius(getCoverRadius());
+    DOM.apertureRing.style.opacity = '0'; DOM.apertureAura.style.opacity = '0';
+    DOM.videoReveal.setAttribute('aria-hidden', 'false');
+    if (state.videoReady) { DOM.video.classList.add('ready'); revealVideoElement(); }
+    return true;
+  },
+  setOrganic(on)     { state.organicOn = !!on; DOM.organicButton.classList.toggle('on', state.organicOn); },
+  progress(pct)      {
+    state.progressPct = clamp(Number(pct) || 0, 0, 100);
+    const ms = (state.progressPct / 100) * TIMING.lockImpact;
+    if (!state.playing) seekTo(ms);
+  },
+  success() {
+    stopPlayback();
+    state.lockTriggered = false;
+    seekTo(TIMING.lockImpact, { triggerEvents: false });
+    triggerLockImpact();
+    startPlayback();
+  }
+};
+
+/* ── 16 · EMBED DETECTION & POSTMESSAGE ── */
+function postToParent(message) {
+  if (!state.embedded || !window.parent) return;
+  const target = state.parentOrigin || '*';
+  try {
+    window.parent.postMessage(message, target);
+  } catch (err) {
+    console.warn('[STASH GOD2] parent postMessage failed:', err);
+  }
+}
+
+function detectEmbed() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    state.embedded = params.get('embed') === '1' || window.self !== window.top;
+    if (!state.embedded) return;
+    document.body.classList.add('embed');
+    if (params.get('prompt') !== '0') {
+      DOM.embedAudioHint.style.display  = 'block';
+      DOM.embedPlayPrompt.style.display = 'block';
+    }
+    if (params.get('loop') === '1' || params.get('autoplay') === '1') {
+      state.autoLoop = true;
+      state.audioEnabled = false;
+      setTimeout(() => {
+        if (!state.playing) window.STASHDrop.play();
+      }, 100);
+    }
+    if (document.referrer) {
+      try { state.parentOrigin = new URL(document.referrer).origin; } catch { state.parentOrigin = null; }
+    }
+  } catch(e) {}
+}
+
+DOM.embedAudioButton.addEventListener('click', e => {
+  e.stopPropagation();
+  DOM.audioButton.click();
+  if (!state.playing) window.STASHDrop.play();
+});
+DOM.stage.addEventListener('click', e => {
+  if (!state.embedded) return;
+  if (DOM.embedAudioButton.contains(e.target)) return;
+  initAudio(); state.audioEnabled = true;
+  DOM.audioButton.textContent = '🔊 Audio On';
+  DOM.audioButton.classList.add('active');
+  DOM.embedPlayPrompt.style.display = 'none';
+  postToParent({ type: 'stash_ring_tapped' });
+  window.STASHDrop.play();
+});
+
+window.addEventListener('message', ev => {
+  const msg = ev.data;
+  if (msg === 'stop' || msg === 'pause' || msg?.action === 'stop' || msg?.action === 'pause') { stopPlayback(); resetTimeline(); return; }
+  if (msg === 'play' || msg?.action === 'play') { window.STASHDrop.play(); return; }
+  if (msg?.action === 'video-source' && typeof msg.source === 'string') { prepareVideo(msg.source); return; }
+  if (msg?.action === 'play-video' && typeof msg.source === 'string') { window.STASHDrop.play(msg.source); return; }
+  if (msg === 'success' || msg?.action === 'success') { window.STASHDrop.success(); return; }
+  if (msg?.action === 'seek' && typeof msg.ms === 'number') { seekTo(Number(msg.ms)); return; }
+  if (msg?.action === 'progress' && typeof msg.progress === 'number') { window.STASHDrop.progress(Number(msg.progress)); return; }
+  if (msg?.action === 'prepare') { prepareVideo(msg.source); return; }
+});
+
+/* ── INIT ── */
+detectEmbed();
+buildPills();
+initWebGL();
+render(0);
+
+setTimeout(() => {
+  if (!state.embedded) startPlayback();
+}, 200);
+
+</script>
+</body>
+</html>

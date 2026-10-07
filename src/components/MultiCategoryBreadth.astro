@@ -1,0 +1,304 @@
+---
+---
+
+<section id="breadth" class="scroll-mt-24 py-24 md:py-32 bg-[#040507] border-b border-white/[0.06] relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    
+    <div class="max-w-3xl mx-auto text-center mb-16 space-y-4">
+      <div class="inline-block telemetry-pill text-[#8E9196] bg-white/[0.04] border-white/10">
+        WHATEVER YOU LOVE TO DO
+      </div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+        Whatever you save.<br class="hidden sm:inline" />
+        <span class="text-[#FF2D55]">Whatever you actually do.</span>
+      </h2>
+      <p class="text-base sm:text-lg text-[#9CA3AF] max-w-xl mx-auto leading-relaxed">
+        Recipes and workouts are proof of what STASH can transform. But the vault is built for any video, tutorial, or guide worth keeping.
+      </p>
+    </div>
+
+    <!-- Category Tabs Navigation -->
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 pb-6 border-b border-white/[0.08]" role="tablist">
+      <button onclick="setBreadthCategory('cook')" id="breadth-tab-cook" class="breadth-tab active flex items-center gap-2" role="tab" aria-selected="true">
+        <svg class="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 11h.01"/><path d="M11 15h.01"/><path d="M16 16a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"/><path d="m19.5 5.5-4 4"/></svg>
+        <span>Cook Mode</span>
+      </button>
+      <button onclick="setBreadthCategory('train')" id="breadth-tab-train" class="breadth-tab flex items-center gap-2" role="tab" aria-selected="false">
+        <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+        <span>Train Mode</span>
+      </button>
+      <button onclick="setBreadthCategory('travel')" id="breadth-tab-travel" class="breadth-tab flex items-center gap-2" role="tab" aria-selected="false">
+        <svg class="w-4 h-4 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+        <span>Travel Guides</span>
+      </button>
+      <button onclick="setBreadthCategory('tutorials')" id="breadth-tab-tutorials" class="breadth-tab flex items-center gap-2" role="tab" aria-selected="false">
+        <svg class="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>Tutorials & DIY</span>
+      </button>
+      <button onclick="setBreadthCategory('references')" id="breadth-tab-references" class="breadth-tab flex items-center gap-2" role="tab" aria-selected="false">
+        <svg class="w-4 h-4 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        <span>References</span>
+      </button>
+    </div>
+
+    <!-- Interactive Category Presentation Deck -->
+    <div class="specular-box rounded-3xl p-6 sm:p-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Narrative & Real UI Switcher -->
+        <div class="lg:col-span-6 space-y-5 text-left">
+          <div class="flex items-center gap-2">
+            <span id="breadthCategoryBadge" class="telemetry-pill text-amber-400 bg-amber-400/10 border-amber-400/30">
+              KITCHEN & RECIPES
+            </span>
+          </div>
+
+          <h3 id="breadthHeading" class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
+            A recipe you saved should become dinner.
+          </h3>
+
+          <p id="breadthSubheading" class="text-sm sm:text-base text-[#9CA3AF] leading-relaxed">
+            Your phone is propped on the counter with flour on your hands. You don't need a 60-second video flying past. You need ingredients and prep steps—in order, legible, and ready to check off.
+          </p>
+
+          <!-- Sub-screen switcher buttons -->
+          <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-2">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-[#8E9196] block">Select Real STASH View:</span>
+            <div id="breadthSubPills" class="flex flex-wrap gap-2">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- Real Provenance Note -->
+          <div id="breadthProvenance" class="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] text-[11px] font-mono text-[#8E9196]">
+            ✦ Steps and ingredients verified directly from source post.
+          </div>
+        </div>
+
+        <!-- Right Column: Real STASH Phone Mockup -->
+        <div class="lg:col-span-6 flex flex-col items-center">
+          <div class="w-full max-w-[340px] aspect-[9/18.5] rounded-[38px] bg-[#07080B] p-2.5 border border-white/20 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+            
+            <!-- Camera Notch -->
+            <div class="absolute top-2.5 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-full z-30 border border-white/10"></div>
+            
+            <!-- Phone Screen with Cross-fade image -->
+            <div class="w-full h-full rounded-[30px] overflow-hidden bg-black relative">
+              <img id="breadthImage" src="/assets/stash_ui_v3_potato_ingredients.jpg" alt="STASH Application Screen" class="w-full h-full object-contain transition-opacity duration-200" />
+            </div>
+          </div>
+
+          <!-- Screen Status Caption Under Phone -->
+          <div class="mt-4 flex items-center justify-between w-full max-w-[340px] px-3 text-xs font-mono text-[#8E9196]">
+            <span id="breadthStateCaption" class="text-white font-bold">RECIPE DRAWER</span>
+            <span id="breadthMetaCaption" class="text-[#10B981]">23 INGREDIENTS</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .breadth-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #8E9196;
+    transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .breadth-tab:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .breadth-tab.active {
+    background: #FFFFFF;
+    color: #07080B;
+    border-color: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
+  }
+
+  .breadth-sub-btn {
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #9CA3AF;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .breadth-sub-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+  }
+  .breadth-sub-btn.active {
+    background: #FF2D55;
+    color: #FFFFFF;
+    border-color: #FF2D55;
+    font-weight: bold;
+  }
+</style>
+
+<script is:inline>
+  const BREADTH_DATA = {
+    cook: {
+      badge: "KITCHEN & RECIPES",
+      badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/30",
+      heading: "A recipe you saved should become dinner.",
+      subheading: "Your phone is propped on the counter with flour on your hands. You don't need another video flying past. You need ingredients and prep steps—in order, legible, and ready to check off.",
+      initialImage: "/assets/stash_ui_v3_potato_ingredients.jpg",
+      stateCaption: "RECIPE DRAWER",
+      metaCaption: "23 INGREDIENTS",
+      provenance: "✦ Ingredients and prep steps structured directly from creator source.",
+      subViews: [
+        { label: "Ingredients Drawer", image: "/assets/stash_ui_v3_potato_ingredients.jpg", state: "RECIPE DRAWER", meta: "23 INGREDIENTS" },
+        { label: "Step-by-Step Prep", image: "/assets/stash_ui_v3_potato_steps.jpg", state: "PREP STEPS", meta: "7 STEPS" },
+        { label: "Original Creator Video", image: "/assets/stash_ui_v3_potato_reel.jpg", state: "CREATOR REEL", meta: "@recipeincaption" }
+      ]
+    },
+    train: {
+      badge: "FITNESS & GYM",
+      badgeColor: "text-[#FF2D55] bg-[#FF2D55]/10 border-[#FF2D55]/30",
+      heading: "A workout you saved should become your next session.",
+      subheading: "Resting 60 seconds between sets on a gym bench. Trying to remember exercises. STASH structures the routine—exercises, sets, and active interval timers you can glance at.",
+      initialImage: "/assets/stash_ui_v3_workout_drawer.jpg",
+      stateCaption: "WORKOUT DRAWER",
+      metaCaption: "9 EXERCISES",
+      provenance: "✦ Built for quick reference and mid-workout glanceability on a gym floor.",
+      subViews: [
+        { label: "Routine Breakdown", image: "/assets/stash_ui_v3_workout_drawer.jpg", state: "WORKOUT DRAWER", meta: "9 EXERCISES" },
+        { label: "Active Rest Timer", image: "/assets/stash_ui_v3_workout_active.jpg", state: "REST TIMER", meta: "00:60 COUNTDOWN" },
+        { label: "Original Routine Video", image: "/assets/stash_ui_v3_workout_reel.jpg", state: "CREATOR REEL", meta: "@marvinachi" }
+      ]
+    },
+    travel: {
+      badge: "TRIPS & EXPLORATION",
+      badgeColor: "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/30",
+      heading: "Save the trip. Then actually take it.",
+      subheading: "A cafe from TikTok. A scenic hike from Instagram. A hidden lodge from a YouTube vlog. Organized into a clean trip collection—ready with links and notes when you land.",
+      initialImage: "/assets/stash_ui_v3_travel_collection.jpg",
+      stateCaption: "TRAVEL COLLECTION",
+      metaCaption: "4 SPOTS SAVED",
+      provenance: "✦ Spots, packing lists, and itineraries organized in one folder.",
+      subViews: [
+        { label: "Trip Collection", image: "/assets/stash_ui_v3_travel_collection.jpg", state: "TRAVEL COLLECTION", meta: "4 SPOTS SAVED" },
+        { label: "Creator's Video", image: "/assets/stash_ui_v3_travel_reel.jpg", state: "SAVED REEL", meta: "@tourpickkars" }
+      ]
+    },
+    tutorials: {
+      badge: "TUTORIALS & DIY",
+      badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/30",
+      heading: "Learn the craft. Keep the references.",
+      subheading: "A 20-minute video editing breakdown or a woodworking project. Keep timestamps, tool lists, and gear links organized beside the video so you can follow along step by step.",
+      initialImage: "/assets/stash_ui_v3_mma_collection.jpg",
+      stateCaption: "MMA COLLECTION",
+      metaCaption: "3 SAVED CLIPS",
+      provenance: "✦ Technical guides and timestamps preserved alongside the player.",
+      subViews: [
+        { label: "Technique Collection", image: "/assets/stash_ui_v3_mma_collection.jpg", state: "MMA COLLECTION", meta: "3 SAVED CLIPS" },
+        { label: "Source Video", image: "/assets/stash_ui_v3_mma_reel.jpg", state: "SAVED CLIP", meta: "@marvntreyhd" }
+      ]
+    },
+    references: {
+      badge: "PERSONAL REFERENCES",
+      badgeColor: "text-blue-400 bg-blue-400/10 border-blue-400/30",
+      heading: "Save it today. Actually find it months later.",
+      subheading: "Book recommendations, investment breakdowns, medical physiotherapy drills, or gift ideas. Grouped in custom folders so you never have to remember where you saw it.",
+      initialImage: "/assets/stash_ui_01_library_grid.png",
+      stateCaption: "PERSONAL LIBRARY",
+      metaCaption: "ALL SAVES",
+      provenance: "✦ Unified cross-platform library with custom folders.",
+      subViews: [
+        { label: "Library Grid", image: "/assets/stash_ui_01_library_grid.png", state: "LIBRARY GRID", meta: "ORGANIZED" }
+      ]
+    }
+  };
+
+  let activeCategoryKey = 'cook';
+
+  function setBreadthCategory(key) {
+    const data = BREADTH_DATA[key];
+    if (!data) return;
+    activeCategoryKey = key;
+
+    // Update main tabs
+    document.querySelectorAll('.breadth-tab').forEach(t => t.classList.remove('active'));
+    const currentTab = document.getElementById('breadth-tab-' + key);
+    if (currentTab) currentTab.classList.add('active');
+
+    // Update text content
+    const badgeEl = document.getElementById('breadthCategoryBadge');
+    const headEl = document.getElementById('breadthHeading');
+    const subEl = document.getElementById('breadthSubheading');
+    const provEl = document.getElementById('breadthProvenance');
+    const stateEl = document.getElementById('breadthStateCaption');
+    const metaEl = document.getElementById('breadthMetaCaption');
+
+    if (badgeEl) {
+      badgeEl.textContent = data.badge;
+      badgeEl.className = 'telemetry-pill ' + data.badgeColor;
+    }
+    if (headEl) headEl.textContent = data.heading;
+    if (subEl) subEl.textContent = data.subheading;
+    if (provEl) provEl.textContent = data.provenance;
+    if (stateEl) stateEl.textContent = data.stateCaption;
+    if (metaEl) metaEl.textContent = data.metaCaption;
+
+    // Cross-fade image
+    const imgEl = document.getElementById('breadthImage');
+    if (imgEl) {
+      imgEl.style.opacity = '0';
+      setTimeout(() => {
+        imgEl.src = data.initialImage;
+        imgEl.onload = () => { imgEl.style.opacity = '1'; };
+      }, 100);
+    }
+
+    // Populate sub-buttons
+    const subPillsBox = document.getElementById('breadthSubPills');
+    if (subPillsBox) {
+      subPillsBox.innerHTML = data.subViews.map((v, idx) => `
+        <button onclick="setBreadthSubView('${v.image}', '${v.state}', '${v.meta}', this)" class="breadth-sub-btn ${idx === 0 ? 'active' : ''}">
+          ${v.label}
+        </button>
+      `).join('');
+    }
+  }
+
+  function setBreadthSubView(imgSrc, stateText, metaText, btn) {
+    const imgEl = document.getElementById('breadthImage');
+    const stateEl = document.getElementById('breadthStateCaption');
+    const metaEl = document.getElementById('breadthMetaCaption');
+
+    if (imgEl) {
+      imgEl.style.opacity = '0';
+      setTimeout(() => {
+        imgEl.src = imgSrc;
+        imgEl.onload = () => { imgEl.style.opacity = '1'; };
+      }, 100);
+    }
+    if (stateEl) stateEl.textContent = stateText;
+    if (metaEl) metaEl.textContent = metaText;
+
+    if (btn && btn.parentElement) {
+      btn.parentElement.querySelectorAll('.breadth-sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setBreadthCategory('cook');
+  });
+</script>
